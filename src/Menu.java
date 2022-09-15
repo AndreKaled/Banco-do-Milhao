@@ -6,13 +6,13 @@
  * jogo de fato começar
  * */
 
+import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.FlowLayout;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -20,10 +20,11 @@ import javax.swing.JPanel;
 
 public class Menu extends JFrame{
 
-	JPanel c, cLogo;
-	JButton btJogar,btConfig,btComoJogar,btSair;
-	JLabel logo,versao;
-	//ModoDeJogo jogar = new ModoDeJogo();
+	private static JPanel c, cLogo, contPrincipal;
+	private JButton btJogar,btConfig,btComoJogar,btSair;
+	private JLabel logo,versao;
+	protected static CardLayout card = new CardLayout();;
+	private JPanel jogar = new ModoDeJogo();
 	
 	public Menu(){
 		super("Din Din");
@@ -39,8 +40,12 @@ public class Menu extends JFrame{
 		btSair = new JButton("SAIR");
 		logo = new JLabel("LOGO AQUI");
 		versao = new JLabel("Versão beta");
-		c = (JPanel) getContentPane();
+		contPrincipal = (JPanel) getContentPane();
+		contPrincipal.setLayout(card);
 		cLogo = new JPanel();
+		c = new JPanel();
+		c.setLayout(null);
+		c.setName("MENU");
 		
 		//configurando componentes
 		configuraLogo();
@@ -52,7 +57,7 @@ public class Menu extends JFrame{
 		
 		//adicionando componentes
 		c.add(cLogo);
-		//add(jogar);
+		configuraTelas();
 		
 		//tratando eventos
 		trataEventos();
@@ -96,14 +101,32 @@ public class Menu extends JFrame{
 		c.add(btSair);
 	}
 	
+	//configurando telas com o CardLayout
+	protected void configuraTelas(){
+		contPrincipal.add(c,c.getName());
+		contPrincipal.add(jogar,jogar.getName());
+	}
+	
+	//metodos para manipulação do Container Principal
+	static public void mudaTela(String nomeTela){
+		card.show(contPrincipal, nomeTela);
+	}
+	
+	static public void adicionaTela(JPanel painel, String nomeTela){
+		if(painel != null){
+		contPrincipal.add(painel,nomeTela);
+		}else{
+			System.err.println("ERRO");
+		}
+	}
+	
+	static public void voltaTela(){
+		card.previous(contPrincipal);
+	}
 	//area de controle de versão
 	public void configuraVersao(){
 		versao.setBounds(10,660,100,50);
 		c.add(versao);
-	}
-	
-	public static void main(String[] args) {
-		new Menu();
 	}
 
 	public void trataEventos(){
@@ -118,11 +141,13 @@ public class Menu extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				c.setVisible(false);
-				//jogar.setVisible(true);
-				repaint();
+				mudaTela(jogar.getName());
 			}
 			
 		});
+	}
+	
+	public static void main(String[] args) {
+		new Menu();
 	}
 }
