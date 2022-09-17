@@ -1,9 +1,13 @@
+/**André Kaled Duarte - 29/08/2022
+ * DADO, classe usada para a movimentação dos personagens durante o 
+ * jogo no tabuleiro*/
+
 import java.util.Random;
 
-//final para não ser possível herança, sem utilidade herdar desta classe.
+//final para nï¿½o ser possï¿½vel heranï¿½a, sem utilidade herdar desta classe.
 public final class Dado {
 	
-	//classe geradora de numeros pseudoaleatórios
+	//classe geradora de numeros pseudoaleatï¿½rios
 	static Random dado = new Random();
 	
 	//consutor default
@@ -11,7 +15,7 @@ public final class Dado {
 		//default
 	}
 	
-	//metodo estático para rolar um dado padrão (D6)
+	//metodo estï¿½tico para rolar um dado padrï¿½o (D6)
 	public static int rolar() {
 		return dado.nextInt(6)+1;
 	}

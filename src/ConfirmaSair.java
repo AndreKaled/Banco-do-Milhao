@@ -9,14 +9,16 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-/**
+/**André Kaled Duarte e Kauan Ferreira dos Santos - 07/09/2022
+ * 
+ * COMFIRMAÇÃO DA SAÍDA DO JOGO
  * Essa clase tem o objetivo de confirmar a saída do jogador do jogo Se
  * confirmado, o jogo deve fechar, caso negado o jogo deve continuar na tela
  * antes de precionar o botão de sair
  * */
 public class ConfirmaSair extends JFrame {
 
-	// declaração de variaveis da classe
+	// declaraï¿½ï¿½o de variaveis da classe
 	private JPanel c;
 	private JLabel icone, textoAviso, textoConfirma;
 	private JButton btSim, btNao;
@@ -81,6 +83,7 @@ public class ConfirmaSair extends JFrame {
 		add(btNao);
 	}
 	
+	//tratando eventos dos botões de confirmação
 	private class VoltaJogo implements ActionListener{
 
 		@Override
