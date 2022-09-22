@@ -1,12 +1,9 @@
-
 /**
- * André Kaled Duarte e Kauan Ferreira dos Santos - 15/09/2022
- *
+ * AndrÃ© Kaled Duarte - 21/09/2022
  * Tela Principal (MENU) 
- * 
- * Essa classe deve representar a tela Menu do jogo
- * onde o usuário escolhe qual ao realizar antes do
- * jogo de fato começar
+ * Essa classe deve representar o a tela Menu do jogo
+ * onde o usuÃ¡rio escolhe o que realizar antes do
+ * jogo de fato comecar
  * */
 
 import java.awt.CardLayout;
@@ -23,24 +20,20 @@ import javax.swing.JPanel;
 
 public class Menu extends JFrame {
 
-	//declaração dos componentes
 	private static JPanel c, cLogo, contPrincipal;
-	private JButton btJogar, btConfig, btComoJogar, btSair;
+	private JButton btJogar, btConfig, btComoJogar, btSair, btPlacar;
 	private JLabel versao,Plogo;
-	
-	//declaração dos objetos para a "troca" de telas
 	protected static CardLayout card = new CardLayout();;
 	private JPanel jogar = new ModoDeJogo();
 
-	//declaração das imagens a ser usadas na tela de menu
 	ImageIcon logo = new ImageIcon(getClass().getResource("logo.png"));
 	ImageIcon jogo = new ImageIcon(getClass().getResource("jogar.png"));
 	ImageIcon opcoes = new ImageIcon(getClass().getResource("opcoes.png"));
 	ImageIcon tutorial = new ImageIcon(getClass().getResource("tutorial.png"));
 	ImageIcon sair  = new ImageIcon(getClass().getResource("sair.png"));
+	ImageIcon placar = new ImageIcon(getClass().getResource("placar.png"));
 	ImageIcon fundoImg;
 
-	//construtor da classe de menu, que inicia o JFrame também
 	public Menu() {
 		super("Din Din");
 		// configurando janela
@@ -53,8 +46,8 @@ public class Menu extends JFrame {
 		btConfig = new JButton(opcoes);
 		btComoJogar = new JButton(tutorial);
 		btSair = new JButton(sair);
+		btPlacar = new JButton (placar);
 		cLogo = new JPanel();
-		versao = new JLabel("Versï¿½o beta");
 		contPrincipal = (JPanel) getContentPane();
 		contPrincipal.setLayout(card);
 		c = new JPanel();
@@ -68,7 +61,7 @@ public class Menu extends JFrame {
 		configuraBtConfig();
 		configuraBtComoJogar();
 		configuraBtSair();
-		configuraVersao();
+		configuraBtPlacar();
 
 		// adicionando componentes
 		c.add(cLogo);
@@ -79,8 +72,8 @@ public class Menu extends JFrame {
 		setVisible(true);
 	}
 
-	// configura a área da logo
-	private void configuraLogo() {
+	// configura a area da logo
+	public void configuraLogo() {
 		cLogo.setLayout(new FlowLayout());
 
 		// tamanho da logo
@@ -89,16 +82,16 @@ public class Menu extends JFrame {
 		cLogo.add(Plogo);
 	}
 
-	// configura o botão de jogar
-	private void configuraBtJogar() {
+	// configura o botao de jogar
+	public void configuraBtJogar() {
 		btJogar.setBounds(505, 380, 340, 70);
 		btJogar.setContentAreaFilled(false);
         btJogar.setBorderPainted(false);
 		c.add(btJogar);
 	}
 
-	// configura o botao de configurações
-	private void configuraBtConfig() {
+	// configura o botao de configuracoes
+	public void configuraBtConfig() {
 		btConfig.setBounds(505, 460, 160, 70);
 		btConfig.setContentAreaFilled(false);
         btConfig.setBorderPainted(false);
@@ -106,19 +99,26 @@ public class Menu extends JFrame {
 	}
 
 	// configura o botao de como Jogar (tutorial)
-	private void configuraBtComoJogar() {
+	public void configuraBtComoJogar() {
 		btComoJogar.setBounds(680,460, 160, 70);
 		btComoJogar.setContentAreaFilled(false);
         btComoJogar.setBorderPainted(false);
 		c.add(btComoJogar);
 	}
 
-	// configura o botão de sair do jogo
-	private void configuraBtSair() {
+	// configura o botoes de sair do jogo
+	public void configuraBtSair() {
 		btSair.setBounds(1200, 640, 150, 60);		
 		btSair.setContentAreaFilled(false);
         btSair.setBorderPainted(false);
 		c.add(btSair);
+	}
+	
+	public void configuraBtPlacar() {
+		btPlacar.setBounds(-30, 630, 340, 70);
+		btPlacar.setContentAreaFilled(false);
+        btPlacar.setBorderPainted(false);
+		c.add(btPlacar);
 	}
 
 	// configurando telas com o CardLayout
@@ -127,12 +127,11 @@ public class Menu extends JFrame {
 		contPrincipal.add(jogar, jogar.getName());
 	}
 
-	// metodos para manipulação do Container Principal, este troca pelo nome
+	// metodos para manipulacao do Container Principal
 	static public void mudaTela(String nomeTela) {
 		card.show(contPrincipal, nomeTela);
 	}
 
-	//metodo para adicionar as outras telas
 	static public void adicionaTela(JPanel painel, String nomeTela) {
 		if (painel != null) {
 			contPrincipal.add(painel, nomeTela);
@@ -141,18 +140,11 @@ public class Menu extends JFrame {
 		}
 	}
 
-	//metodo para retornar a uma tela anterior, mas por ordem de adição
 	static public void voltaTela() {
 		card.previous(contPrincipal);
 	}
 
-	// area de controle de versï¿½o
-	public void configuraVersao() {
-		versao.setBounds(10, 660, 100, 50);
-		c.add(versao);
-	}
-
-	//tratando eventos dos componentes
+	//tratando eventos
 	public void trataEventos() {
 		btSair.addActionListener(new ActionListener() {
 			@Override
@@ -171,7 +163,6 @@ public class Menu extends JFrame {
 		});
 	}
 
-	//Main
 	public static void main(String[] args) {
 		new Menu();
 	}
