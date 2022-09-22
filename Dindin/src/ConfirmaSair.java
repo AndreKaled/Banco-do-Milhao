@@ -18,7 +18,7 @@ import javax.swing.JPanel;
  * */
 public class ConfirmaSair extends JFrame {
 
-	// declara��o de variaveis da classe
+	// declaracao de variaveis da classe
 	private JPanel c;
 	private JLabel icone, textoAviso, textoConfirma;
 	private JButton btSim, btNao;

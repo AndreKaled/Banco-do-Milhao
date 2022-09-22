@@ -1,5 +1,6 @@
 /**André Kaled Duarte - 18/09/2022
  * Kauan Ferreira dos Santos - 18/09/2022
+ * Graziela da Costa Ralph - 20/09/2022
  * 
  * Modo de Jogo
  * Classe responsável pela escolha dentre os dois modos de jogo: Fácil e Difícil.
@@ -15,30 +16,28 @@ import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class ModoDeJogo extends JPanel {
-
 	// declaração de variaveis dos componentes
-	private JButton panelFacil, panelDificil;
-	private JButton btVoltar;
+	private JButton panelFacil, panelDificil, panelVoltar;
 	private JPanel telaFacil = new ModoFacil(),
 			telaDificil = new ModoDificil();
 	private int contX = 0, contY = 0;
 	private JPanel c;
 	private static String nome = "MODO DE JOGO";
 	private ImageIcon imgFacil = new ImageIcon(getClass().getResource("modo facil.png")),
-	imgDificil = new ImageIcon(getClass().getResource("modo dificil.png"));
-	
+			imgDificil = new ImageIcon(getClass().getResource("modo dificil.png")), 
+			imgBtVoltar = new ImageIcon(getClass().getResource ("botao voltar.png"));
+
 	// construtor da classe
 	public ModoDeJogo() {
 		setLayout(null);
 		setBackground(new Color(66, 153, 206));
+		panelVoltar = new JButton(imgBtVoltar);
 		panelFacil = new JButton(imgFacil);
 		panelDificil = new JButton(imgDificil);
-		btVoltar = new JButton("VOLTAR");
-		c = new JPanel(new FlowLayout());
+		c = new JPanel(null);
 		configuraPanels();
 		configuraBtVoltar();
 		eventos();
@@ -49,23 +48,30 @@ public class ModoDeJogo extends JPanel {
 
 	// configurando painéis
 	private void configuraPanels() {
-		panelFacil.setBounds(20, 80, 650, 600);
-		panelDificil.setBounds(690, 80, 650, 600);
+		c.setBounds(20,80,1350,1200);
+		c.setBackground(new Color(66, 153, 206));
+		add(c);
+		
+		panelFacil.setBounds(0, 0, 650, 600);
+		panelDificil.setBounds(670, 0, 650, 600);
 		
 		panelFacil.setContentAreaFilled(false);
-        panelFacil.setBorderPainted(false);
-        panelDificil.setContentAreaFilled(false);
-        panelDificil.setBorderPainted(false);
-        
-		add(panelFacil);
-		add(panelDificil);
+		panelFacil.setBorderPainted(false);
+		panelDificil.setContentAreaFilled(false);
+		panelDificil.setBorderPainted(false);
+
+		c.add(panelFacil);
+		c.add(panelDificil);
 	}
 
 	/** configurando o botão de voltar */
 	private void configuraBtVoltar() {
-		btVoltar.setBounds(10, 10, 100, 20);
-		add(btVoltar);
-		btVoltar.addActionListener(new ActionListener() {
+		add(panelVoltar);
+		panelVoltar.setBounds (10, 10, 50, 50);
+		panelVoltar.setContentAreaFilled(false);
+		panelVoltar.setBorderPainted(false);
+
+		panelVoltar.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -96,25 +102,21 @@ public class ModoDeJogo extends JPanel {
 
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void mousePressed(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 
 			}
 
@@ -137,25 +139,21 @@ public class ModoDeJogo extends JPanel {
 
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void mousePressed(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 
 			}
 
@@ -166,6 +164,7 @@ public class ModoDeJogo extends JPanel {
 	static protected String getNome() {
 		return nome;
 	}
-	
+
 	// fim da classe
+
 }
