@@ -1,12 +1,12 @@
 package view;
 
-/**André Kaled Duarte - 18/09/2022
+/**Andrï¿½ Kaled Duarte - 18/09/2022
  * Kauan Ferreira dos Santos - 18/09/2022
  * Graziela da Costa Ralph - 20/09/2022
  * 
  * Modo de Jogo
- * Classe responsável pela escolha dentre os dois modos de jogo: Fácil e Difícil.
- * essa classe dispara um evento ao clique do usuário em algum modo, onde deve 
+ * Classe responsï¿½vel pela escolha dentre os dois modos de jogo: Fï¿½cil e Difï¿½cil.
+ * essa classe dispara um evento ao clique do usuï¿½rio em algum modo, onde deve 
  * trocar a tela apresentando ao referido modo escolhido.*/
 
 import java.awt.Color;
@@ -21,7 +21,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class ModoDeJogo extends JPanel {
-	// declaração de variaveis dos componentes
+	// declaraï¿½ï¿½o de variaveis dos componentes
 	private JButton panelFacil, panelDificil, panelVoltar;
 	private JPanel telaFacil = new ModoFacil(),
 			telaDificil = new ModoDificil();
@@ -48,7 +48,7 @@ public class ModoDeJogo extends JPanel {
 		setName(nome);
 	}
 
-	// configurando painéis
+	// configurando painï¿½is
 	private void configuraPanels() {
 		c.setBounds(20,80,1350,1200);
 		c.setBackground(new Color(66, 153, 206));
@@ -66,7 +66,7 @@ public class ModoDeJogo extends JPanel {
 		c.add(panelDificil);
 	}
 
-	/** configurando o botão de voltar */
+	/** configurando o botï¿½o de voltar */
 	private void configuraBtVoltar() {
 		add(panelVoltar);
 		panelVoltar.setBounds (10, 10, 50, 50);
@@ -84,8 +84,8 @@ public class ModoDeJogo extends JPanel {
 	}
 
 	/**
-	 * Tratando eventos de clique, é uma área de escolha de dois modos de jogo
-	 * então ao clicar em uma opção, a configuração deve alterar e a tela também
+	 * Tratando eventos de clique, ï¿½ uma ï¿½rea de escolha de dois modos de jogo
+	 * entï¿½o ao clicar em uma opï¿½ï¿½o, a configuraï¿½ï¿½o deve alterar e a tela tambï¿½m
 	 */
 	private void eventos() {
 		panelFacil.addMouseListener(new MouseListener() {
