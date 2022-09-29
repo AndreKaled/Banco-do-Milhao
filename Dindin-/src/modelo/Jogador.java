@@ -39,7 +39,7 @@ public class Jogador {
 	// construtor com nome
 	public Jogador(String nickName) {
 		setNickName(nickName);
-		// setCor(null);
+		setCor(null);
 		setMoedas(0);
 		setPosicao(0);
 		setScore(0);

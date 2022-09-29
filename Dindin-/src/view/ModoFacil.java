@@ -1,6 +1,6 @@
 package view;
 
-/**André Kaled Duarte - 10/09/2022
+/**André Kaled Duarte - 28/09/2022
  * 
  * Modo fácil
  * essa classe deve ser um dos modos de jogo escolhido pelo usuário, as configurções do jogo são
@@ -8,17 +8,18 @@ package view;
  * é onde os jogadores passarão mais tempo.
  * 
  * Dado? ok
+ * Vez do jogador a mostra? ok
  * Tabuleiro? X
  * Conectado posição do personagem? X
  * Lista de compras do Jogador? X
  * */
-
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -27,16 +28,19 @@ import modelo.Dado;
 
 public class ModoFacil extends JPanel {
 
-	//declaração de atributos
-	private JPanel areaDado;
-	private JButton btRolar, btVoltar;
-	private JLabel resultado;
+	private JPanel areaDado, painelVez;
+	private JButton btRolar, btVoltar, btLista;
+	private JLabel resultado, areaVez, moeda, quantMoeda, personagem, nome;
+	ImageIcon imgFundo = new ImageIcon(getClass().getResource("area-jogador-da-vez.png")),
+			imgLista = new ImageIcon(getClass().getResource("botão lista.png")),
+			imgMoeda = new ImageIcon(getClass().getResource("moeda-java.png")),
+			imgPersonagem = new ImageIcon(getClass().getResource("personagem.png")),
+			imgNome = new ImageIcon(getClass().getResource("nome.png"));
 
-	//construtor da classe
 	public ModoFacil() {
 		setLayout(null);
-		setBackground(new Color(66, 153, 206));
-		
+		setBackground(new Color(200, 133, 238));
+		setName("MODO FACIL");
 		areaDado = new JPanel();
 		btRolar = new JButton("ROLAR DADO");
 		btVoltar = new JButton("VOLTAR");
@@ -44,9 +48,50 @@ public class ModoFacil extends JPanel {
 
 		configuraDado();
 		configuraBtVoltar();
+		configuraVez();
+	}
+
+	// configurando a aba de ver a vez do jogador
+	private void configuraVez() {
+		painelVez = new JPanel();
+		painelVez.setLayout(null);
+		painelVez.setBounds(508, 550, 350, 200);
+		add(painelVez);
+		painelVez.setOpaque(false);
+
+		areaVez = new JLabel(imgFundo);
+		// areaVez.setOpaque(true);
+		areaVez.setBounds(painelVez.getBounds());
+
+		btLista = new JButton(imgLista);
+		btLista.setBorderPainted(false);
+		btLista.setFocusable(false);
+		btLista.setContentAreaFilled(false);
+		btLista.setBounds(100, 40, 62, 62);
+
+		moeda = new JLabel(imgMoeda);
+		moeda.setBounds(150, 40, 70, 70);
 		
-		//nome para a troca de tela
-		setName("MODO FACIL");
+		personagem = new JLabel(imgPersonagem);
+		personagem.setBounds(7, 10, 100, 100);
+		
+		nome = new JLabel(imgNome);
+		nome.setBounds(110, -70, 200, 200);
+
+		quantMoeda = new JLabel("XXX,XX");
+		int x = moeda.getX();
+		int y = moeda.getY();
+		int w = moeda.getWidth();
+		int h = moeda.getHeight();
+		quantMoeda.setBounds(x + 60, y + 20, w, h - 50);
+		//quantMoeda.setFont(font);
+
+		add(areaVez);
+		painelVez.add(btLista);
+		painelVez.add(moeda);
+		painelVez.add(quantMoeda);
+		painelVez.add(personagem);
+		painelVez.add(nome);
 	}
 
 	// configurando area do Dado
@@ -80,7 +125,7 @@ public class ModoFacil extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Menu.mudaTela(ModoDeJogo.getNome());
+				Menu.menu();
 			}
 
 		});

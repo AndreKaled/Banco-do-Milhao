@@ -1,5 +1,14 @@
 package view;
 
+/**André Kaled Duarte - 28/09/2022
+ * Kauan Ferreira dos Santos - 18/09/2022
+ * Graziela da Costa Ralph - 28/09/2022
+ * 
+ * Modo de Jogo
+ * Classe responsável pela escolha dentre os dois modos de jogo: Fácil e Difícil.
+ * essa classe dispara um evento ao clique do usuário em algum modo, onde deve 
+ * trocar a tela apresentando ao referido modo escolhido.*/
+
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,10 +22,10 @@ import javax.swing.JPanel;
 
 public class ModoDeJogo extends JPanel {
 
-	// declaraÃ§Ã£o de variaveis dos componentes
+	// declaração de variaveis dos componentes
 	private JButton panelFacil, panelDificil, panelVoltar, infoFacil, panelInfoFacil, infoDificil, panelInfoDificil;
 	private JPanel telaFacil = new ModoFacil(),
-			telaDificil = new ModoDificil();
+			telaDificil = new ModoDificil(),telaJogadores = new Jogadores();
 	private JLabel lbmodJogo;
 	private int contX = 0, contY = 0;
 	// private JPanel c;
@@ -29,6 +38,7 @@ public class ModoDeJogo extends JPanel {
 			imgPanelFacil = new ImageIcon(getClass().getResource("facil.png")),
 			imgInfoDificil = new ImageIcon(getClass().getResource("info verde.png")),
 			imgPanelDificil = new ImageIcon(getClass().getResource("dificil.png"));
+	private static String opcao;
 
 	// construtor da classe
 	public ModoDeJogo() {
@@ -82,7 +92,7 @@ public class ModoDeJogo extends JPanel {
 		panelInfoDificil.setBounds(690, 80, 650, 600);
 		add(panelInfoDificil);
 
-		// configura o botao de informaÃ§Ãµes do modo facil
+		// configura o botao de informações do modo facil
 		infoFacil.addActionListener(new ActionListener() {
 
 			@Override
@@ -95,7 +105,7 @@ public class ModoDeJogo extends JPanel {
 
 		});
 
-		// configura a area de informaÃ§Ãµes do modo facil
+		// configura a area de informações do modo facil
 		panelInfoFacil.addActionListener(new ActionListener() {
 
 			@Override
@@ -133,7 +143,7 @@ public class ModoDeJogo extends JPanel {
 		});
 	}
 
-	// configurando painÃ©is
+	// configurando painéis
 	private void configuraPanels() {
 
 		panelFacil.setBounds(20, 80, 650, 600);
@@ -156,7 +166,7 @@ public class ModoDeJogo extends JPanel {
 		setVisible(true);
 	}
 
-	/** configurando o botÃ£o de voltar */
+	/** configurando o botão de voltar */
 	private void configuraBtVoltar() {
 		add(panelVoltar);
 		panelVoltar.setBounds(10, 10, 70, 70);
@@ -174,8 +184,8 @@ public class ModoDeJogo extends JPanel {
 	}
 
 	/**
-	 * Tratando eventos de clique, Ã© uma Ã¡rea de escolha de dois modos de jogo
-	 * entÃ£o ao clicar em uma opÃ§Ã£o, a configuraÃ§Ã£o deve alterar e a tela tambÃ©m
+	 * Tratando eventos de clique, é uma área de escolha de dois modos de jogo
+	 * então ao clicar em uma opção, a configuração deve alterar e a tela também
 	 */
 	private void eventos() {
 		panelFacil.addMouseListener(new MouseListener() {
@@ -185,11 +195,12 @@ public class ModoDeJogo extends JPanel {
 				// adicionando ao cardLayout
 				if (telaFacil == null || contY == 0) {
 					telaFacil = new ModoFacil();
-					Menu.adicionaTela(telaFacil, telaFacil.getName());
+					Menu.adicionaTela(telaJogadores, telaJogadores.getName());
 					contY++;
 				}
 				// mudando tela
-				Menu.mudaTela(telaFacil.getName());
+				Menu.mudaTela(telaJogadores.getName());
+				setOpcao(telaFacil.getName());
 			}
 
 			@Override
@@ -222,11 +233,12 @@ public class ModoDeJogo extends JPanel {
 				// adicionando ao cardLayout
 				if (telaDificil == null || contX == 0) {
 					telaDificil = new ModoDificil();
-					Menu.adicionaTela(telaDificil, telaDificil.getName());
+					Menu.adicionaTela(telaJogadores, telaJogadores.getName());
 					contX++;
 				}
 				// mudando tela
-				Menu.mudaTela(telaDificil.getName());
+				Menu.mudaTela(telaJogadores.getName());
+				setOpcao(telaDificil.getName());
 			}
 
 			@Override
@@ -257,6 +269,12 @@ public class ModoDeJogo extends JPanel {
 		return nome;
 	}
 
+	//metodo para capturar a escolha do modo de jogo
+	protected void setOpcao(String opcao){
+		this.opcao = opcao;
+	} 
+	protected static String getOpcao(){
+		return opcao;
+	}
 	// fim da classe
-
 }

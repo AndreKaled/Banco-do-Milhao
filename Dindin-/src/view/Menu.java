@@ -1,10 +1,10 @@
 package view;
 
 /**
- * Andr√© Kaled Duarte - 21/09/2022
+ * AndrÈ Kaled Duarte - 28/09/2022
  * Tela Principal (MENU) 
  * Essa classe deve representar o a tela Menu do jogo
- * onde o usu√°rio escolhe o que realizar antes do
+ * onde o usu·rio escolhe o que realizar antes do
  * jogo de fato comecar
  * */
 
@@ -40,7 +40,7 @@ public class Menu extends JFrame {
 		super("Din Din");
 		// configurando janela
 		setLayout(null);
-		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		setSize(1366,768);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// inicializando componentes
@@ -144,6 +144,10 @@ public class Menu extends JFrame {
 
 	static public void voltaTela() {
 		card.previous(contPrincipal);
+	}
+	
+	public static void menu(){
+		card.first(contPrincipal);
 	}
 
 	//tratando eventos
