@@ -1,5 +1,7 @@
+package view;
+
 /**
- * André Kaled Duarte - 21/09/2022
+ * André Kaled Duarte - 28/09/2022
  * Tela Principal (MENU) 
  * Essa classe deve representar o a tela Menu do jogo
  * onde o usuário escolhe o que realizar antes do
@@ -38,7 +40,7 @@ public class Menu extends JFrame {
 		super("Din Din");
 		// configurando janela
 		setLayout(null);
-		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		setSize(1366,768);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// inicializando componentes
@@ -75,9 +77,10 @@ public class Menu extends JFrame {
 	// configura a area da logo
 	public void configuraLogo() {
 		cLogo.setLayout(new FlowLayout());
-
+		
 		// tamanho da logo
 		cLogo.setBounds(380, 60, 600, 300);
+		cLogo.setBackground(new Color(66, 153, 206));
 		Plogo = new JLabel(logo);
 		cLogo.add(Plogo);
 	}
@@ -142,6 +145,10 @@ public class Menu extends JFrame {
 
 	static public void voltaTela() {
 		card.previous(contPrincipal);
+	}
+	
+	public static void menu(){
+		card.first(contPrincipal);
 	}
 
 	//tratando eventos
