@@ -10,29 +10,32 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class Jogadores extends JPanel {
-    // instanciação das coisinhas
-    private JTextField TfLilás, TfRosa, TfVerde,
-            TfAmarelo, TfVermelho, TfLaranja;
-    private JLabel panelLilás, panelRosa, panelVerde,
-            panelAmarelo, panelVermelho, panelLaranja;
+    // instanciaï¿½ï¿½o das coisinhas
+    private JTextField TfLilas, TfRosa, TfVerde;
+    private JTextField TfAmarelo, TfVermelho, TfLaranja;
+    
+    private JLabel panelLilas, panelRosa, panelVerde;
+    private JLabel panelAmarelo, panelVermelho, panelLaranja;
     private JLabel lbTituloJogadores;
+    
     private JButton panelVoltar, btJogar;
+    
     private int contX = 0, contY = 0;
     private static String nome = "JOGADORES";
     private JPanel modoFacil = new ModoFacil(), modoDificil = new ModoDificil();
 
     // imagens
-    private ImageIcon imgTitulo = new ImageIcon(getClass().getResource("Jogadores.png")),
-            imgLilas = new ImageIcon(getClass().getResource("jogador lilás.png")),
-            imgJogar = new ImageIcon(getClass().getResource("jogar2.png")),
-            imgVoltar = new ImageIcon(getClass().getResource("botao voltar.png"));
+    private ImageIcon imgTitulo = new ImageIcon(getClass().getResource("Jogadores.png"));
+    private ImageIcon imgLilas = new ImageIcon(getClass().getResource("jogador lilÃ¡s.png"));
+    private ImageIcon imgJogar = new ImageIcon(getClass().getResource("jogar2.png"));
+    private ImageIcon imgVoltar = new ImageIcon(getClass().getResource("botao voltar.png"));
 
     // construtor da classe
     public Jogadores() {
         setLayout(null);
         setBackground(new Color(66, 153, 206));
         lbTituloJogadores = new JLabel(imgTitulo);
-        panelLilás = new JLabel(imgLilas);
+        panelLilas = new JLabel(imgLilas);
         btJogar = new JButton(imgJogar);
 
         configuraBtVoltar();
@@ -43,7 +46,7 @@ public class Jogadores extends JPanel {
 
     }
 
-    /** configurando o botão de voltar */
+    /** configurando o botï¿½o de voltar */
     private void configuraBtVoltar() {
     	panelVoltar = new JButton(imgVoltar);
         add(panelVoltar);
@@ -61,9 +64,9 @@ public class Jogadores extends JPanel {
     }
 
     public void configurapanel() {
-        add (panelLilás);
-        panelLilás.setLayout(null);
-        panelLilás.setBounds(400, 600, 200, 60);
+        add (panelLilas);
+        panelLilas.setLayout(null);
+        panelLilas.setBounds(400, 600, 200, 60);
 
     }
 

@@ -1,12 +1,12 @@
 package view;
 
-/**André Kaled Duarte - 28/09/2022
+/**Andrï¿½ Kaled Duarte - 28/09/2022
  * Kauan Ferreira dos Santos - 18/09/2022
  * Graziela da Costa Ralph - 28/09/2022
  * 
  * Modo de Jogo
- * Classe responsável pela escolha dentre os dois modos de jogo: Fácil e Difícil.
- * essa classe dispara um evento ao clique do usuário em algum modo, onde deve 
+ * Classe responsï¿½vel pela escolha dentre os dois modos de jogo: Fï¿½cil e Difï¿½cil.
+ * essa classe dispara um evento ao clique do usuï¿½rio em algum modo, onde deve 
  * trocar a tela apresentando ao referido modo escolhido.*/
 
 import java.awt.Color;
@@ -22,9 +22,9 @@ import javax.swing.JPanel;
 
 public class ModoDeJogo extends JPanel {
 
-	// declaração de variaveis dos componentes
+	// declaraï¿½ï¿½o de variaveis dos componentes
 	private JButton panelFacil, panelDificil, panelVoltar, infoFacil, panelInfoFacil, infoDificil, panelInfoDificil;
-	private JPanel telaFacil = new ModoFacil(),
+	private JPanel telaFacil = new JPanel(),
 			telaDificil = new ModoDificil(),telaJogadores = new Jogadores();
 	private JLabel lbmodJogo;
 	private int contX = 0, contY = 0;
@@ -92,7 +92,7 @@ public class ModoDeJogo extends JPanel {
 		panelInfoDificil.setBounds(690, 80, 650, 600);
 		add(panelInfoDificil);
 
-		// configura o botao de informações do modo facil
+		// configura o botao de informaï¿½ï¿½es do modo facil
 		infoFacil.addActionListener(new ActionListener() {
 
 			@Override
@@ -105,7 +105,7 @@ public class ModoDeJogo extends JPanel {
 
 		});
 
-		// configura a area de informações do modo facil
+		// configura a area de informaï¿½ï¿½es do modo facil
 		panelInfoFacil.addActionListener(new ActionListener() {
 
 			@Override
@@ -143,7 +143,7 @@ public class ModoDeJogo extends JPanel {
 		});
 	}
 
-	// configurando painéis
+	// configurando painï¿½is
 	private void configuraPanels() {
 
 		panelFacil.setBounds(20, 80, 650, 600);
@@ -166,7 +166,7 @@ public class ModoDeJogo extends JPanel {
 		setVisible(true);
 	}
 
-	/** configurando o botão de voltar */
+	/** configurando o botï¿½o de voltar */
 	private void configuraBtVoltar() {
 		add(panelVoltar);
 		panelVoltar.setBounds(10, 10, 70, 70);
@@ -184,8 +184,8 @@ public class ModoDeJogo extends JPanel {
 	}
 
 	/**
-	 * Tratando eventos de clique, é uma área de escolha de dois modos de jogo
-	 * então ao clicar em uma opção, a configuração deve alterar e a tela também
+	 * Tratando eventos de clique, ï¿½ uma ï¿½rea de escolha de dois modos de jogo
+	 * entï¿½o ao clicar em uma opï¿½ï¿½o, a configuraï¿½ï¿½o deve alterar e a tela tambï¿½m
 	 */
 	private void eventos() {
 		panelFacil.addMouseListener(new MouseListener() {
