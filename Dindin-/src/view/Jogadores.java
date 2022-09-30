@@ -10,43 +10,43 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class Jogadores extends JPanel {
-    // instanciaï¿½ï¿½o das coisinhas
-    private JTextField TfLilas, TfRosa, TfVerde;
-    private JTextField TfAmarelo, TfVermelho, TfLaranja;
-    
-    private JLabel panelLilas, panelRosa, panelVerde;
-    private JLabel panelAmarelo, panelVermelho, panelLaranja;
+	
+    // instanciação das coisinhas
+    private JTextField TfLilás, TfRosa, TfVerde,
+            TfAmarelo, TfVermelho, TfLaranja;
+    private JLabel panelLilás, panelRosa, panelVerde,
+            panelAmarelo, panelVermelho, panelLaranja;
     private JLabel lbTituloJogadores;
-    
     private JButton panelVoltar, btJogar;
-    
     private int contX = 0, contY = 0;
     private static String nome = "JOGADORES";
-    private JPanel modoFacil = new ModoFacil(), modoDificil = new ModoDificil();
+    private JPanel modoFacil = new ModoFacil(), modoDificil = new ModoDificil(), panelJogadores;
 
     // imagens
-    private ImageIcon imgTitulo = new ImageIcon(getClass().getResource("Jogadores.png"));
-    private ImageIcon imgLilas = new ImageIcon(getClass().getResource("jogador lilÃ¡s.png"));
-    private ImageIcon imgJogar = new ImageIcon(getClass().getResource("jogar2.png"));
-    private ImageIcon imgVoltar = new ImageIcon(getClass().getResource("botao voltar.png"));
+    private ImageIcon imgTitulo = new ImageIcon(getClass().getResource("Jogadores.png")),
+            imgLilas = new ImageIcon(getClass().getResource("jogador lilás.png")),
+            imgJogar = new ImageIcon(getClass().getResource("jogar2.png")),
+            imgVoltar = new ImageIcon(getClass().getResource("botao voltar.png"));
 
     // construtor da classe
     public Jogadores() {
         setLayout(null);
         setBackground(new Color(66, 153, 206));
         lbTituloJogadores = new JLabel(imgTitulo);
-        panelLilas = new JLabel(imgLilas);
+        panelLilás = new JLabel(imgLilas);
+        
         btJogar = new JButton(imgJogar);
 
         configuraBtVoltar();
-        configurapanel();
+        configuraPanel();
         configuraBtJogar();
+        configuraTitulo();
 
         setName(nome);
 
     }
 
-    /** configurando o botï¿½o de voltar */
+    /** configurando o botão de voltar */
     private void configuraBtVoltar() {
     	panelVoltar = new JButton(imgVoltar);
         add(panelVoltar);
@@ -63,17 +63,48 @@ public class Jogadores extends JPanel {
         });
     }
 
-    public void configurapanel() {
-        add (panelLilas);
-        panelLilas.setLayout(null);
-        panelLilas.setBounds(400, 600, 200, 60);
-
+    //configurando titulo da tela
+    private void configuraTitulo(){
+    	lbTituloJogadores.setBounds(418,10,530,100);
+    	add(lbTituloJogadores);
+    }
+    
+    //configurando painel e label para a entrada de dados do NickName
+    public void configuraPanel() {
+    	panelJogadores = new JPanel();
+    	panelJogadores.setBounds(200, 150, 900, 550);
+    	panelJogadores.setLayout(null);
+    	
+    	panelJogadores.add(panelLilás);
+        panelLilás.setBounds(0, 0, 400, 150);
+        
+        panelRosa = new JLabel(imgLilas);
+        panelRosa.setBounds(panelLilás.getX(), panelLilás.getY()+200, panelLilás.getWidth(), panelLilás.getHeight());
+        panelJogadores.add(panelRosa);
+        
+        panelVerde = new JLabel(imgLilas);
+        panelVerde.setBounds(panelLilás.getX(), panelRosa.getY()+200,panelLilás.getWidth(), panelLilás.getHeight());
+        panelJogadores.add(panelVerde);
+        
+        panelAmarelo = new JLabel(imgLilas);
+        panelAmarelo.setBounds(panelLilás.getX()+500, panelLilás.getY(), panelLilás.getWidth(), panelLilás.getHeight());
+        panelJogadores.add(panelAmarelo);
+        
+        panelVermelho = new JLabel(imgLilas);
+        panelVermelho.setBounds(panelRosa.getX()+500, panelRosa.getY()+200, panelLilás.getWidth(), panelLilás.getHeight());
+        panelJogadores.add(panelVermelho);
+        
+        panelLaranja = new JLabel(imgLilas);
+        panelLaranja.setBounds(panelVerde.getX()+500, panelVerde.getY()+200, panelLilás.getWidth(), panelLilás.getHeight());
+        panelJogadores.add(panelLaranja);
+        
+        add(panelJogadores);
     }
 
     public void configuraBtJogar() {
         add(btJogar);
         btJogar.setLayout(null);
-        btJogar.setBounds(1200, 640, 150, 60);
+        btJogar.setBounds(1150, 640, 150, 70);
         btJogar.setContentAreaFilled(false);
         btJogar.setBorderPainted(false);
         
