@@ -1,16 +1,17 @@
 package view;
 
-/**Andrï¿½ Kaled Duarte - 28/09/2022
+/**André Kaled Duarte - 30/09/2022
+ * Sarah Pinheiro Antunes - 29/09/2022
  * 
- * Modo fï¿½cil
- * essa classe deve ser um dos modos de jogo escolhido pelo usuï¿½rio, as configurï¿½ï¿½es do jogo sï¿½o
- * definidas para iniciantes porï¿½m a interface continua a mesma, aqui ï¿½ onde serï¿½ a area principal do jogo pois
- * ï¿½ onde os jogadores passarï¿½o mais tempo.
+ * Modo fácil
+ * essa classe deve ser um dos modos de jogo escolhido pelo usuário, as configurções do jogo são
+ * definidas para iniciantes porém a interface continua a mesma, aqui é onde será a area principal do jogo pois
+ * é onde os jogadores passarão mais tempo.
  * 
  * Dado? ok
  * Vez do jogador a mostra? ok
  * Tabuleiro? X
- * Conectado posiï¿½ï¿½o do personagem? X
+ * Conectado posição do personagem? X
  * Lista de compras do Jogador? X
  * */
 import java.awt.Color;
@@ -29,13 +30,14 @@ import modelo.Dado;
 public class ModoFacil extends JPanel {
 
 	private JPanel areaDado, painelVez;
-	private JButton btRolar, btVoltar, btLista;
+	private JButton btRolar, btVoltar, btLista,btMenu;
 	private JLabel resultado, areaVez, moeda, quantMoeda, personagem, nome;
 	ImageIcon imgFundo = new ImageIcon(getClass().getResource("area-jogador-da-vez.png")),
-			imgLista = new ImageIcon(getClass().getResource("botÃ£o lista.png")),
+			imgLista = new ImageIcon(getClass().getResource("botão lista.png")),
 			imgMoeda = new ImageIcon(getClass().getResource("moeda-java.png")),
 			imgPersonagem = new ImageIcon(getClass().getResource("personagem.png")),
-			imgNome = new ImageIcon(getClass().getResource("nome.png"));
+			imgNome = new ImageIcon(getClass().getResource("nome.png")),
+			imgMenu = new ImageIcon(getClass().getResource("botao-menu.png"));
 
 	public ModoFacil() {
 		setLayout(null);
@@ -45,10 +47,12 @@ public class ModoFacil extends JPanel {
 		btRolar = new JButton("ROLAR DADO");
 		btVoltar = new JButton("VOLTAR");
 		resultado = new JLabel("" + Dado.rolar());
+		btMenu = new JButton(imgMenu);
 
 		configuraDado();
 		configuraBtVoltar();
 		configuraVez();
+		configuraBtMenu();
 	}
 
 	// configurando a aba de ver a vez do jogador
@@ -119,15 +123,34 @@ public class ModoFacil extends JPanel {
 
 	// configurando botao de voltar
 	private void configuraBtVoltar() {
-		btVoltar.setBounds(10, 10, 100, 20);
+		//btVoltar.setBounds(10, 10, 100, 20);
 		add(btVoltar);
 		btVoltar.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Menu.menu();
+				Menu.voltaTela();
+
 			}
 
+		});
+	}
+	
+	private void configuraBtMenu() {
+		btMenu.setBounds(1220, 30, 100, 105);
+		btMenu.setBorderPainted(false);
+		btMenu.setFocusable(false);
+		btMenu.setContentAreaFilled(false);
+		add(btMenu);
+		btMenu.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			
 		});
 	}
 }

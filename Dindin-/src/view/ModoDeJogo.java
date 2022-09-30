@@ -1,12 +1,12 @@
 package view;
 
-/**Andrï¿½ Kaled Duarte - 28/09/2022
+/**André Kaled Duarte - 28/09/2022
  * Kauan Ferreira dos Santos - 18/09/2022
  * Graziela da Costa Ralph - 28/09/2022
  * 
  * Modo de Jogo
- * Classe responsï¿½vel pela escolha dentre os dois modos de jogo: Fï¿½cil e Difï¿½cil.
- * essa classe dispara um evento ao clique do usuï¿½rio em algum modo, onde deve 
+ * Classe responsável pela escolha dentre os dois modos de jogo: Fácil e Difícil.
+ * essa classe dispara um evento ao clique do usuário em algum modo, onde deve 
  * trocar a tela apresentando ao referido modo escolhido.*/
 
 import java.awt.Color;
@@ -22,10 +22,9 @@ import javax.swing.JPanel;
 
 public class ModoDeJogo extends JPanel {
 
-	// declaraï¿½ï¿½o de variaveis dos componentes
+	// declaração de variaveis dos componentes
 	private JButton panelFacil, panelDificil, panelVoltar, infoFacil, panelInfoFacil, infoDificil, panelInfoDificil;
-	private JPanel telaFacil = new JPanel(),
-			telaDificil = new ModoDificil(),telaJogadores = new Jogadores();
+	private JPanel telaFacil, telaDificil,telaJogadores = new Jogadores();
 	private JLabel lbmodJogo;
 	private int contX = 0, contY = 0;
 	// private JPanel c;
@@ -69,10 +68,12 @@ public class ModoDeJogo extends JPanel {
 		infoFacil.setContentAreaFilled(false);
 		infoFacil.setBorderPainted(false);
 		infoFacil.setVisible(true);
+		infoFacil.setFocusable(false);
 		panelFacil.add(infoFacil);
 
 		panelInfoFacil.setLayout(null);
 		panelInfoFacil.setVisible(false);
+		panelInfoFacil.setFocusable(false);
 		panelInfoFacil.setContentAreaFilled(false);
 		panelInfoFacil.setBorderPainted(false);
 		panelInfoFacil.setBounds(20, 80, 650, 600);
@@ -83,16 +84,18 @@ public class ModoDeJogo extends JPanel {
 		infoDificil.setContentAreaFilled(false);
 		infoDificil.setBorderPainted(false);
 		infoDificil.setVisible(true);
+		infoDificil.setFocusable(false);
 		panelDificil.add(infoDificil);
 
 		panelInfoDificil.setLayout(null);
 		panelInfoDificil.setVisible(false);
+		panelInfoDificil.setFocusable(false);
 		panelInfoDificil.setContentAreaFilled(false);
 		panelInfoDificil.setBorderPainted(false);
 		panelInfoDificil.setBounds(690, 80, 650, 600);
 		add(panelInfoDificil);
 
-		// configura o botao de informaï¿½ï¿½es do modo facil
+		// configura o botao de informações do modo facil
 		infoFacil.addActionListener(new ActionListener() {
 
 			@Override
@@ -105,7 +108,7 @@ public class ModoDeJogo extends JPanel {
 
 		});
 
-		// configura a area de informaï¿½ï¿½es do modo facil
+		// configura a area de informações do modo facil
 		panelInfoFacil.addActionListener(new ActionListener() {
 
 			@Override
@@ -143,7 +146,7 @@ public class ModoDeJogo extends JPanel {
 		});
 	}
 
-	// configurando painï¿½is
+	// configurando painéis
 	private void configuraPanels() {
 
 		panelFacil.setBounds(20, 80, 650, 600);
@@ -151,8 +154,10 @@ public class ModoDeJogo extends JPanel {
 
 		panelFacil.setContentAreaFilled(false);
 		panelFacil.setBorderPainted(false);
+		panelFacil.setFocusable(false);
 		panelDificil.setContentAreaFilled(false);
 		panelDificil.setBorderPainted(false);
+		panelDificil.setFocusable(false);
 
 		add(panelFacil);
 		add(panelDificil);
@@ -166,10 +171,11 @@ public class ModoDeJogo extends JPanel {
 		setVisible(true);
 	}
 
-	/** configurando o botï¿½o de voltar */
+	/** configurando o botão de voltar */
 	private void configuraBtVoltar() {
 		add(panelVoltar);
 		panelVoltar.setBounds(10, 10, 70, 70);
+		panelVoltar.setFocusable(false);
 		panelVoltar.setContentAreaFilled(false);
 		panelVoltar.setBorderPainted(false);
 
@@ -184,8 +190,8 @@ public class ModoDeJogo extends JPanel {
 	}
 
 	/**
-	 * Tratando eventos de clique, ï¿½ uma ï¿½rea de escolha de dois modos de jogo
-	 * entï¿½o ao clicar em uma opï¿½ï¿½o, a configuraï¿½ï¿½o deve alterar e a tela tambï¿½m
+	 * Tratando eventos de clique, é uma área de escolha de dois modos de jogo
+	 * então ao clicar em uma opção, a configuração deve alterar e a tela também
 	 */
 	private void eventos() {
 		panelFacil.addMouseListener(new MouseListener() {
@@ -193,10 +199,11 @@ public class ModoDeJogo extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				// adicionando ao cardLayout
+				contY = 0;
 				if (telaFacil == null || contY == 0) {
 					telaFacil = new ModoFacil();
 					Menu.adicionaTela(telaJogadores, telaJogadores.getName());
-					contY++;
+					contX++;
 				}
 				// mudando tela
 				Menu.mudaTela(telaJogadores.getName());
@@ -231,10 +238,11 @@ public class ModoDeJogo extends JPanel {
 			public void mouseClicked(MouseEvent arg0) {
 
 				// adicionando ao cardLayout
+				contX = 0;
 				if (telaDificil == null || contX == 0) {
 					telaDificil = new ModoDificil();
 					Menu.adicionaTela(telaJogadores, telaJogadores.getName());
-					contX++;
+					contY++;
 				}
 				// mudando tela
 				Menu.mudaTela(telaJogadores.getName());

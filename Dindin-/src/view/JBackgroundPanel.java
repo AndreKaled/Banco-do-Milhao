@@ -1,3 +1,9 @@
+package view;
+/** André Kaled Duarte - 30/09/2022
+*
+* Classe utilizada para painéis com imagem de fundo 
+*/
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;

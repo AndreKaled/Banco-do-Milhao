@@ -1,10 +1,10 @@
 package view;
 
 /**
- * Andrï¿½ Kaled Duarte - 28/09/2022
+ * André Kaled Duarte - 28/09/2022
  * Tela Principal (MENU) 
  * Essa classe deve representar o a tela Menu do jogo
- * onde o usuï¿½rio escolhe o que realizar antes do
+ * onde o usuário escolhe o que realizar antes do
  * jogo de fato comecar
  * */
 
