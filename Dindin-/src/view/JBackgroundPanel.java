@@ -1,4 +1,8 @@
 package view;
+/** André Kaled Duarte - 30/09/2022
+*
+* Classe utilizada para painéis com imagem de fundo 
+*/
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -13,13 +17,10 @@ public class JBackgroundPanel extends JPanel {
     //construtor default
     public JBackgroundPanel() {
         super();
-        setLayout(null);
     }
-    
     //construtor com argumento URL para adicionar imagem no fundo do JPanel
     public JBackgroundPanel(URL url) throws IOException {
         super();
-        setLayout(null);
         setBackgroundImage(url);
     }
 
