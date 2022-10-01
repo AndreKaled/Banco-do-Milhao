@@ -6,20 +6,20 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
- 
+
+/** Classe para permitir imagem de fundo em JPanel*/
+
 public class JBackgroundPanel extends JPanel {
     protected BufferedImage backgroundImage = null;
  
     //construtor default
     public JBackgroundPanel() {
         super();
-        setLayout(null);
     }
     
     //construtor com argumento URL para adicionar imagem no fundo do JPanel
     public JBackgroundPanel(URL url) throws IOException {
         super();
-        setLayout(null);
         setBackgroundImage(url);
     }
 
