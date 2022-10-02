@@ -1,0 +1,9 @@
+CREATE DATABASE DINDIN;
+
+USE DINDIN;
+
+CREATE TABLE Jogador(
+	nome VARCHAR(100) NOT NULL PRIMARY KEY,
+    vitorias INT,
+    score INT 
+);
