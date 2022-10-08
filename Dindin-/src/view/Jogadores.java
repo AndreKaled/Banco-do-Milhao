@@ -1,11 +1,11 @@
 package view;
 
 /**a
- * André Kaled Duarte Coutinho - 30/09/2022
+ * Andrï¿½ Kaled Duarte Coutinho - 30/09/2022
  * Graziela da Costa Ralph - 29/09/2022
  * Kauan Ferreira dos Santos - 29/09/2022
  * 
- * Tela onde o são contabilizados a quantidade e o nome
+ * Tela onde o sï¿½o contabilizados a quantidade e o nome
  * dos jogadores, armazenando o nome no banco de dados e
  * atualizando o score do jogador quando vencer o jogo
  * */
@@ -24,7 +24,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class Jogadores extends JPanel {
-	// instanciação das coisinhas
+	// instanciaï¿½ï¿½o das coisinhas
 	private JTextField tfLilas, tfRosa, tfVerde, tfAmarelo, tfVermelho,
 			tfLaranja;
 	private JBackgroundPanel panelLilas, panelAmarelo, panelVermelho,
@@ -39,10 +39,9 @@ public class Jogadores extends JPanel {
 	int contLilas = 0, contVerde = 0, contVermelho = 0, contAmarelo = 0,
 			contLaranja = 0, contRosa = 0;
 	// imagens
-	private ImageIcon imgTitulo = new ImageIcon(getClass().getResource(
-			"Jogadores.png")), imgJogar = new ImageIcon(getClass().getResource(
-			"jogar2.png")), imgVoltar = new ImageIcon(getClass().getResource(
-			"botao voltar.png"));
+	private ImageIcon imgTitulo = new ImageIcon("Imagens/Jogadores.png"),
+			imgJogar = new ImageIcon("Imagens/jogar2.png"), 
+			imgVoltar = new ImageIcon("Imagens/botao voltar.png");
 	private JPanel panelJogadores;
 
 	// construtor da classe
@@ -52,8 +51,7 @@ public class Jogadores extends JPanel {
 		lbTituloJogadores = new JLabel(imgTitulo);
 		btJogar = new JButton(imgJogar);
 		try {
-			panelLilas = new JBackgroundPanel(getClass().getResource(
-					"jogador lilás.png"));
+			panelLilas = new JBackgroundPanel(getClass().getResource("jogador lilÃ¡s.png"));
 			panelAmarelo = new JBackgroundPanel(getClass().getResource(
 					"jogador amarelo.png"));
 			panelRosa = new JBackgroundPanel(getClass().getResource(
@@ -78,7 +76,7 @@ public class Jogadores extends JPanel {
 
 	}
 
-	/** configurando o botão de voltar */
+	/** configurando o botï¿½o de voltar */
 	private void configuraBtVoltar() {
 		panelVoltar = new JButton(imgVoltar);
 		add(panelVoltar);
@@ -234,7 +232,7 @@ public class Jogadores extends JPanel {
 			public void mouseExited(MouseEvent arg0) {
 			}
 
-			//tornando a caixa vazia quando clicado pela 1° vez
+			//tornando a caixa vazia quando clicado pela 1ï¿½ vez
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				if (contLilas == 0) {
@@ -266,7 +264,7 @@ public class Jogadores extends JPanel {
 			public void mouseExited(MouseEvent arg0) {
 			}
 
-			//tornando a caixa vazia quando clicado pela 1° vez
+			//tornando a caixa vazia quando clicado pela 1ï¿½ vez
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				if (contVerde == 0) {
@@ -298,7 +296,7 @@ public class Jogadores extends JPanel {
 			public void mouseExited(MouseEvent arg0) {
 			}
 
-			//tornando a caixa vazia quando clicado pela 1° vez
+			//tornando a caixa vazia quando clicado pela 1ï¿½ vez
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				if (contRosa == 0) {
@@ -330,7 +328,7 @@ public class Jogadores extends JPanel {
 			public void mouseExited(MouseEvent arg0) {
 			}
 
-			//tornando a caixa vazia quando clicado pela 1° vez
+			//tornando a caixa vazia quando clicado pela 1ï¿½ vez
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				if (contLaranja == 0) {
@@ -362,7 +360,7 @@ public class Jogadores extends JPanel {
 			public void mouseExited(MouseEvent arg0) {
 			}
 
-			//tornando a caixa vazia quando clicado pela 1° vez
+			//tornando a caixa vazia quando clicado pela 1ï¿½ vez
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				if (contVermelho == 0) {
@@ -394,7 +392,7 @@ public class Jogadores extends JPanel {
 			public void mouseExited(MouseEvent arg0) {
 			}
 
-			//tornando a caixa vazia quando clicado pela 1° vez
+			//tornando a caixa vazia quando clicado pela 1ï¿½ vez
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				if (contAmarelo == 0) {
@@ -411,7 +409,7 @@ public class Jogadores extends JPanel {
 		});
 	}
 
-	/** há um bug aqui, só está indo para a tela do Modo Facil */
+	/** hï¿½ um bug aqui, sï¿½ estï¿½ indo para a tela do Modo Facil */
 	public void configuraBtJogar() {
 		add(btJogar);
 		btJogar.setLayout(null);
