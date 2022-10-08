@@ -1,17 +1,17 @@
 package view;
 
-/**André Kaled Duarte - 30/09/2022
+/**Andrï¿½ Kaled Duarte - 30/09/2022
  * Sarah Pinheiro Antunes - 29/09/2022
  * 
- * Modo fácil
- * essa classe deve ser um dos modos de jogo escolhido pelo usuário, as configurções do jogo são
- * definidas para iniciantes porém a interface continua a mesma, aqui é onde será a area principal do jogo pois
- * é onde os jogadores passarão mais tempo.
+ * Modo fï¿½cil
+ * essa classe deve ser um dos modos de jogo escolhido pelo usuï¿½rio, as configurï¿½ï¿½es do jogo sï¿½o
+ * definidas para iniciantes porï¿½m a interface continua a mesma, aqui ï¿½ onde serï¿½ a area principal do jogo pois
+ * ï¿½ onde os jogadores passarï¿½o mais tempo.
  * 
  * Dado? ok
  * Vez do jogador a mostra? ok
  * Tabuleiro? X
- * Conectado posição do personagem? X
+ * Conectado posiï¿½ï¿½o do personagem? X
  * Lista de compras do Jogador? X
  * */
 import java.awt.Color;
@@ -32,12 +32,12 @@ public class ModoFacil extends JPanel {
 	private JPanel areaDado, painelVez;
 	private JButton btRolar, btVoltar, btLista,btMenu;
 	private JLabel resultado, areaVez, moeda, quantMoeda, personagem, nome;
-	ImageIcon imgFundo = new ImageIcon(getClass().getResource("area-jogador-da-vez.png")),
-			imgLista = new ImageIcon(getClass().getResource("botão lista.png")),
-			imgMoeda = new ImageIcon(getClass().getResource("moeda-java.png")),
-			imgPersonagem = new ImageIcon(getClass().getResource("personagem.png")),
-			imgNome = new ImageIcon(getClass().getResource("nome.png")),
-			imgMenu = new ImageIcon(getClass().getResource("botao-menu.png"));
+	ImageIcon imgFundo = new ImageIcon("Imagens/area-jogador-da-vez.png"),
+			imgLista = new ImageIcon("Imagens/imagens/botao lista.png"),
+			imgMoeda = new ImageIcon("imagen/moeda-java.png"),
+			imgPersonagem = new ImageIcon("imagen/personagem.png"),
+			imgNome = new ImageIcon("imagen/nome.png"),
+			imgMenu = new ImageIcon("imagen/botao-menu.png");
 
 	public ModoFacil() {
 		setLayout(null);

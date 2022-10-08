@@ -11,12 +11,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-/**André Kaled Duarte e Kauan Ferreira dos Santos - 07/09/2022
+/**Andrï¿½ Kaled Duarte e Kauan Ferreira dos Santos - 07/09/2022
  * 
- * COMFIRMAÇÃO DA SAÍDA DO JOGO
- * Essa clase tem o objetivo de confirmar a saída do jogador do jogo Se
+ * COMFIRMAï¿½ï¿½O DA SAï¿½DA DO JOGO
+ * Essa clase tem o objetivo de confirmar a saï¿½da do jogador do jogo Se
  * confirmado, o jogo deve fechar, caso negado o jogo deve continuar na tela
- * antes de precionar o botão de sair
+ * antes de precionar o botï¿½o de sair
  * */
 public class ConfirmaSair extends JFrame {
 
@@ -24,13 +24,13 @@ public class ConfirmaSair extends JFrame {
 	private JPanel c;
 	private JLabel icone, textoAviso, textoConfirma;
 	private JButton btSim, btNao;
-	private ImageIcon imagemSair = new ImageIcon(getClass().getResource("Sair.png"));
+	private ImageIcon imagemSair = new ImageIcon("Imagens/Sair.png");
 	final Color corVermelho = new Color(255, 0, 77);
 	final Color corVerde = new Color(0, 135, 81);
 
 	// construtor da classe
 	public ConfirmaSair() {
-		super("Confirmar saída");
+		super("Confirmar saï¿½da");
 		setLayout(null);
 		setSize(450, 230);
 		c = (JPanel) getContentPane();
@@ -45,7 +45,7 @@ public class ConfirmaSair extends JFrame {
 
 	// configura os dois textos
 	private void configuraTextos() {
-		textoAviso = new JLabel("<html>Se sair todo o seu progresso será perdido!<html>");
+		textoAviso = new JLabel("<html>Se sair todo o seu progresso serÃ¡ perdido!<html>");
 		textoConfirma = new JLabel("Deseja realmente sair do jogo?");
 		textoAviso.setBounds(110, 20, 330, 50);
 		textoAviso.setFont(new Font("Arial", 1, 19));
@@ -64,10 +64,10 @@ public class ConfirmaSair extends JFrame {
 		add(icone);
 	}
 
-	// configura os dois botões
+	// configura os dois botï¿½es
 	private void configuraBotoes() {
 		btSim = new JButton("SIM");
-		btNao = new JButton("NÃO");
+		btNao = new JButton("NÃ£O");
 		btSim.setBounds(25,120,180,40);
 		btSim.setBackground(corVerde);
 		btSim.setForeground(Color.WHITE);
@@ -85,7 +85,7 @@ public class ConfirmaSair extends JFrame {
 		add(btNao);
 	}
 	
-	//tratando eventos dos botões de confirmação
+	//tratando eventos dos botï¿½es de confirmaï¿½ï¿½o
 	private class VoltaJogo implements ActionListener{
 
 		@Override

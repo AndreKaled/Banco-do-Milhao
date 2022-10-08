@@ -1,10 +1,10 @@
 package view;
 
 /**
- * André Kaled Duarte - 28/09/2022
+ * Andrï¿½ Kaled Duarte - 28/09/2022
  * Tela Principal (MENU) 
  * Essa classe deve representar o a tela Menu do jogo
- * onde o usuário escolhe o que realizar antes do
+ * onde o usuï¿½rio escolhe o que realizar antes do
  * jogo de fato comecar
  * */
 
@@ -28,12 +28,12 @@ public class Menu extends JFrame {
 	protected static CardLayout card = new CardLayout();;
 	private JPanel jogar = new ModoDeJogo();
 
-	ImageIcon logo = new ImageIcon(getClass().getResource("logo.png"));
-	ImageIcon jogo = new ImageIcon(getClass().getResource("jogar.png"));
-	ImageIcon opcoes = new ImageIcon(getClass().getResource("opcoes.png"));
-	ImageIcon tutorial = new ImageIcon(getClass().getResource("tutorial.png"));
-	ImageIcon sair  = new ImageIcon(getClass().getResource("sair.png"));
-	ImageIcon placar = new ImageIcon(getClass().getResource("placar.png"));
+	ImageIcon logo = new ImageIcon("imagens/logo.png");
+	ImageIcon jogo = new ImageIcon("imagens/jogar.png");
+	ImageIcon opcoes = new ImageIcon("imagens/opcoes.png");
+	ImageIcon tutorial = new ImageIcon("imagens/tutorial.png");
+	ImageIcon sair  = new ImageIcon("imagens/sair.png");
+	ImageIcon placar = new ImageIcon("imagens/placar.png");
 	ImageIcon fundoImg;
 
 	public Menu() {
