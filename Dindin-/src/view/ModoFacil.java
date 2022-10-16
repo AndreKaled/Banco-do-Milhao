@@ -2,6 +2,7 @@ package view;
 
 /**Andr� Kaled Duarte - 30/09/2022
  * Sarah Pinheiro Antunes - 29/09/2022
+ * Graziela da Costa Ralph - 16/10/2022
  * 
  * Modo f�cil
  * essa classe deve ser um dos modos de jogo escolhido pelo usu�rio, as configur��es do jogo s�o
@@ -37,14 +38,15 @@ public class ModoFacil extends JPanel {
 			imgMoeda = new ImageIcon("imagen/moeda-java.png"),
 			imgPersonagem = new ImageIcon("imagen/personagem.png"),
 			imgNome = new ImageIcon("imagen/nome.png"),
-			imgMenu = new ImageIcon("imagen/botao-menu.png");
+			imgMenu = new ImageIcon("imagen/botao-menu.png"),
+			imgRolar = new ImageIcon ("Imagens/botao-rola-dado.png");
 
 	public ModoFacil() {
 		setLayout(null);
 		setBackground(new Color(200, 133, 238));
 		setName("MODO FACIL");
 		areaDado = new JPanel();
-		btRolar = new JButton("ROLAR DADO");
+		btRolar = new JButton(imgRolar);
 		btVoltar = new JButton("VOLTAR");
 		resultado = new JLabel("" + Dado.rolar());
 		btMenu = new JButton(imgMenu);
@@ -100,6 +102,7 @@ public class ModoFacil extends JPanel {
 
 	// configurando area do Dado
 	private void configuraDado() {
+		int rolaDado = 0;
 		areaDado.setBackground(Color.GRAY);
 		areaDado.setLayout(new FlowLayout());
 		areaDado.add(resultado);
@@ -109,7 +112,7 @@ public class ModoFacil extends JPanel {
 
 		resultado.setFont(new Font("Arial", 1, 19));
 		resultado.setForeground(Color.ORANGE);
-		btRolar.setFont(new Font("Arial", 1, 14));
+		//btRolar.setFont(new Font("Arial", 1, 14));
 
 		btRolar.addActionListener(new ActionListener() {
 
