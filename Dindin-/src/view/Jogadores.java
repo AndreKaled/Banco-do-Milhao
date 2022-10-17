@@ -54,12 +54,12 @@ public class Jogadores extends JPanel {
 		lbTituloJogadores = new JLabel(imgTitulo);
 		btJogar = new JButton(imgJogar);
 		try {
-			panelLilas = new JBackgroundPanel("jogador lilás.png");
-			panelAmarelo = new JBackgroundPanel("jogador amarelo.png");
-			panelRosa = new JBackgroundPanel("jogador rosa.png");
-			panelVerde = new JBackgroundPanel("jogador verde.png");
-			panelVermelho = new JBackgroundPanel("jogador vermelho.png");
-			panelLaranja = new JBackgroundPanel("jogador laranja.png");
+			panelLilas = new JBackgroundPanel("imagens/jogador lilas.png");
+			panelAmarelo = new JBackgroundPanel("imagens/jogador amarelo.png");
+			panelRosa = new JBackgroundPanel("imagens/jogador rosa.png");
+			panelVerde = new JBackgroundPanel("imagens/jogador verde.png");
+			panelVermelho = new JBackgroundPanel("imagens/jogador vermelho.png");
+			panelLaranja = new JBackgroundPanel("imagens/jogador laranja.png");
 		} catch (Exception e) {
 			System.err.println("Erro ao carregar alguma imagem!");
 			e.printStackTrace();

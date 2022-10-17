@@ -28,12 +28,12 @@ public class Menu extends JFrame {
 	protected static CardLayout card = new CardLayout();;
 	private JPanel jogar = new ModoDeJogo();
 
-	ImageIcon logo = new ImageIcon("imagens/logo.png");
-	ImageIcon jogo = new ImageIcon("imagens/jogar.png");
-	ImageIcon opcoes = new ImageIcon("imagens/opcoes.png");
-	ImageIcon tutorial = new ImageIcon("imagens/tutorial.png");
-	ImageIcon sair  = new ImageIcon("imagens/sair.png");
-	ImageIcon placar = new ImageIcon("imagens/placar.png");
+	ImageIcon logo = new ImageIcon("Imagens/logo.png");
+	ImageIcon jogo = new ImageIcon("Imagens/jogar.png");
+	ImageIcon opcoes = new ImageIcon("Imagens/opcoes.png");
+	ImageIcon tutorial = new ImageIcon("Imagens/tutorial.png");
+	ImageIcon sair  = new ImageIcon("Imagens/sair.png");
+	ImageIcon placar = new ImageIcon("Imagens/placar.png");
 	ImageIcon fundoImg;
 
 	public Menu() {

@@ -35,10 +35,10 @@ public class ModoFacil extends JPanel {
 	private JLabel resultado, areaVez, moeda, quantMoeda, personagem, nome;
 	ImageIcon imgFundo = new ImageIcon("Imagens/area-jogador-da-vez.png"),
 			imgLista = new ImageIcon("Imagens/imagens/botao lista.png"),
-			imgMoeda = new ImageIcon("imagen/moeda-java.png"),
-			imgPersonagem = new ImageIcon("imagen/personagem.png"),
-			imgNome = new ImageIcon("imagen/nome.png"),
-			imgMenu = new ImageIcon("imagen/botao-menu.png"),
+			imgMoeda = new ImageIcon("Imagens/moeda-java.png"),
+			imgPersonagem = new ImageIcon("Imagens/personagem.png"),
+			imgNome = new ImageIcon("Imagens/nome.png"),
+			imgMenu = new ImageIcon("Imagens/botao-menu.png"),
 			imgRolar = new ImageIcon ("Imagens/botao-rola-dado.png");
 
 	public ModoFacil() {
