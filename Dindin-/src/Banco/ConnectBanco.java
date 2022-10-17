@@ -1,7 +1,7 @@
 package Banco;
 
 /**
- * AndrÃ© Kaled Duarte Coutinho - 01/10/2022
+ * Andre Kaled Duarte Coutinho - 01/10/2022
  * 
  * Classe responsavel pela conexao com o Banco de dados
  * Dispoe de alguns metodos estaticos que trabalham com
@@ -32,7 +32,7 @@ public final class ConnectBanco {
 			state = conexao.prepareStatement(getComandoSQL());
 			state.execute();
 			return true;
-		}catch(Exception e){System.out.println("Opa! parece que ocorreu algum problema com a conexÃ£o, me desculpe amiguinho :(");
+		}catch(Exception e){System.out.println("Opa! parece que ocorreu algum problema com a conexÃƒÂ£o, me desculpe amiguinho :(");
 			e.printStackTrace();
 			System.exit(0);
 			return false;
@@ -47,7 +47,7 @@ public final class ConnectBanco {
 			state.execute();
 			return true;
 		}catch(Exception e){
-			System.out.println("Opa! parece que ocorreu algum problema com a conexÃ£o, me desculpe amiguinho :(");
+			System.out.println("Opa! parece que ocorreu algum problema com a conexÃƒÂ£o, me desculpe amiguinho :(");
 			e.printStackTrace();
 			return false;
 		}
@@ -61,7 +61,7 @@ public final class ConnectBanco {
 			state.execute();
 			return true;
 		}catch(Exception e){
-			System.out.println("Opa! parece que ocorreu algum problema com a conexÃ£o, me desculpe amiguinho :(");
+			System.out.println("Opa! parece que ocorreu algum problema com a conexÃƒÂ£o, me desculpe amiguinho :(");
 			e.printStackTrace();
 			return false;
 		}
@@ -82,7 +82,7 @@ public final class ConnectBanco {
 			
 			return score;
 		}catch(Exception e){
-			System.out.println("Opa! parece que ocorreu algum problema com a conexÃ£o, me desculpe amiguinho :(");
+			System.out.println("Opa! parece que ocorreu algum problema com a conexÃƒÂ£o, me desculpe amiguinho :(");
 			e.printStackTrace();
 			return (Integer) null;
 		}
@@ -103,7 +103,7 @@ public final class ConnectBanco {
 			
 			return vitorias;
 		}catch(Exception e){
-			System.out.println("Opa! parece que ocorreu algum problema com a conexÃ£o, me desculpe amiguinho :(");
+			System.out.println("Opa! parece que ocorreu algum problema com a conexÃƒÂ£o, me desculpe amiguinho :(");
 			e.printStackTrace();
 			return (Integer) null;
 		}
@@ -114,7 +114,7 @@ public final class ConnectBanco {
 		ArrayList<Jogador> lista = new ArrayList<Jogador>();
 		try{
 			comandoSQL = "SELECT * FROM Jogador";
-			state = conexao.prepareStatement(comandoSQL);
+			state = conexao.prepareStatement(getComandoSQL());
 			ResultSet resultados = state.executeQuery();
 			
 			while(resultados.next()){
@@ -128,7 +128,7 @@ public final class ConnectBanco {
 			}
 			return lista;
 		}catch(Exception e){
-			System.out.println("Opa! parece que ocorreu algum problema com a conexão, me desculpe amiguinho :(");
+			System.out.println("Opa! parece que ocorreu algum problema com a conexÃ£o, me desculpe amiguinho :(");
 			e.printStackTrace();
 			return null;
 		}
@@ -173,7 +173,7 @@ public final class ConnectBanco {
 		comandoSQL = comando;
 	}
 	
-	//encerrando conexão com o Disco
+	//encerrando conexÃ£o com o Disco
 	public static void closeConnection(Connection con){
 		if(con!=null){
 			try {
