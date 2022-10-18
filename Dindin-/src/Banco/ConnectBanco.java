@@ -1,16 +1,18 @@
 package Banco;
 
 /**
- * André Kaled Duarte Coutinho - 01/10/2022
+ * Andre Kaled Duarte Coutinho - 01/10/2022
  * 
- * Classe responsável pela conexão com o Banco de dados
- * Dispõe de alguns métodos estáticos que trabalham com
+ * Classe responsavel pela conexao com o Banco de dados
+ * Dispoe de alguns metodos estaticos que trabalham com
  * o Banco de dados criado atualmente */
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +21,7 @@ import modelo.Jogador;
 public final class ConnectBanco {
 
 	private static String comandoSQL = null;
-	private static PreparedStatement state ;
+	private static PreparedStatement state = null;
 	private static Connection conexao = getConnection();
 	
 	//comandos em SQL iniciais da classe
@@ -30,8 +32,9 @@ public final class ConnectBanco {
 			state = conexao.prepareStatement(getComandoSQL());
 			state.execute();
 			return true;
-		}catch(Exception e){System.out.println("Opa! parece que ocorreu algum problema com a conexão, me desculpe amiguinho :(");
+		}catch(Exception e){System.out.println("Opa! parece que ocorreu algum problema com a conexÃƒÂ£o, me desculpe amiguinho :(");
 			e.printStackTrace();
+			System.exit(0);
 			return false;
 		}
 	}
@@ -44,7 +47,7 @@ public final class ConnectBanco {
 			state.execute();
 			return true;
 		}catch(Exception e){
-			System.out.println("Opa! parece que ocorreu algum problema com a conexão, me desculpe amiguinho :(");
+			System.out.println("Opa! parece que ocorreu algum problema com a conexÃƒÂ£o, me desculpe amiguinho :(");
 			e.printStackTrace();
 			return false;
 		}
@@ -58,7 +61,7 @@ public final class ConnectBanco {
 			state.execute();
 			return true;
 		}catch(Exception e){
-			System.out.println("Opa! parece que ocorreu algum problema com a conexão, me desculpe amiguinho :(");
+			System.out.println("Opa! parece que ocorreu algum problema com a conexÃƒÂ£o, me desculpe amiguinho :(");
 			e.printStackTrace();
 			return false;
 		}
@@ -79,7 +82,7 @@ public final class ConnectBanco {
 			
 			return score;
 		}catch(Exception e){
-			System.out.println("Opa! parece que ocorreu algum problema com a conexão, me desculpe amiguinho :(");
+			System.out.println("Opa! parece que ocorreu algum problema com a conexÃƒÂ£o, me desculpe amiguinho :(");
 			e.printStackTrace();
 			return (Integer) null;
 		}
@@ -100,19 +103,20 @@ public final class ConnectBanco {
 			
 			return vitorias;
 		}catch(Exception e){
-			System.out.println("Opa! parece que ocorreu algum problema com a conexão, me desculpe amiguinho :(");
+			System.out.println("Opa! parece que ocorreu algum problema com a conexÃƒÂ£o, me desculpe amiguinho :(");
 			e.printStackTrace();
 			return (Integer) null;
 		}
 	}
 	
 	//comando para retornar uma lista de jogadores
-	public static List<Jogador> selectAllSQL(){
-		List<Jogador> lista = new ArrayList<Jogador>();
+	public static ArrayList<Jogador> selectAllSQL(){
+		ArrayList<Jogador> lista = new ArrayList<Jogador>();
 		try{
-			setComandoSQL("SELECT * FROM Jogador");
-			state = conexao.prepareStatement(comandoSQL);
+			comandoSQL = "SELECT * FROM Jogador";
+			state = conexao.prepareStatement(getComandoSQL());
 			ResultSet resultados = state.executeQuery();
+			
 			while(resultados.next()){
 				String nome = resultados.getString("Nome");
 				String ScoreString = resultados.getString("Score");
@@ -124,7 +128,7 @@ public final class ConnectBanco {
 			}
 			return lista;
 		}catch(Exception e){
-			System.out.println("Opa! parece que ocorreu algum problema com a conexão, me desculpe amiguinho :(");
+			System.out.println("Opa! parece que ocorreu algum problema com a conexÃ£o, me desculpe amiguinho :(");
 			e.printStackTrace();
 			return null;
 		}
@@ -167,5 +171,40 @@ public final class ConnectBanco {
 	
 	public static void setComandoSQL(String comando){
 		comandoSQL = comando;
+	}
+	
+	//encerrando conexÃ£o com o Disco
+	public static void closeConnection(Connection con){
+		if(con!=null){
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public static void closeConnection(Connection con, PreparedStatement stmt){
+		if(stmt!=null){
+			try {
+				stmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		closeConnection(con);
+	}
+	public static void closeConnection(Connection con, PreparedStatement stmt, ResultSet rs){
+		if(rs!=null){
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		closeConnection(con,stmt);
 	}
 }

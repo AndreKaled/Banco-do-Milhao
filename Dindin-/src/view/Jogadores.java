@@ -1,11 +1,11 @@
 package view;
 
 /**a
- * Andr� Kaled Duarte Coutinho - 30/09/2022
+ * Andre Kaled Duarte Coutinho - 17/10/2022
  * Graziela da Costa Ralph - 29/09/2022
  * Kauan Ferreira dos Santos - 29/09/2022
  * 
- * Tela onde o s�o contabilizados a quantidade e o nome
+ * Tela onde o sao contabilizados a quantidade e o nome
  * dos jogadores, armazenando o nome no banco de dados e
  * atualizando o score do jogador quando vencer o jogo
  * */
@@ -23,8 +23,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import modelo.Jogador;
+import Banco.Banco;
+
 public class Jogadores extends JPanel {
-	// instancia��o das coisinhas
+	// instanciando as coisinhas
 	private JTextField tfLilas, tfRosa, tfVerde, tfAmarelo, tfVermelho,
 			tfLaranja;
 	private JBackgroundPanel panelLilas, panelAmarelo, panelVermelho,
@@ -40,7 +43,7 @@ public class Jogadores extends JPanel {
 			contLaranja = 0, contRosa = 0;
 	// imagens
 	private ImageIcon imgTitulo = new ImageIcon("Imagens/Jogadores.png"),
-			imgJogar = new ImageIcon("Imagens/jogar2.png"), 
+			imgJogar = new ImageIcon("Imagens/jogar2.png"),
 			imgVoltar = new ImageIcon("Imagens/botao voltar.png");
 	private JPanel panelJogadores;
 
@@ -51,17 +54,12 @@ public class Jogadores extends JPanel {
 		lbTituloJogadores = new JLabel(imgTitulo);
 		btJogar = new JButton(imgJogar);
 		try {
-			panelLilas = new JBackgroundPanel(getClass().getResource("jogador lilás.png"));
-			panelAmarelo = new JBackgroundPanel(getClass().getResource(
-					"jogador amarelo.png"));
-			panelRosa = new JBackgroundPanel(getClass().getResource(
-					"jogador rosa.png"));
-			panelVerde = new JBackgroundPanel(getClass().getResource(
-					"jogador verde.png"));
-			panelVermelho = new JBackgroundPanel(getClass().getResource(
-					"jogador vermelho.png"));
-			panelLaranja = new JBackgroundPanel(getClass().getResource(
-					"jogador laranja.png"));
+			panelLilas = new JBackgroundPanel("imagens/jogador lilás.png");
+			panelAmarelo = new JBackgroundPanel("imagens/jogador amarelo.png");
+			panelRosa = new JBackgroundPanel("imagens/jogador rosa.png");
+			panelVerde = new JBackgroundPanel("imagens/jogador verde.png");
+			panelVermelho = new JBackgroundPanel("imagens/jogador vermelho.png");
+			panelLaranja = new JBackgroundPanel("imagens/jogador laranja.png");
 		} catch (Exception e) {
 			System.err.println("Erro ao carregar alguma imagem!");
 			e.printStackTrace();
@@ -76,7 +74,7 @@ public class Jogadores extends JPanel {
 
 	}
 
-	/** configurando o bot�o de voltar */
+	/** configurando o botao de voltar */
 	private void configuraBtVoltar() {
 		panelVoltar = new JButton(imgVoltar);
 		add(panelVoltar);
@@ -118,11 +116,11 @@ public class Jogadores extends JPanel {
 		panelLilas.setBounds(0, 0, 370, 120);
 		int aumentaX = 475;
 		int aumentaY = 175;
-		int posicaoX = panelLilas.getX()+90;
-		int posicaoY = panelLilas.getY()+50;
+		int posicaoX = panelLilas.getX() + 90;
+		int posicaoY = panelLilas.getY() + 50;
 		int larguraTxt = 270;
 		int alturaTxt = 32;
-		
+
 		tfLilas = new JTextField();
 		tfLilas.setBounds(posicaoX, posicaoY, larguraTxt, alturaTxt);
 		panelLilas.add(tfLilas);
@@ -189,7 +187,6 @@ public class Jogadores extends JPanel {
 		tfLaranja.setToolTipText("Digite seu nome...");
 		tfAmarelo.setToolTipText("Digite seu nome...");
 		tfVermelho.setToolTipText("Digite seu nome...");
-		
 
 		tfLilas.setText("Digite seu nome...");
 		tfRosa.setText("Digite seu nome...");
@@ -197,8 +194,8 @@ public class Jogadores extends JPanel {
 		tfLaranja.setText("Digite seu nome...");
 		tfAmarelo.setText("Digite seu nome...");
 		tfVermelho.setText("Digite seu nome...");
-		
-		//configurando cores e tirando borda
+
+		// configurando cores e tirando borda
 		Color proFundo = new Color(237, 237, 237);
 		tfLilas.setBackground(proFundo);
 		tfLilas.setBorder(null);
@@ -212,17 +209,16 @@ public class Jogadores extends JPanel {
 		tfAmarelo.setBorder(null);
 		tfVermelho.setBackground(proFundo);
 		tfVermelho.setBorder(null);
-		
 
 		// fazendo com que quando clicar 1 vez no texto deixe a caixa nula.
 		tfLilas.addMouseListener(new MouseListener() {
 
-			//default
+			// default
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 			}
 
-			//default
+			// default
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
 			}
@@ -232,7 +228,7 @@ public class Jogadores extends JPanel {
 			public void mouseExited(MouseEvent arg0) {
 			}
 
-			//tornando a caixa vazia quando clicado pela 1� vez
+			// tornando a caixa vazia quando clicado pela 1Ã¯Â¿Â½ vez
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				if (contLilas == 0) {
@@ -249,12 +245,12 @@ public class Jogadores extends JPanel {
 		});
 		tfVerde.addMouseListener(new MouseListener() {
 
-			//default
+			// default
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 			}
 
-			//default
+			// default
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
 			}
@@ -264,7 +260,7 @@ public class Jogadores extends JPanel {
 			public void mouseExited(MouseEvent arg0) {
 			}
 
-			//tornando a caixa vazia quando clicado pela 1� vez
+			// tornando a caixa vazia quando clicado pela 1Ã¯Â¿Â½ vez
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				if (contVerde == 0) {
@@ -281,12 +277,12 @@ public class Jogadores extends JPanel {
 		});
 		tfRosa.addMouseListener(new MouseListener() {
 
-			//default
+			// default
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 			}
 
-			//default
+			// default
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
 			}
@@ -296,7 +292,7 @@ public class Jogadores extends JPanel {
 			public void mouseExited(MouseEvent arg0) {
 			}
 
-			//tornando a caixa vazia quando clicado pela 1� vez
+			// tornando a caixa vazia quando clicado pela 1Ã¯Â¿Â½ vez
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				if (contRosa == 0) {
@@ -313,12 +309,12 @@ public class Jogadores extends JPanel {
 		});
 		tfLaranja.addMouseListener(new MouseListener() {
 
-			//default
+			// default
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 			}
 
-			//default
+			// default
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
 			}
@@ -328,7 +324,7 @@ public class Jogadores extends JPanel {
 			public void mouseExited(MouseEvent arg0) {
 			}
 
-			//tornando a caixa vazia quando clicado pela 1� vez
+			// tornando a caixa vazia quando clicado pela 1Ã¯Â¿Â½ vez
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				if (contLaranja == 0) {
@@ -345,12 +341,12 @@ public class Jogadores extends JPanel {
 		});
 		tfVermelho.addMouseListener(new MouseListener() {
 
-			//default
+			// default
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 			}
 
-			//default
+			// default
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
 			}
@@ -360,7 +356,7 @@ public class Jogadores extends JPanel {
 			public void mouseExited(MouseEvent arg0) {
 			}
 
-			//tornando a caixa vazia quando clicado pela 1� vez
+			// tornando a caixa vazia quando clicado pela 1Ã¯Â¿Â½ vez
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				if (contVermelho == 0) {
@@ -377,12 +373,12 @@ public class Jogadores extends JPanel {
 		});
 		tfAmarelo.addMouseListener(new MouseListener() {
 
-			//default
+			// default
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 			}
 
-			//default
+			// default
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
 			}
@@ -392,7 +388,7 @@ public class Jogadores extends JPanel {
 			public void mouseExited(MouseEvent arg0) {
 			}
 
-			//tornando a caixa vazia quando clicado pela 1� vez
+			// tornando a caixa vazia quando clicado pela 1Ã¯Â¿Â½ vez
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				if (contAmarelo == 0) {
@@ -409,7 +405,7 @@ public class Jogadores extends JPanel {
 		});
 	}
 
-	/** h� um bug aqui, s� est� indo para a tela do Modo Facil */
+	/** ha um bug aqui, sÃ¯Â¿Â½ estÃ¯Â¿Â½ indo para a tela do Modo Facil */
 	public void configuraBtJogar() {
 		add(btJogar);
 		btJogar.setLayout(null);
@@ -427,6 +423,79 @@ public class Jogadores extends JPanel {
 				} else if (contX == 0) {
 					Menu.adicionaTela(modoDificil, modoDificil.getName());
 					Menu.mudaTela(modoDificil.getName());
+				}
+				
+				// verificando jogador no banco, se nao houver adiciona na
+				// tabela de Jogadores no banco de dados
+				//roxo
+				if (!(tfLilas.getText().equals("")||tfLilas.getText().equals("Digite seu nome..."))){
+					Jogador jogador = new Jogador(tfLilas.getText());
+					System.out.println(Banco.verificaJogador(jogador));
+					if(Banco.verificaJogador(jogador)){
+						System.out.println("Jogador existente!");
+					}else{
+						Banco.novoJogador(jogador);
+						System.out.println("Novo jogador adicionado!");
+					}
+				}
+				//texto do jogador rosa
+				if (!(tfRosa.getText().equals("")||tfRosa.getText().equals("Digite seu nome..."))) {
+					Jogador jogador = new Jogador(tfRosa.getText());
+					System.out.println(Banco.verificaJogador(jogador));
+					if(Banco.verificaJogador(jogador)){
+						System.out.println("Jogador existente!");
+					}else{
+						Banco.novoJogador(jogador);
+						System.out.println("Novo jogador adicionado!");
+					}
+				}
+				
+				//texto do jogador verde
+				if (!(tfVerde.getText().equals("")||tfVerde.getText().equals("Digite seu nome..."))) {
+					Jogador jogador = new Jogador(tfVerde.getText());
+					System.out.println(Banco.verificaJogador(jogador));
+					if(Banco.verificaJogador(jogador)){
+						System.out.println("Jogador existente!");
+					}else{
+						Banco.novoJogador(jogador);
+						System.out.println("Novo jogador adicionado!");
+					}
+				}
+				
+				//texto do jogador amarelo
+				if (!(tfAmarelo.getText().equals("")||tfAmarelo.getText().equals("Digite seu nome..."))) {
+					Jogador jogador = new Jogador(tfAmarelo.getText());
+					System.out.println(Banco.verificaJogador(jogador));
+					if(Banco.verificaJogador(jogador)){
+						System.out.println("Jogador existente!");
+					}else{
+						Banco.novoJogador(jogador);
+						System.out.println("Novo jogador adicionado!");
+					}
+				}
+				
+				//texto do jogador vermelho
+				if (!(tfVermelho.getText().equals("")||tfVermelho.getText().equals("Digite seu nome..."))) {
+					Jogador jogador = new Jogador(tfVermelho.getText());
+					System.out.println(Banco.verificaJogador(jogador));
+					if(Banco.verificaJogador(jogador)){
+						System.out.println("Jogador existente!");
+					}else{
+						Banco.novoJogador(jogador);
+						System.out.println("Novo jogador adicionado!");
+					}
+				}
+				
+				//texto do jogador laranja
+				if (!(tfLaranja.getText().equals("")||tfLaranja.getText().equals("Digite seu nome..."))) {
+					Jogador jogador = new Jogador(tfLaranja.getText());
+					System.out.println(Banco.verificaJogador(jogador));
+					if(Banco.verificaJogador(jogador)){
+						System.out.println("Jogador existente!");
+					}else{
+						Banco.novoJogador(jogador);
+						System.out.println("Novo jogador adicionado!");
+					}
 				}
 			}
 

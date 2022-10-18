@@ -21,6 +21,7 @@ public class JBackgroundPanel extends JPanel {
     //construtor com argumento String para adicionar imagem no fundo do JPanel
     public JBackgroundPanel(String img) throws IOException {
         super();
+        setLayout(null);
         setBackgroundImage(img);
     }
 

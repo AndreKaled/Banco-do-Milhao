@@ -24,7 +24,7 @@ public class ConfirmaSair extends JFrame {
 	private JPanel c;
 	private JLabel icone, textoAviso, textoConfirma;
 	private JButton btSim, btNao;
-	private ImageIcon imagemSair = new ImageIcon("Imagens/Sair.png");
+	private ImageIcon imagemSair = new ImageIcon("Imagens/sair.png");
 	final Color corVermelho = new Color(255, 0, 77);
 	final Color corVerde = new Color(0, 135, 81);
 

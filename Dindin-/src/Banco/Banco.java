@@ -1,25 +1,26 @@
 package Banco;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import modelo.Jogador;
 
 /**
- * André Kaled Duarte Coutinho - 09/1/2022
+ * AndrÃƒÂ© Kaled Duarte Coutinho - 17/10/2022
  * 
- * Classe usada para conexão com o banco de dados,
- * facilitando o uso em métodos mais simplistas
+ * Classe usada para conexÃƒÂ£o com o banco de dados,
+ * facilitando o uso em metodos mais simplistas
  * */
 
 public class Banco {
 
-	//método para inserir novo jogador no banco de dados
+	//mÃƒÂ©todo para inserir novo jogador no banco de dados
 	public static void novoJogador(Jogador jogador){
 		String nome = jogador.toString();
 		ConnectBanco.insertNomeSQL(nome);
 	}
 	
-	//metodo para atualizar as vitórias do jogador no banco de dados
+	//metodo para atualizar as vitÃƒÂ³rias do jogador no banco de dados
 	public static void ganhou(Jogador jogador){
 		String jg = jogador.getNickName();
 		ConnectBanco.updateVitoriasSQL(jg);
@@ -42,24 +43,30 @@ public class Banco {
 		return ConnectBanco.selectAllSQL();
 	}
 	
-	//retornando top 10 jogadores de acordo com as vitórias
+	//retornando top 10 jogadores de acordo com as vitÃƒÂ³rias
 	//no jogo
 	public static List<Jogador> top10Jogadores(){
 		List<Jogador> lista = ConnectBanco.ordenaVitorias();
-		int cont =0;
+		int cont = 0;
 		for(Jogador j: lista){
 			if(cont<10){
 				lista.remove(j);
-			}else{
 				cont++;
 			}
 		}
 		return lista;
 	}
 	
-	//verificando se o nome já existe no Banco de dados
-	public static boolean verificaJogador(String nome){
-		List<Jogador> lista = ConnectBanco.selectAllSQL();
-		return lista.contains(nome);
+	//verificando se o nome ja existe no Banco de dados
+	public static boolean verificaJogador(Jogador nome){
+		ArrayList<Jogador> lista = ConnectBanco.selectAllSQL();
+		boolean existencia = false;
+		for(Jogador j: lista){
+			if(nome.getNickName().equals(j.getNickName())){
+				existencia = true;
+				break;
+			}
+		}
+		return existencia;
 	}
 }

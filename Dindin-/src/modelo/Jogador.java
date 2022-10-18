@@ -1,10 +1,10 @@
 package modelo;
 
 /**
- * André Kaled Duarte - 25/09/2022
+ * AndrÃ© Kaled Duarte - 25/09/2022
  * 
  * Classe modelo de Jogador, utilizada para cada um dos jogadores no jogo,
- * com suas características e métodos
+ * com suas caracterÃ­sticas e mÃ©todos
  * */
 
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Jogador {
 	private String nickName, cor;
-	private int moedas, posicao, score;
+	private int moedas, posicao, score, vitorias = 0;
 	private List<Itens> listaCompras = new ArrayList<Itens>();
 	private List<Itens> listaComprados = new ArrayList<Itens>();
 	private static int cont = 1;
@@ -30,7 +30,7 @@ public class Jogador {
 	// construtor com nome e cor
 	public Jogador(String nickName, String cor) {
 		setNickName(nickName);
-		setCor(cor);
+		// setCor(cor);
 		setMoedas(0);
 		setPosicao(0);
 		setScore(0);
@@ -39,7 +39,7 @@ public class Jogador {
 	// construtor com nome
 	public Jogador(String nickName) {
 		setNickName(nickName);
-		setCor(null);
+		// setCor(null);
 		setMoedas(0);
 		setPosicao(0);
 		setScore(0);
@@ -54,49 +54,59 @@ public class Jogador {
 		setScore(score);
 	}
 
-	//metodos para a compra de itens
-	public List<Itens> verItensComprados(){
+	// construtor com score
+	public Jogador(String nickName, int score, int vitorias) {
+		setNickName(nickName);
+		// setCor(null);
+		setMoedas(0);
+		setPosicao(0);
+		setScore(score);
+		setVitorias(vitorias);
+	}
+
+	// metodos para a compra de itens
+	public List<Itens> verItensComprados() {
 		return listaComprados;
 	}
-	
-	public List<Itens> verListaDeCompras(){
+
+	public List<Itens> verListaDeCompras() {
 		return listaCompras;
 	}
-	
-	//metodo para alterar a posição
-	public void andar(int quant){
-		posicao += quant; 
+
+	// metodo para alterar a posiÃ§Ã£o
+	public void andar(int quant) {
+		posicao += quant;
 	}
-	
-	//metodo para comprar um item
-	boolean comprar(String item){
+
+	// metodo para comprar um item
+	boolean comprar(String item) {
 		int cont = 0;
-		for(Itens o: listaCompras){
-			if(item.equalsIgnoreCase(o.toString())&&moedas>=o.custo()){
+		for (Itens o : listaCompras) {
+			if (item.equalsIgnoreCase(o.toString()) && moedas >= o.custo()) {
 				moedas -= o.custo();
 				listaCompras.remove(o);
 				listaComprados.add(o);
 				cont++;
 			}
 		}
-		if(cont==1)
+		if (cont == 1)
 			return true;
 		else
 			return false;
 	}
-	
-	public int mostraScore(){
+
+	public int mostraScore() {
 		return getScore();
 	}
-	
-	public int quantMoedas(){
+
+	public int quantMoedas() {
 		return getMoedas();
 	}
-	
-	public void aumentaScore(){
+
+	public void aumentaScore() {
 		score++;
 	}
-	
+
 	// metodos de acesso aos atributos
 	public String getNickName() {
 		return nickName;
@@ -116,6 +126,14 @@ public class Jogador {
 
 	public int getMoedas() {
 		return moedas;
+	}
+
+	public int getVitorias() {
+		return vitorias;
+	}
+
+	public void setVitorias(int vitorias) {
+		this.vitorias = vitorias;
 	}
 
 	public void setMoedas(int moedas) {
@@ -154,4 +172,8 @@ public class Jogador {
 		this.listaComprados = listaComprados;
 	}
 
+	//sobreescrevendo metodo toString
+	public String toString(){
+		return nickName;
+	}
 }
