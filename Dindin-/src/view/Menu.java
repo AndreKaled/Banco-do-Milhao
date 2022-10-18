@@ -1,10 +1,10 @@
 package view;
 
 /**
- * Andrï¿½ Kaled Duarte - 28/09/2022
+ * Andre Kaled Duarte - 28/09/2022
  * Tela Principal (MENU) 
  * Essa classe deve representar o a tela Menu do jogo
- * onde o usuï¿½rio escolhe o que realizar antes do
+ * onde o usuario escolhe o que realizar antes do
  * jogo de fato comecar
  * */
 
@@ -167,6 +167,16 @@ public class Menu extends JFrame {
 				mudaTela(jogar.getName());
 			}
 
+		});
+		
+		btPlacar.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				new Score();
+			}
+			
 		});
 	}
 
