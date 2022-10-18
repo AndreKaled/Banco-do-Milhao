@@ -34,7 +34,7 @@ public class ModoDificil extends JPanel {
 	private JButton btRolar, btVoltar, btLista,btMenu;
 	private JLabel resultado, areaVez, moeda, quantMoeda, personagem, nome;
 	ImageIcon imgFundo = new ImageIcon("Imagens/area-jogador-da-vez.png"),
-			imgLista = new ImageIcon("Imagens/botão lista.png"),
+			imgLista = new ImageIcon("Imagens/botao lista.png"),
 			imgMoeda = new ImageIcon("Imagens/moeda-java.png"),
 			imgPersonagem = new ImageIcon("Imagens/personagem.png"),
 			imgNome = new ImageIcon("Imagens/nome.png"),

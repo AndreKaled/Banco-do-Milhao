@@ -1,7 +1,7 @@
 package view;
 
 /**a
- * Andre Kaled Duarte Coutinho - 30/09/2022
+ * Andre Kaled Duarte Coutinho - 17/10/2022
  * Graziela da Costa Ralph - 29/09/2022
  * Kauan Ferreira dos Santos - 29/09/2022
  * 
@@ -54,12 +54,12 @@ public class Jogadores extends JPanel {
 		lbTituloJogadores = new JLabel(imgTitulo);
 		btJogar = new JButton(imgJogar);
 		try {
-			panelLilas = new JBackgroundPanel("jogador lilás.png");
-			panelAmarelo = new JBackgroundPanel("jogador amarelo.png");
-			panelRosa = new JBackgroundPanel("jogador rosa.png");
-			panelVerde = new JBackgroundPanel("jogador verde.png");
-			panelVermelho = new JBackgroundPanel("jogador vermelho.png");
-			panelLaranja = new JBackgroundPanel("jogador laranja.png");
+			panelLilas = new JBackgroundPanel("imagens/jogador lilás.png");
+			panelAmarelo = new JBackgroundPanel("imagens/jogador amarelo.png");
+			panelRosa = new JBackgroundPanel("imagens/jogador rosa.png");
+			panelVerde = new JBackgroundPanel("imagens/jogador verde.png");
+			panelVermelho = new JBackgroundPanel("imagens/jogador vermelho.png");
+			panelLaranja = new JBackgroundPanel("imagens/jogador laranja.png");
 		} catch (Exception e) {
 			System.err.println("Erro ao carregar alguma imagem!");
 			e.printStackTrace();
@@ -228,7 +228,7 @@ public class Jogadores extends JPanel {
 			public void mouseExited(MouseEvent arg0) {
 			}
 
-			// tornando a caixa vazia quando clicado pela 1ï¿½ vez
+			// tornando a caixa vazia quando clicado pela 1Ã¯Â¿Â½ vez
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				if (contLilas == 0) {
@@ -260,7 +260,7 @@ public class Jogadores extends JPanel {
 			public void mouseExited(MouseEvent arg0) {
 			}
 
-			// tornando a caixa vazia quando clicado pela 1ï¿½ vez
+			// tornando a caixa vazia quando clicado pela 1Ã¯Â¿Â½ vez
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				if (contVerde == 0) {
@@ -292,7 +292,7 @@ public class Jogadores extends JPanel {
 			public void mouseExited(MouseEvent arg0) {
 			}
 
-			// tornando a caixa vazia quando clicado pela 1ï¿½ vez
+			// tornando a caixa vazia quando clicado pela 1Ã¯Â¿Â½ vez
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				if (contRosa == 0) {
@@ -324,7 +324,7 @@ public class Jogadores extends JPanel {
 			public void mouseExited(MouseEvent arg0) {
 			}
 
-			// tornando a caixa vazia quando clicado pela 1ï¿½ vez
+			// tornando a caixa vazia quando clicado pela 1Ã¯Â¿Â½ vez
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				if (contLaranja == 0) {
@@ -356,7 +356,7 @@ public class Jogadores extends JPanel {
 			public void mouseExited(MouseEvent arg0) {
 			}
 
-			// tornando a caixa vazia quando clicado pela 1ï¿½ vez
+			// tornando a caixa vazia quando clicado pela 1Ã¯Â¿Â½ vez
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				if (contVermelho == 0) {
@@ -388,7 +388,7 @@ public class Jogadores extends JPanel {
 			public void mouseExited(MouseEvent arg0) {
 			}
 
-			// tornando a caixa vazia quando clicado pela 1ï¿½ vez
+			// tornando a caixa vazia quando clicado pela 1Ã¯Â¿Â½ vez
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				if (contAmarelo == 0) {
@@ -405,7 +405,7 @@ public class Jogadores extends JPanel {
 		});
 	}
 
-	/** ha um bug aqui, sï¿½ estï¿½ indo para a tela do Modo Facil */
+	/** ha um bug aqui, sÃ¯Â¿Â½ estÃ¯Â¿Â½ indo para a tela do Modo Facil */
 	public void configuraBtJogar() {
 		add(btJogar);
 		btJogar.setLayout(null);
