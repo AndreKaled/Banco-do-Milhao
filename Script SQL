@@ -1,9 +1,13 @@
 CREATE DATABASE DINDIN;
 
-USE DINDIN;
+use dindin;
+-- drop table Jogador;
 
-CREATE TABLE Jogador(
-	nome VARCHAR(100) NOT NULL PRIMARY KEY,
-    vitorias INT,
-    score INT 
+create table Jogador(
+	nome varchar(100) primary key,
+    pontuacao int,
+    vitorias int,
+    partidas_jogadas int not null
 );
+select * from jogador;
+truncate jogador;
