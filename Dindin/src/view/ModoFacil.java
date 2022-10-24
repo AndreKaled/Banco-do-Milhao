@@ -138,7 +138,7 @@ public class ModoFacil extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				int i = Dado.rolar();
 		
-				DadoIcon = new ImageIcon("Imagens/Dado-"+imgDado[i]+".png"); // acessa o nome da imagem
+				DadoIcon = new ImageIcon("Imagens/Dado-"+imgDado[i-1]+".png"); // acessa o nome da imagem
 	            lbDado.setIcon(DadoIcon);
 				
 			}
