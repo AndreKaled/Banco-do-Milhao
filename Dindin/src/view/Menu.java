@@ -13,6 +13,7 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -31,10 +32,12 @@ public class Menu extends JFrame {
 	ImageIcon logo = new ImageIcon("imagens/logo.png");
 	ImageIcon jogo = new ImageIcon("imagens/jogar.png");
 	ImageIcon opcoes = new ImageIcon("imagens/opcoes.png");
-	ImageIcon tutorial = new ImageIcon("imagens/tutorial.png");
+	ImageIcon tutorial = new ImageIcon("image"
+			+ "ns/tutorial.png");
 	ImageIcon sair  = new ImageIcon("imagens/sair.png");
 	ImageIcon placar = new ImageIcon("imagens/placar.png");
 	ImageIcon fundoImg;
+	JBackgroundPanel fundo;
 
 	public Menu() {
 		super("Din Din");
@@ -52,10 +55,17 @@ public class Menu extends JFrame {
 		cLogo = new JPanel();
 		contPrincipal = (JPanel) getContentPane();
 		contPrincipal.setLayout(card);
-		c = new JPanel();
+		try {
+			c = new JBackgroundPanel("imagens/fundo tela inicial 1.png");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		c.setBackground(new Color(66, 153, 206));
 		c.setLayout(null);
 		c.setName("MENU");
+	
 
 		// configurando componentes
 		configuraLogo();

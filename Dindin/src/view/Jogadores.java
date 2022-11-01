@@ -14,6 +14,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
@@ -25,16 +26,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import modelo.Jogador;
-import Banco.JogadorDAO;
 import Controller.JogadorController;
+import modelo.Jogador;
 
 public class Jogadores extends JPanel {
 	// instanciando as coisinhas
 	private JTextField tfLilas, tfRosa, tfVerde, tfAmarelo, tfVermelho,
 			tfLaranja;
 	private JBackgroundPanel panelLilas, panelAmarelo, panelVermelho,
-			panelLaranja, panelVerde, panelRosa;
+			panelLaranja, panelVerde, panelRosa,fundo;
 	private JLabel lbTituloJogadores;
 	private JButton panelVoltar, btJogar;
 	private int contX = 0, contY = 0;
@@ -67,6 +67,10 @@ public class Jogadores extends JPanel {
 			panelVerde = new JBackgroundPanel("imagens/jogador verde.png");
 			panelVermelho = new JBackgroundPanel("imagens/jogador vermelho.png");
 			panelLaranja = new JBackgroundPanel("imagens/jogador laranja.png");
+			fundo = new JBackgroundPanel("imagens/fundo tela inicial 1.png");
+			fundo.setBounds(0,0,1366,768);
+			fundo.setOpaque(false);
+			add(fundo);
 		} catch (Exception e) {
 			System.err.println("Erro ao carregar alguma imagem!");
 			e.printStackTrace();
@@ -84,7 +88,7 @@ public class Jogadores extends JPanel {
 	/** configurando o botao de voltar */
 	private void configuraBtVoltar() {
 		panelVoltar = new JButton(imgVoltar);
-		add(panelVoltar);
+		fundo.add(panelVoltar);
 		panelVoltar.setBounds(10, 10, 70, 70);
 		panelVoltar.setContentAreaFilled(false);
 		panelVoltar.setBorderPainted(false);
@@ -108,7 +112,7 @@ public class Jogadores extends JPanel {
 	/** configurando titulo da tela */
 	private void configuraTitulo() {
 		lbTituloJogadores.setBounds(418, 10, 530, 100);
-		add(lbTituloJogadores);
+		fundo.add(lbTituloJogadores);
 	}
 
 	/** configurando paineis de jogadores */
@@ -172,7 +176,7 @@ public class Jogadores extends JPanel {
 		panelLaranja.add(tfLaranja);
 		panelJogadores.add(panelLaranja);
 
-		add(panelJogadores);
+		fundo.add(panelJogadores);
 		configuraFonte();
 		configuraInicio();
 	}
@@ -224,22 +228,7 @@ public class Jogadores extends JPanel {
 		tfVermelho.setBorder(null);
 
 		// fazendo com que quando clicar 1 vez no texto deixe a caixa nula.
-		tfLilas.addMouseListener(new MouseListener() {
-
-			// default
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-			}
-
-			// default
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-			}
-
-			@Override
-			// default
-			public void mouseExited(MouseEvent arg0) {
-			}
+		tfLilas.addMouseListener(new MouseAdapter() {
 
 			// tornando a caixa vazia quando clicado pela primeira vez
 			@Override
@@ -247,31 +236,14 @@ public class Jogadores extends JPanel {
 				if (contLilas == 0) {
 					contLilas++;
 					tfLilas.setText("");
+					tfLilas.setForeground(Color.BLACK);
 				}
 			}
 
-			// default
-			@Override
-			public void mouseReleased(MouseEvent arg0) {
-			}
 
 		});
-		tfVerde.addMouseListener(new MouseListener() {
-
-			// default
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-			}
-
-			// default
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-			}
-
-			@Override
-			// default
-			public void mouseExited(MouseEvent arg0) {
-			}
+		
+		tfVerde.addMouseListener(new MouseAdapter() {
 
 			// tornando a caixa vazia quando clicado pela primeira vez
 			@Override
@@ -279,31 +251,12 @@ public class Jogadores extends JPanel {
 				if (contVerde == 0) {
 					contVerde++;
 					tfVerde.setText("");
+					tfVerde.setForeground(Color.BLACK);
 				}
 			}
-
-			// default
-			@Override
-			public void mouseReleased(MouseEvent arg0) {
-			}
-
 		});
-		tfRosa.addMouseListener(new MouseListener() {
-
-			// default
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-			}
-
-			// default
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-			}
-
-			@Override
-			// default
-			public void mouseExited(MouseEvent arg0) {
-			}
+		
+		tfRosa.addMouseListener(new MouseAdapter() {
 
 			// tornando a caixa vazia quando clicado pela primeira vez
 			@Override
@@ -311,31 +264,12 @@ public class Jogadores extends JPanel {
 				if (contRosa == 0) {
 					contRosa++;
 					tfRosa.setText("");
+					tfRosa.setForeground(Color.BLACK);
 				}
 			}
-
-			// default
-			@Override
-			public void mouseReleased(MouseEvent arg0) {
-			}
-
 		});
-		tfLaranja.addMouseListener(new MouseListener() {
-
-			// default
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-			}
-
-			// default
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-			}
-
-			@Override
-			// default
-			public void mouseExited(MouseEvent arg0) {
-			}
+		
+		tfLaranja.addMouseListener(new MouseAdapter() {
 
 			// tornando a caixa vazia quando clicado pela primeira vez
 			@Override
@@ -343,31 +277,12 @@ public class Jogadores extends JPanel {
 				if (contLaranja == 0) {
 					contLaranja++;
 					tfLaranja.setText("");
+					tfLaranja.setForeground(Color.BLACK);
 				}
 			}
-
-			// default
-			@Override
-			public void mouseReleased(MouseEvent arg0) {
-			}
-
 		});
-		tfVermelho.addMouseListener(new MouseListener() {
-
-			// default
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-			}
-
-			// default
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-			}
-
-			@Override
-			// default
-			public void mouseExited(MouseEvent arg0) {
-			}
+		
+		tfVermelho.addMouseListener(new MouseAdapter() {
 
 			// tornando a caixa vazia quando clicado pela primeira vez
 			@Override
@@ -375,31 +290,12 @@ public class Jogadores extends JPanel {
 				if (contVermelho == 0) {
 					contVermelho++;
 					tfVermelho.setText("");
+					tfVermelho.setForeground(Color.BLACK);
 				}
 			}
-
-			// default
-			@Override
-			public void mouseReleased(MouseEvent arg0) {
-			}
-
 		});
-		tfAmarelo.addMouseListener(new MouseListener() {
-
-			// default
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-			}
-
-			// default
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-			}
-
-			@Override
-			// default
-			public void mouseExited(MouseEvent arg0) {
-			}
+		
+		tfAmarelo.addMouseListener(new MouseAdapter() {
 
 			// tornando a caixa vazia quando clicado pela primeira vez
 			@Override
@@ -407,20 +303,16 @@ public class Jogadores extends JPanel {
 				if (contAmarelo == 0) {
 					contAmarelo++;
 					tfAmarelo.setText("");
+					tfAmarelo.setForeground(Color.BLACK);
 				}
 			}
-
-			// default
-			@Override
-			public void mouseReleased(MouseEvent arg0) {
-			}
-
 		});
+		
 	}
 
 	/** ha um bug aqui, sÃ¯Â¿Â½ estÃ¯Â¿Â½ indo para a tela do Modo Facil */
 	public void configuraBtJogar() {
-		add(btJogar);
+		fundo.add(btJogar);
 		btJogar.setLayout(null);
 		btJogar.setBounds(1150, 620, 150, 60);
 		btJogar.setContentAreaFilled(false);
@@ -432,6 +324,7 @@ public class Jogadores extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					iniciaJogo();
+					throw new SQLException();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					 JOptionPane.showMessageDialog(null, "Aconteceu um erro ao iniciar o Jogo!" + e.getLocalizedMessage());

@@ -12,8 +12,10 @@ package view;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -23,20 +25,20 @@ import javax.swing.JPanel;
 public class ModoDeJogo extends JPanel {
 
 	// declara��o de variaveis dos componentes
-	private JButton panelFacil, panelDificil, panelVoltar, infoFacil, panelInfoFacil, infoDificil, panelInfoDificil;
+	private JButton panelVoltar, infoFacil, infoDificil;
 	private JPanel telaFacil, telaDificil,telaJogadores = new Jogadores();
 	private JLabel lbmodJogo;
+	private JBackgroundPanel panelFacil, panelDificil, panelInfoFacil,panelInfoDificil;
 	private int contX = 0, contY = 0;
-	// private JPanel c;
+	private JPanel fundo;
 	private static String nome = "MODO DE JOGO";
-	private ImageIcon imgFacil = new ImageIcon("Imagens/modo facil.png"),
-			imgDificil = new ImageIcon("Imagens/modo dificil.png"),
+	private ImageIcon 
 			imgBtVoltar = new ImageIcon("Imagens/botao voltar.png"),
 			imgTitulo = new ImageIcon("Imagens/Modos de Jogo.png"),
 			imgInfoFacil = new ImageIcon("Imagens/info roxo.png"),
-			imgPanelFacil = new ImageIcon("Imagens/facil.png"),
+			imgPanelFacil = new ImageIcon(),
 			imgInfoDificil = new ImageIcon("Imagens/info verde.png"),
-			imgPanelDificil = new ImageIcon("Imagens/dificil.png");
+			imgPanelDificil = new ImageIcon();
 	private static String opcao;
 
 	// construtor da classe
@@ -44,13 +46,25 @@ public class ModoDeJogo extends JPanel {
 		setLayout(null);
 		setBackground(new Color(66, 153, 206));
 		panelVoltar = new JButton(imgBtVoltar);
-		panelFacil = new JButton(imgFacil);
-		panelDificil = new JButton(imgDificil);
+		try {
+			panelFacil = new JBackgroundPanel("imagens/modo facil.png");
+			panelDificil = new JBackgroundPanel("imagens/modo dificil.png");
+			panelInfoFacil = new JBackgroundPanel("imagens/facil.png");
+			panelInfoDificil = new JBackgroundPanel("imagens/dificil.png");
+			fundo = new JBackgroundPanel("imagens/fundo tela inicial 1.png");
+			fundo.setBounds(0,0,1366,768);
+			fundo.setOpaque(false);
+			add(fundo);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		infoFacil = new JButton(imgInfoFacil);
 		lbmodJogo = new JLabel(imgTitulo);
-		panelInfoFacil = new JButton(imgPanelFacil);
+		
 		infoDificil = new JButton(imgInfoDificil);
-		panelInfoDificil = new JButton(imgPanelDificil);
+		
 
 		configuraPanels();
 		configuraBtVoltar();
@@ -64,7 +78,7 @@ public class ModoDeJogo extends JPanel {
 
 	public void configuraBtInfo() {
 		infoFacil.setLayout(null);
-		infoFacil.setBounds(100, 10, 700, 610);
+		infoFacil.setBounds(500, 10, 50, 50);
 		infoFacil.setContentAreaFilled(false);
 		infoFacil.setBorderPainted(false);
 		infoFacil.setVisible(true);
@@ -74,13 +88,12 @@ public class ModoDeJogo extends JPanel {
 		panelInfoFacil.setLayout(null);
 		panelInfoFacil.setVisible(false);
 		panelInfoFacil.setFocusable(false);
-		panelInfoFacil.setContentAreaFilled(false);
-		panelInfoFacil.setBorderPainted(false);
-		panelInfoFacil.setBounds(20, 80, 650, 600);
-		add(panelInfoFacil);
+		panelInfoFacil.setOpaque(false);
+		panelInfoFacil.setBounds(panelFacil.getBounds());
+		fundo.add(panelInfoFacil);
 
 		infoDificil.setLayout(null);
-		infoDificil.setBounds(700, 200, 700, 610);
+		infoDificil.setBounds(500, 10, 50, 50);
 		infoDificil.setContentAreaFilled(false);
 		infoDificil.setBorderPainted(false);
 		infoDificil.setVisible(true);
@@ -90,12 +103,11 @@ public class ModoDeJogo extends JPanel {
 		panelInfoDificil.setLayout(null);
 		panelInfoDificil.setVisible(false);
 		panelInfoDificil.setFocusable(false);
-		panelInfoDificil.setContentAreaFilled(false);
-		panelInfoDificil.setBorderPainted(false);
-		panelInfoDificil.setBounds(690, 80, 650, 600);
-		add(panelInfoDificil);
+		panelInfoDificil.setOpaque(false);
+		panelInfoDificil.setBounds(panelDificil.getBounds());
+		fundo.add(panelInfoDificil);
 
-		// configura o botao de informa��es do modo facil
+		// configura o botao de informacoes do modo facil
 		infoFacil.addActionListener(new ActionListener() {
 
 			@Override
@@ -108,17 +120,15 @@ public class ModoDeJogo extends JPanel {
 
 		});
 
-		// configura a area de informa��es do modo facil
-		panelInfoFacil.addActionListener(new ActionListener() {
+		// configura a area de informacoes do modo facil
+		panelInfoFacil.addMouseListener(new MouseAdapter() {
 
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void mouseClicked(MouseEvent e){
 				panelInfoFacil.setVisible(false);
 				panelFacil.setVisible(true);
 				infoFacil.setVisible(true);
-
 			}
-
 		});
 
 		infoDificil.addActionListener(new ActionListener() {
@@ -133,47 +143,48 @@ public class ModoDeJogo extends JPanel {
 
 		});
 
-		panelInfoDificil.addActionListener(new ActionListener() {
+		panelInfoDificil.addMouseListener(new MouseAdapter() {
 
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void mouseClicked(MouseEvent e){
 				panelInfoDificil.setVisible(false);
 				panelDificil.setVisible(true);
 				infoDificil.setVisible(true);
 
 			}
-
 		});
 	}
 
 	// configurando pain�is
 	private void configuraPanels() {
 
-		panelFacil.setBounds(20, 80, 650, 600);
-		panelDificil.setBounds(690, 80, 650, 600);
+		panelFacil.setBounds(40, 120, 550, 550);
+		panelDificil.setBounds(690, 120, 550, 550);
 
-		panelFacil.setContentAreaFilled(false);
-		panelFacil.setBorderPainted(false);
-		panelFacil.setFocusable(false);
-		panelDificil.setContentAreaFilled(false);
-		panelDificil.setBorderPainted(false);
-		panelDificil.setFocusable(false);
+		panelFacil.setOpaque(false);
+		panelDificil.setOpaque(false);
+		//panelFacil.setContentAreaFilled(false);
+		//panelFacil.setBorderPainted(false);
+		//panelFacil.setFocusable(false);
+		//panelDificil.setContentAreaFilled(false);
+		//panelDificil.setBorderPainted(false);
+		//panelDificil.setFocusable(false);
 
-		add(panelFacil);
-		add(panelDificil);
+		fundo.add(panelFacil);
+		fundo.add(panelDificil);
 
 	}
 
 	// configura a imagem do titulo
 	private void configuraTitulo() {
-		add(lbmodJogo);
+		fundo.add(lbmodJogo);
 		lbmodJogo.setBounds(350, 10, 700, 100);
 		setVisible(true);
 	}
 
 	/** configurando o bot�o de voltar */
 	private void configuraBtVoltar() {
-		add(panelVoltar);
+		fundo.add(panelVoltar);
 		panelVoltar.setBounds(10, 10, 70, 70);
 		panelVoltar.setFocusable(false);
 		panelVoltar.setContentAreaFilled(false);
