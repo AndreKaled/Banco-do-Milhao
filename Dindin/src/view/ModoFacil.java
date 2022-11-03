@@ -78,9 +78,9 @@ public class ModoFacil extends JPanel {
 		areaVez.setBounds(painelVez.getBounds());
 
 		btLista = new JButton(imgLista);
-		btLista.setBorderPainted(false);
-		btLista.setFocusable(false);
-		btLista.setContentAreaFilled(false);
+		//btLista.setBorderPainted(false);
+		//btLista.setFocusable(false);
+		//btLista.setContentAreaFilled(false);
 		btLista.setBounds(100, 40, 62, 62);
 
 		moeda = new JLabel(imgMoeda);
@@ -106,6 +106,7 @@ public class ModoFacil extends JPanel {
 		painelVez.add(quantMoeda);
 		painelVez.add(personagem);
 		painelVez.add(nome);
+		eventoBtLista();
 	}
 
 	// configurando area do Dado
@@ -179,4 +180,15 @@ public class ModoFacil extends JPanel {
 
 		});
 	}
+	
+	private void eventoBtLista() {
+		btLista.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				ListaDeCompras l = new ListaDeCompras();
+			}
+			
+		});
+	} 
 }
