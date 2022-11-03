@@ -327,7 +327,7 @@ public class Jogadores extends JPanel {
 					throw new SQLException();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
-					 JOptionPane.showMessageDialog(null, "Aconteceu um erro ao iniciar o Jogo!" + e.getLocalizedMessage());
+					// JOptionPane.showMessageDialog(null, "Aconteceu um erro ao iniciar o Jogo!" + e.getLocalizedMessage());
 				}
 			}
 

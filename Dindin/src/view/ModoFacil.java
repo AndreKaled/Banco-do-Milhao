@@ -63,6 +63,7 @@ public class ModoFacil extends JPanel {
 		configuraBtVoltar();
 		configuraVez();
 		configuraBtMenu();
+		iniciaTabuleiro();
 	}
 
 	// configurando a aba de ver a vez do jogador
@@ -191,4 +192,12 @@ public class ModoFacil extends JPanel {
 			
 		});
 	} 
+	
+	private void iniciaTabuleiro(){
+		Tabuleiro t = new Tabuleiro();
+		t.setBounds(250,20,800,520);
+		add(t);
+		t.setP(0).add(new JLabel("to aqui"));
+		t.new Move();
+	}
 }
