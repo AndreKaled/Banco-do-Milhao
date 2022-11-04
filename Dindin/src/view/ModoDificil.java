@@ -39,7 +39,8 @@ public class ModoDificil extends JPanel {
 			imgPersonagem = new ImageIcon("Imagens/personagem.png"),
 			imgNome = new ImageIcon("Imagens/nome.png"),
 			imgMenu = new ImageIcon("Imagens/botao-menu.png");
-
+	Dado dado = new Dado();
+	
 	public ModoDificil() {
 		setLayout(null);
 		setBackground(new Color(66, 153, 206));
@@ -47,7 +48,7 @@ public class ModoDificil extends JPanel {
 		areaDado = new JPanel();
 		btRolar = new JButton("ROLAR DADO");
 		btVoltar = new JButton("VOLTAR");
-		resultado = new JLabel("" + Dado.rolar());
+		resultado = new JLabel("" + dado.rolar());
 		btMenu = new JButton(imgMenu);
 
 		configuraDado();
@@ -116,7 +117,7 @@ public class ModoDificil extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				resultado.setText("" + Dado.rolar());
+				resultado.setText("" + dado.rolar());
 			}
 
 		});

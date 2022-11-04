@@ -37,14 +37,17 @@ public class ModoFacil extends JPanel {
 	private int rolaDado = 0, dadoAntigo = 0;
 	ImageIcon imgFundo = new ImageIcon("Imagens/area-jogador-da-vez.png"),
 			imgLista = new ImageIcon("Imagens/imagens/botao lista.png"),
-			imgMoeda = new ImageIcon("Imagens/moeda-java.png"),
-			imgPersonagem = new ImageIcon("Imagens/personagem.png"),
-			imgNome = new ImageIcon("Imagens/nome.png"),
-			imgMenu = new ImageIcon("Imagens/botao-menu.png"),
-			imgVoltar = new ImageIcon ("Imagens/botao voltar.png"),
+			imgMoeda = new ImageIcon("Imagens/moeda-java.png"), imgPersonagem = new ImageIcon("Imagens/personagem.png"),
+			imgNome = new ImageIcon("Imagens/nome.png"), imgMenu = new ImageIcon("Imagens/botao-menu.png"),
+			imgVoltar = new ImageIcon("Imagens/botao voltar.png"),
 			imgRolar = new ImageIcon("Imagens/botao-rola-dado.png");
 	ImageIcon DadoIcon;
-	private String imgDado[] = {"1", "2", "3", "4", "5", "6"};
+	private String imgDado[] = { "1", "2", "3", "4", "5", "6" };
+	
+	//testando movimentacao
+	Tabuleiro t;
+	JLabel pessoa = new JLabel("oioioi");
+	Tabuleiro.Move move;
 
 	public ModoFacil() {
 		setLayout(null);
@@ -56,9 +59,9 @@ public class ModoFacil extends JPanel {
 		resultado = new JLabel(imgDado[0]);
 		btMenu = new JButton(imgMenu);
 
-		DadoIcon= new ImageIcon(imgDado[0]+".png"); //acessa as imagens
-        lbDado = new JLabel(DadoIcon);
-		
+		DadoIcon = new ImageIcon(imgDado[0] + ".png"); // acessa as imagens
+		lbDado = new JLabel(DadoIcon);
+
 		configuraDado();
 		configuraBtVoltar();
 		configuraVez();
@@ -79,9 +82,9 @@ public class ModoFacil extends JPanel {
 		areaVez.setBounds(painelVez.getBounds());
 
 		btLista = new JButton(imgLista);
-		//btLista.setBorderPainted(false);
-		//btLista.setFocusable(false);
-		//btLista.setContentAreaFilled(false);
+		// btLista.setBorderPainted(false);
+		// btLista.setFocusable(false);
+		// btLista.setContentAreaFilled(false);
 		btLista.setBounds(100, 40, 62, 62);
 
 		moeda = new JLabel(imgMoeda);
@@ -112,6 +115,8 @@ public class ModoFacil extends JPanel {
 
 	// configurando area do Dado
 	private void configuraDado() {
+
+		
 		
 		// config para o painel
 		areaDado.setLayout(null);
@@ -127,22 +132,23 @@ public class ModoFacil extends JPanel {
 		lbDado.setBounds(-100, -70, 400, 500);
 		areaDado.setBounds(1000, 350, 200, 400);
 
-
-
 		// configuraçao da area do botao rolar dado
 		btRolar.setContentAreaFilled(false);
 		btRolar.setBorderPainted(false);
 
-	
 		btRolar.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				int i = Dado.rolar();
-		
-				DadoIcon = new ImageIcon("Imagens/Dado-"+imgDado[i-1]+".png"); // acessa o nome da imagem
-	            lbDado.setIcon(DadoIcon);
+				Dado dado = new Dado();
+				int i = dado.rolar();
+
+				DadoIcon = new ImageIcon("Imagens/Dado-" + imgDado[i - 1] + ".png"); // acessa o nome da imagem
+				lbDado.setIcon(DadoIcon);
+				repaint();
 				
+
+				move.mover(pessoa,i);
 			}
 
 		});
@@ -181,7 +187,7 @@ public class ModoFacil extends JPanel {
 
 		});
 	}
-	
+
 	private void eventoBtLista() {
 		btLista.addActionListener(new ActionListener() {
 
@@ -189,15 +195,18 @@ public class ModoFacil extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				ListaDeCompras l = new ListaDeCompras();
 			}
-			
+
 		});
-	} 
-	
-	private void iniciaTabuleiro(){
-		Tabuleiro t = new Tabuleiro();
-		t.setBounds(250,20,800,520);
+	}
+
+	private void iniciaTabuleiro() {
+		//inicializando tabuleiro
+		t = new Tabuleiro();
+		t.setBounds(250, 20, 800, 520);
 		add(t);
-		t.setP(0).add(new JLabel("to aqui"));
-		t.new Move();
+		t.inicia(pessoa);
+		
+		//iniciando movimentacao para ser chamado ao rolar o dado
+		move = t.new Move();
 	}
 }

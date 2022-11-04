@@ -8,23 +8,32 @@ import java.util.Random;
 
 //final para n�o ser poss�vel heran�a, sem utilidade herdar desta classe.
 public final class Dado {
-	
-	//classe geradora de numeros pseudoaleat�rios
+
+	// classe geradora de numeros pseudoaleat�rios
 	static Random dado = new Random();
-	
-	//consutor default
+	private int valor;
+
+	// consutor default
 	public Dado() {
-		//default
+		// default
 	}
-	
-	//metodo est�tico para rolar um dado padr�o (D6)
-	public static int rolar() {
-		return dado.nextInt(6)+1;
+
+	// metodo est�tico para rolar um dado padr�o (D6)
+	public int rolar() {
+		setValor(dado.nextInt(6) + 1);
+		return getValor();
 	}
-	
-	//metodo para rolar um dado de n lados (D4, D8, D10, D20, ...)
-	public static int rolar(int lados) {
-		return dado.nextInt(lados)+1;
+
+	// metodo para rolar um dado de n lados (D4, D8, D10, D20, ...)
+	public int rolar(int lados) {
+		return dado.nextInt(lados) + 1;
 	}
-	
+
+	public int getValor() {
+		return valor;
+	}
+
+	public void setValor(int valor) {
+		this.valor = valor;
+	}
 }
