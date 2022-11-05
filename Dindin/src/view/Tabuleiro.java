@@ -110,10 +110,66 @@ public class Tabuleiro extends JPanel {
 
 					System.out.println("Andando...");
 
-					posicaoNova = posicaoAntiga + 1;
+					switch(posicaoAntiga) {
+					case 8:
+						posicaoNova = 17;
+						break;
+					case 17:
+						posicaoNova = 26;
+						break;
+					case 26:
+						posicaoNova = 35;
+						break;
+					case 35:
+						posicaoNova = 44;
+						break;
+					case 44:
+						posicaoNova = 53;
+						break;
+					case 53:
+						posicaoNova = 52;
+						break;
+					case 52:
+						posicaoNova = 51;
+						break;
+					case 51:
+						posicaoNova = 50;
 
-					if (posicaoNova == 9)
+					case 50:
+						posicaoNova = 49;
+						break;
+					case 49:
+						posicaoNova = 48;
+						break;
+					case 48:
+						posicaoNova = 47;
+						break;
+					case 47:
+						posicaoNova = 46;
+						break;
+					case 46:
+						posicaoNova = 45;
+						break;
+					case 45:
+						posicaoNova = 36;
+						break;
+					case 36:
+						posicaoNova = 27;
+						break;
+					case 27:
+						posicaoNova = 18;
+						break;
+					case 18:
+						posicaoNova = 9;
+						break;
+
+					case 9:
 						posicaoNova = 0;
+						break;
+					default:
+						posicaoNova = posicaoAntiga+1;
+						break;
+					}
 
 					posicaoAntiga = posicaoNova;
 

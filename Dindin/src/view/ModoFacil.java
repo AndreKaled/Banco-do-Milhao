@@ -140,6 +140,10 @@ public class ModoFacil extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+					
+				//desabilitando botao para não iniciar um novo movimento enquanto já movimenta
+				btRolar.setEnabled(false);
+				
 				Dado dado = new Dado();
 				int i = dado.rolar();
 
@@ -149,6 +153,13 @@ public class ModoFacil extends JPanel {
 				
 
 				move.mover(pessoa,i);
+				repaint();
+				try {
+					Thread.sleep(5000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 
 		});
