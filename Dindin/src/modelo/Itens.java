@@ -12,7 +12,12 @@ public class Itens {
 	private String item, descricao;
 	private int preco;
 
-	// construtor da classe
+	//construtor somente com nome
+	public Itens(String item) {
+		this.item = item;
+	}
+	
+	// construtor com todos os atributos
 	public Itens(String item, String descricao, int preco) {
 		this.item = item;
 		this.descricao = descricao;
