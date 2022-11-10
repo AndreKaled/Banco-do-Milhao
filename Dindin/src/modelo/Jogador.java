@@ -1,20 +1,14 @@
 package modelo;
 
-/**
- * André Kaled Duarte - 25/09/2022
- * 
- * Classe modelo de Jogador, utilizada para cada um dos jogadores no jogo,
- * com suas características e métodos
- * */
-
-import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Jogador {
 	private String nickName, cor;
 	private int moedas, posicao, score, vitorias = 0, partidasJogadas;
-	private List<Itens> listaCompras = new ArrayList<Itens>();
-	private List<Itens> listaComprados = new ArrayList<Itens>();
+	private Set<Itens> listaCompras = new LinkedHashSet<Itens>();
+	private Set<Itens> listaComprados = new LinkedHashSet<Itens>();
 	private static int cont = 1;
 
 	// construtor default
@@ -67,11 +61,11 @@ public class Jogador {
 	}
 	
 	// metodos para a compra de itens
-	public List<Itens> verItensComprados() {
+	public Set<Itens> verItensComprados() {
 		return listaComprados;
 	}
 
-	public List<Itens> verListaDeCompras() {
+	public Set<Itens> verListaDeCompras() {
 		return listaCompras;
 	}
 
@@ -81,7 +75,7 @@ public class Jogador {
 	}
 
 	// metodo para comprar um item
-	boolean comprar(String item) {
+	public boolean comprar(String item) {
 		int cont = 0;
 		for (Itens o : listaCompras) {
 			if (item.equalsIgnoreCase(o.toString()) && moedas >= o.custo()) {
@@ -158,19 +152,19 @@ public class Jogador {
 		this.score = score;
 	}
 
-	public List<Itens> getListaCompras() {
+	public Set<Itens> getListaCompras() {
 		return listaCompras;
 	}
 
-	public void setListaCompras(List<Itens> listaCompras) {
+	public void setListaCompras(Set<Itens> listaCompras) {
 		this.listaCompras = listaCompras;
 	}
 
-	public List<Itens> getListaComprados() {
+	public Set<Itens> getListaComprados() {
 		return listaComprados;
 	}
 
-	public void setListaComprados(List<Itens> listaComprados) {
+	public void setListaComprados(Set<Itens> listaComprados) {
 		this.listaComprados = listaComprados;
 	}
 	
@@ -186,6 +180,6 @@ public class Jogador {
 
 	//sobreescrevendo metodo toString
 	public String toString(){
-		return nickName;
+		return nickName +listaCompras;
 	}
 }

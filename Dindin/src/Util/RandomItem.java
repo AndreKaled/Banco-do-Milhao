@@ -4,9 +4,8 @@ import java.util.LinkedHashSet;
 import java.util.Random;
 import java.util.Set;
 
-import javax.swing.JLabel;
-
 import modelo.Itens;
+import modelo.Jogador;
 
 public class RandomItem {
 
@@ -31,7 +30,7 @@ public class RandomItem {
 			new Itens("Tênis"), new Itens("Bota"), new Itens("Sapato"), new Itens("Graxa"), new Itens("Meia"), new Itens("Cadarço"), new Itens("Sapatilha")
 			};
 	private Random r = new Random();
-	private static final int QUANT = 6;
+	private static final int QUANT = 2;
 
 	/*
 	 * 1. LOJA DE BRINQUEDOS
@@ -55,25 +54,30 @@ public class RandomItem {
 	 */
 	
 	public RandomItem() {
-		gerarItens();
-		mostrar();
+		
 	}
 
+	//gerandor da lista aleatória
 	public void gerarItens() {
+		if(lista.size()==QUANT)
+			esvaziarItens();
 		while(lista.size() != QUANT)
 			lista.add(itens[r.nextInt(itens.length)]);
 	}
 
+	//apresentador da lista
 	public void mostrar() {
 		for (Itens o : lista) {
 			System.out.println(o);
 		}
 	}
 
-	public LinkedHashSet<Itens> verLista(){
-		return (LinkedHashSet<Itens>) lista;
+	//acesso a lista de itens
+	public Set<Itens> verLista(){
+		return lista;
 	}
 	
+	//acesso a lista de itens (uso preferencial ao front)
 	public Itens[] verItens() {
 		Itens[] itens = new Itens[lista.size()];
 		int i=0;
@@ -85,7 +89,17 @@ public class RandomItem {
 		}
 		
 		return itens;
-		
 	}
 	
+	//limpandor da coleção de itens
+	public void esvaziarItens() {
+		lista.clear();
+	}
+	
+	//iniciando lista de compras por jogador
+	public void iniciaLista(Jogador jogador) {
+		esvaziarItens();
+		gerarItens();
+		jogador.setListaCompras(verLista());
+	}
 }
