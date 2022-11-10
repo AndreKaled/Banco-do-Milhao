@@ -35,4 +35,8 @@ public class JogadorController {
 		Jogador jogador = new Jogador(nome);
 		return new JogadorDAO().verificaJogador(jogador);
 	}
+	
+	public Jogador encontrarJogador(String jogador) throws SQLException{
+		return new JogadorDAO().encontrarJogador(jogador);
+	}
 }

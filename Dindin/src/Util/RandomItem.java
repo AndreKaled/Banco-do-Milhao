@@ -51,10 +51,6 @@ public class RandomItem {
 	 * 19. RESTAURANTE
 	 * 20. SAPATARIA
 	 */
-	
-	public RandomItem() {
-		
-	}
 
 	//gerandor da lista aleatória
 	public void gerarItens() {

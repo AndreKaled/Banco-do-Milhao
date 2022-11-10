@@ -10,7 +10,7 @@ package modelo;
 
 public class Itens {
 	private String item, descricao;
-	private int preco;
+	private int preco = 10;
 
 	//construtor somente com nome
 	public Itens(String item) {

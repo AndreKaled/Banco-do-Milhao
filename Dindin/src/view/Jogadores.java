@@ -16,44 +16,37 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Controller.JogadorController;
+import Util.Jogando;
 import modelo.Jogador;
 
 public class Jogadores extends JPanel {
 	// instanciando as coisinhas
-	private JTextField tfLilas, tfRosa, tfVerde, tfAmarelo, tfVermelho,
-			tfLaranja;
-	private JBackgroundPanel panelLilas, panelAmarelo, panelVermelho,
-			panelLaranja, panelVerde, panelRosa,fundo;
+	private JTextField tfLilas, tfRosa, tfVerde, tfAmarelo, tfVermelho, tfLaranja;
+	private JBackgroundPanel panelLilas, panelAmarelo, panelVermelho, panelLaranja, panelVerde, panelRosa, fundo;
 	private JLabel lbTituloJogadores;
 	private JButton panelVoltar, btJogar;
 	private int contX = 0, contY = 0;
 	private static String nome = "JOGADORES";
-	private JPanel modoFacil = new ModoFacil(),
-			modoDificil = new ModoDificil();
-	private Color corFundo = new Color(237, 237, 237),
-	corTexto = new Color(128,128,128);
+	private JPanel modoFacil = new ModoFacil(), modoDificil = new ModoDificil();
+	private Color corFundo = new Color(237, 237, 237), corTexto = new Color(128, 128, 128);
 
-	int contLilas = 0, contVerde = 0, contVermelho = 0, contAmarelo = 0,
-			contLaranja = 0, contRosa = 0;
+	int contLilas = 0, contVerde = 0, contVermelho = 0, contAmarelo = 0, contLaranja = 0, contRosa = 0;
 	// imagens
 	private ImageIcon imgTitulo = new ImageIcon("Imagens/Jogadores.png"),
-			imgJogar = new ImageIcon("Imagens/jogar2.png"),
-			imgVoltar = new ImageIcon("Imagens/botao voltar.png");
+			imgJogar = new ImageIcon("Imagens/jogar2.png"), imgVoltar = new ImageIcon("Imagens/botao voltar.png");
 	private JPanel panelJogadores;
 	private JogadorController controleJ = new JogadorController();
 	private String mensagemFundo = "Digite seu nome";
-	
+
 	// construtor da classe
 	public Jogadores() {
 		setLayout(null);
@@ -68,7 +61,7 @@ public class Jogadores extends JPanel {
 			panelVermelho = new JBackgroundPanel("imagens/jogador vermelho.png");
 			panelLaranja = new JBackgroundPanel("imagens/jogador laranja.png");
 			fundo = new JBackgroundPanel("imagens/fundo tela inicial 1.png");
-			fundo.setBounds(0,0,1366,768);
+			fundo.setBounds(0, 0, 1366, 768);
 			fundo.setOpaque(false);
 			add(fundo);
 		} catch (Exception e) {
@@ -136,40 +129,40 @@ public class Jogadores extends JPanel {
 		tfLilas.setBounds(posicaoX, posicaoY, larguraTxt, alturaTxt);
 		panelLilas.add(tfLilas);
 
-		panelRosa.setBounds(panelLilas.getX(), panelLilas.getY() + aumentaY,
-				panelLilas.getWidth(), panelLilas.getHeight());
+		panelRosa.setBounds(panelLilas.getX(), panelLilas.getY() + aumentaY, panelLilas.getWidth(),
+				panelLilas.getHeight());
 		panelRosa.setOpaque(false);
 		tfRosa = new JTextField();
 		tfRosa.setBounds(posicaoX, posicaoY, larguraTxt, alturaTxt);
 		panelRosa.add(tfRosa);
 		panelJogadores.add(panelRosa);
 
-		panelVerde.setBounds(panelLilas.getX(), panelRosa.getY() + aumentaY,
-				panelLilas.getWidth(), panelLilas.getHeight());
+		panelVerde.setBounds(panelLilas.getX(), panelRosa.getY() + aumentaY, panelLilas.getWidth(),
+				panelLilas.getHeight());
 		panelVerde.setOpaque(false);
 		tfVerde = new JTextField();
 		tfVerde.setBounds(posicaoX, posicaoY, larguraTxt, alturaTxt);
 		panelVerde.add(tfVerde);
 		panelJogadores.add(panelVerde);
 
-		panelAmarelo.setBounds(panelLilas.getX() + aumentaX, panelLilas.getY(),
-				panelLilas.getWidth(), panelLilas.getHeight());
+		panelAmarelo.setBounds(panelLilas.getX() + aumentaX, panelLilas.getY(), panelLilas.getWidth(),
+				panelLilas.getHeight());
 		panelAmarelo.setOpaque(false);
 		tfAmarelo = new JTextField();
 		tfAmarelo.setBounds(posicaoX, posicaoY, larguraTxt, alturaTxt);
 		panelAmarelo.add(tfAmarelo);
 		panelJogadores.add(panelAmarelo);
 
-		panelVermelho.setBounds(panelRosa.getX() + aumentaX, panelRosa.getY(),
-				panelLilas.getWidth(), panelLilas.getHeight());
+		panelVermelho.setBounds(panelRosa.getX() + aumentaX, panelRosa.getY(), panelLilas.getWidth(),
+				panelLilas.getHeight());
 		panelVermelho.setOpaque(false);
 		tfVermelho = new JTextField();
 		tfVermelho.setBounds(posicaoX, posicaoY, larguraTxt, alturaTxt);
 		panelVermelho.add(tfVermelho);
 		panelJogadores.add(panelVermelho);
 
-		panelLaranja.setBounds(panelVerde.getX() + aumentaX, panelVerde.getY(),
-				panelLilas.getWidth(), panelLilas.getHeight());
+		panelLaranja.setBounds(panelVerde.getX() + aumentaX, panelVerde.getY(), panelLilas.getWidth(),
+				panelLilas.getHeight());
 		panelLaranja.setOpaque(false);
 		tfLaranja = new JTextField();
 		tfLaranja.setBounds(posicaoX, posicaoY, larguraTxt, alturaTxt);
@@ -207,7 +200,7 @@ public class Jogadores extends JPanel {
 		tfVermelho.setText(mensagemFundo);
 
 		// configurando cores e tirando borda
-		
+
 		tfLilas.setBackground(corFundo);
 		tfLilas.setForeground(corTexto);
 		tfLilas.setBorder(null);
@@ -240,9 +233,8 @@ public class Jogadores extends JPanel {
 				}
 			}
 
-
 		});
-		
+
 		tfVerde.addMouseListener(new MouseAdapter() {
 
 			// tornando a caixa vazia quando clicado pela primeira vez
@@ -255,7 +247,7 @@ public class Jogadores extends JPanel {
 				}
 			}
 		});
-		
+
 		tfRosa.addMouseListener(new MouseAdapter() {
 
 			// tornando a caixa vazia quando clicado pela primeira vez
@@ -268,7 +260,7 @@ public class Jogadores extends JPanel {
 				}
 			}
 		});
-		
+
 		tfLaranja.addMouseListener(new MouseAdapter() {
 
 			// tornando a caixa vazia quando clicado pela primeira vez
@@ -281,7 +273,7 @@ public class Jogadores extends JPanel {
 				}
 			}
 		});
-		
+
 		tfVermelho.addMouseListener(new MouseAdapter() {
 
 			// tornando a caixa vazia quando clicado pela primeira vez
@@ -294,7 +286,7 @@ public class Jogadores extends JPanel {
 				}
 			}
 		});
-		
+
 		tfAmarelo.addMouseListener(new MouseAdapter() {
 
 			// tornando a caixa vazia quando clicado pela primeira vez
@@ -307,10 +299,10 @@ public class Jogadores extends JPanel {
 				}
 			}
 		});
-		
+
 	}
 
-	/** ha um bug aqui, sÃ¯Â¿Â½ estÃ¯Â¿Â½ indo para a tela do Modo Facil */
+	/** ha um bug aqui, so ta indo para a tela do Modo Facil */
 	public void configuraBtJogar() {
 		fundo.add(btJogar);
 		btJogar.setLayout(null);
@@ -327,14 +319,15 @@ public class Jogadores extends JPanel {
 					throw new SQLException();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
-					// JOptionPane.showMessageDialog(null, "Aconteceu um erro ao iniciar o Jogo!" + e.getLocalizedMessage());
+					// JOptionPane.showMessageDialog(null, "Aconteceu um erro ao
+					// iniciar o Jogo!" + e.getLocalizedMessage());
 				}
 			}
 
 		});
 	}
 
-	public void iniciaJogo() throws SQLException{
+	public void iniciaJogo() throws SQLException {
 		if (contY == 0) {
 			Menu.adicionaTela(modoFacil, modoFacil.getName());
 			Menu.mudaTela(modoFacil.getName());
@@ -342,17 +335,17 @@ public class Jogadores extends JPanel {
 			Menu.adicionaTela(modoDificil, modoDificil.getName());
 			Menu.mudaTela(modoDificil.getName());
 		}
-		
+
 		// verificando jogador no , se nao houver adiciona na
-		// tabela de Jogadores no  de dados
-		//roxo
-		if (!(tfLilas.getText().equals("")||tfLilas.getText().equals(mensagemFundo))){
-			System.out.println(controleJ.verificaJogador(tfLilas.getText()));
-			if(controleJ.verificaJogador(tfLilas.getText())){
-				System.out.println("Jogador existente!");
-			}else{
+		// tabela de Jogadores no de dados
+		// roxo
+		if (!(tfLilas.getText().equals("") || tfLilas.getText().equals(mensagemFundo))) {
+			String nome = tfLilas.getText();
+			boolean exist = controleJ.verificaJogador(nome);
+			System.out.println(exist);
+			if (!exist) {
 				try {
-					controleJ.novoJogador(tfLilas.getText());
+					controleJ.novoJogador(nome);
 					System.out.println("Novo jogador adicionado!");
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
@@ -360,34 +353,35 @@ public class Jogadores extends JPanel {
 					System.out.println("N�o foi maninho, deu erro");
 				}
 			}
+			new Jogando().add(new JogadorController().encontrarJogador(nome));
 		}
-		//texto do jogador rosa
-		if (!(tfRosa.getText().equals("")||tfRosa.getText().equals(mensagemFundo))) {
-			Jogador jogador = new Jogador();
-			System.out.println(controleJ.verificaJogador(tfRosa.getText()));
-			if(controleJ.verificaJogador(tfRosa.getText())){
-				System.out.println("Jogador existente!");
-			}else{
+
+		// texto do jogador rosa
+		if (!(tfRosa.getText().equals("") || tfRosa.getText().equals(mensagemFundo))) {
+			String nome = tfRosa.getText();
+			boolean exist = controleJ.verificaJogador(nome);
+			System.out.println(exist);
+			if (!exist) {
 				try {
-					controleJ.novoJogador(tfRosa.getText());
+					controleJ.novoJogador(nome);
 					System.out.println("Novo jogador adicionado!");
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 					System.out.println("N�o foi maninho, deu erro");
 				}
-				
 			}
+			new Jogando().add(new JogadorController().encontrarJogador(nome));
 		}
-		
-		//texto do jogador verde
-		if (!(tfVerde.getText().equals("")||tfVerde.getText().equals(mensagemFundo))) {
-			System.out.println(controleJ.verificaJogador(tfVerde.getText()));
-			if(controleJ.verificaJogador(tfVerde.getText())){
-				System.out.println("Jogador existente!");
-			}else{
+
+		// texto do jogador verde
+		if (!(tfVerde.getText().equals("") || tfVerde.getText().equals(mensagemFundo))) {
+			String nome = tfVerde.getText();
+			boolean exist = controleJ.verificaJogador(nome);
+			System.out.println(exist);
+			if (!exist) {
 				try {
-					controleJ.novoJogador(tfVerde.getText());
+					controleJ.novoJogador(nome);
 					System.out.println("Novo jogador adicionado!");
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
@@ -395,16 +389,17 @@ public class Jogadores extends JPanel {
 					System.out.println("N�o foi maninho, deu erro");
 				}
 			}
+			new Jogando().add(new JogadorController().encontrarJogador(nome));
 		}
-		
-		//texto do jogador amarelo
-		if (!(tfAmarelo.getText().equals("")||tfAmarelo.getText().equals(mensagemFundo))) {
-			System.out.println(controleJ.verificaJogador(tfAmarelo.getText()));
-			if(controleJ.verificaJogador(tfAmarelo.getText())){
-				System.out.println("Jogador existente!");
-			}else{
+
+		// texto do jogador amarelo
+		if (!(tfAmarelo.getText().equals("") || tfAmarelo.getText().equals(mensagemFundo))) {
+			String nome = tfAmarelo.getText();
+			boolean exist = controleJ.verificaJogador(nome);
+			System.out.println(exist);
+			if (!exist) {
 				try {
-					controleJ.novoJogador(tfAmarelo.getText());
+					controleJ.novoJogador(nome);
 					System.out.println("Novo jogador adicionado!");
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
@@ -412,16 +407,17 @@ public class Jogadores extends JPanel {
 					System.out.println("N�o foi maninho, deu erro");
 				}
 			}
+			new Jogando().add(new JogadorController().encontrarJogador(nome));
 		}
-		
-		//texto do jogador vermelho
-		if (!(tfVermelho.getText().equals("")||tfVermelho.getText().equals(mensagemFundo))) {
-			System.out.println(controleJ.verificaJogador(tfVermelho.getText()));
-			if(controleJ.verificaJogador(tfVermelho.getText())){
-				System.out.println("Jogador existente!");
-			}else{
+
+		// texto do jogador vermelho
+		if (!(tfVermelho.getText().equals("") || tfVermelho.getText().equals(mensagemFundo))) {
+			String nome = tfVermelho.getText();
+			boolean exist = controleJ.verificaJogador(nome);
+			System.out.println(exist);
+			if (!exist) {
 				try {
-					controleJ.novoJogador(tfVermelho.getText());
+					controleJ.novoJogador(nome);
 					System.out.println("Novo jogador adicionado!");
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
@@ -429,16 +425,17 @@ public class Jogadores extends JPanel {
 					System.out.println("N�o foi maninho, deu erro");
 				}
 			}
+			new Jogando().add(new JogadorController().encontrarJogador(nome));
 		}
-		
-		//texto do jogador laranja
-		if (!(tfLaranja.getText().equals("")||tfLaranja.getText().equals(mensagemFundo))) {
-			System.out.println(controleJ.verificaJogador(tfLaranja.getText()));
-			if(controleJ.verificaJogador(tfLaranja.getText())){
-				System.out.println("Jogador existente!");
-			}else{
+
+		// texto do jogador laranja
+		if (!(tfLaranja.getText().equals("") || tfLaranja.getText().equals(mensagemFundo))) {
+			String nome = tfLaranja.getText();
+			boolean exist = controleJ.verificaJogador(nome);
+			System.out.println(exist);
+			if (!exist) {
 				try {
-					controleJ.novoJogador(tfLaranja.getText());
+					controleJ.novoJogador(nome);
 					System.out.println("Novo jogador adicionado!");
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
@@ -446,8 +443,10 @@ public class Jogadores extends JPanel {
 					System.out.println("N�o foi maninho, deu erro");
 				}
 			}
+			new Jogando().add(new JogadorController().encontrarJogador(nome));
 		}
 	}
+
 	// metodos de acesso
 	public void setNome(String nome) {
 		this.nome = nome;

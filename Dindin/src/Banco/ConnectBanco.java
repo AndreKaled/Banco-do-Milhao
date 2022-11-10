@@ -173,7 +173,7 @@ public final class ConnectBanco {
 		comandoSQL = comando;
 	}
 	
-	//encerrando conexÃ£o com o Disco
+	//encerrando conexao com o Disco
 	public static void closeConnection(Connection con){
 		if(con!=null){
 			try {

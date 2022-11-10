@@ -16,6 +16,7 @@ public class Jogando {
 	public void add(Jogador jogador) {
 		jogando.add(jogador);
 		tamanho = jogando.size();
+		System.out.println("Jogador adicionado na lista de jogando...");
 	}
 	
 	//capturando a vez do jogador

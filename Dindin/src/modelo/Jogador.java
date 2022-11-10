@@ -27,7 +27,7 @@ public class Jogador {
 	public Jogador(String nickName) {
 		setNickName(nickName);
 		// setCor(null);
-		setMoedas(0);
+		setMoedas(15);
 		setPosicao(0);
 		setScore(0);
 	}
@@ -77,19 +77,15 @@ public class Jogador {
 
 	// metodo para comprar um item
 	public boolean comprar(String item) {
-		int cont = 0;
 		for (Itens o : listaCompras) {
-			if (item.equalsIgnoreCase(o.toString()) && moedas >= o.custo()) {
+			if (item.equalsIgnoreCase(o.getItem()) && moedas >= o.custo()) {
 				moedas -= o.custo();
 				listaCompras.remove(o);
 				listaComprados.add(o);
-				cont++;
+				return true;
 			}
 		}
-		if (cont == 1)
-			return true;
-		else
-			return false;
+		return false;
 	}
 
 	public int mostraScore() {
@@ -186,6 +182,6 @@ public class Jogador {
 
 	//sobreescrevendo metodo toString
 	public String toString(){
-		return nickName +listaCompras;
+		return nickName;
 	}
 }

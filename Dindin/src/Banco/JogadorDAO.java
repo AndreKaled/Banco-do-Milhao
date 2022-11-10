@@ -76,4 +76,27 @@ public class JogadorDAO extends GenericDAO{
 		else
 			return true;
 	}
+	
+	public Jogador encontrarJogador(String nome) throws SQLException{
+		String select = "SELECT * FROM JOGADOR WHERE nome like ?";
+		Jogador jogador = null;
+		PreparedStatement stmt = getConnection().prepareStatement(select);
+
+		stmt.setString(1, nome);
+		ResultSet rs = stmt.executeQuery();
+
+		while (rs.next()) {
+			jogador = new Jogador();
+			jogador.setNickName(rs.getString("nome"));
+			jogador.setScore(rs.getInt("pontuacao"));
+			jogador.setVitorias(rs.getInt("vitorias"));
+			jogador.setPartidasJogadas(rs.getInt("partidas_jogadas"));
+		}
+
+		rs.close();
+		stmt.close();
+		getConnection().close();
+
+		return jogador;
+	}
 }
