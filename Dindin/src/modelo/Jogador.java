@@ -1,8 +1,9 @@
 package modelo;
 
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
+
+import Util.RandomItem;
 
 public class Jogador {
 	private String nickName, cor;
@@ -103,6 +104,11 @@ public class Jogador {
 		score++;
 	}
 
+	public void iniciarLista(){
+		RandomItem r = new RandomItem();
+		r.iniciaLista();
+		setListaCompras(r.verLista());
+	}
 	// metodos de acesso aos atributos
 	public String getNickName() {
 		return nickName;

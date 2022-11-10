@@ -10,14 +10,18 @@ public class Teste {
 
 	public static void main(String[] args) {
 		Jogando j = new Jogando();
-		j.add(new Jogador("André burro"));
-		j.add(new Jogador("Raposa 123"));
-		j.add(new Jogador("Serginho gameplays"));
+		Jogador andre = new Jogador("André K");
+		Jogador raposa = new Jogador("Raposa 123");
+		Jogador sergio = new Jogador("Serginho gameplays");
+		
+		j.add(andre);
+		j.add(raposa);
+		j.add(sergio);
 		
 		j.iniciar();
 		System.out.println("----------------");
-		Set<Itens> a = j.verLista(0);
-		for(Itens i: a)
-			System.out.println(i);
+		System.out.println(andre);
+		System.out.println(raposa);
+		System.out.println(sergio);
 	}
 }

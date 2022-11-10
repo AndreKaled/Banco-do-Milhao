@@ -40,7 +40,7 @@ public class Jogando {
 	private void gerarListaDeCompras() {
 		RandomItem r = new RandomItem();
 		for(Jogador j: jogando) {
-			r.iniciaLista(j);
+			j.iniciarLista();
 			System.out.println("Itens gerado ao jogador " +j);
 		}
 	}
@@ -50,6 +50,7 @@ public class Jogando {
 		return jogando.get(i).getListaCompras();
 	}
 	
+	//chamada do método que inicializa as listas
 	public void iniciar() {
 		gerarListaDeCompras();
 	}

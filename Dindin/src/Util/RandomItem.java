@@ -1,5 +1,4 @@
 package Util;
-import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Random;
 import java.util.Set;
@@ -82,9 +81,8 @@ public class RandomItem {
 		Itens[] itens = new Itens[lista.size()];
 		int i=0;
 		
-		Iterator<Itens> iteratorItens = lista.iterator();
-		while(iteratorItens.hasNext()) {
-			itens[i] = iteratorItens.next();
+		for(Itens o: lista) {
+			itens[i] = o;
 			i++;
 		}
 		
@@ -97,9 +95,7 @@ public class RandomItem {
 	}
 	
 	//iniciando lista de compras por jogador
-	public void iniciaLista(Jogador jogador) {
-		esvaziarItens();
+	public void iniciaLista() {
 		gerarItens();
-		jogador.setListaCompras(verLista());
 	}
 }
