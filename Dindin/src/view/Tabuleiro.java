@@ -3,11 +3,13 @@ package view;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.io.IOException;
-import java.util.Scanner;
 
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import Util.Jogando;
+import modelo.Jogador;
 
 public class Tabuleiro extends JPanel {
 
@@ -47,12 +49,6 @@ public class Tabuleiro extends JPanel {
 					p[cont].add(new JLabel("" + cont));
 				}
 
-				// linhas
-				/**
-				 * if (true /* cont >= 0 && cont <= 5 ) { JLabel l = new JLabel("" + cont); if
-				 * (cont % 2 == 0) { b.add(l); add(b); } else { a.add(l); add(a); } }
-				 */
-
 				cont++;
 			}
 		}
@@ -65,12 +61,6 @@ public class Tabuleiro extends JPanel {
 	public JPanel setP(int indice) {
 		return p[indice];
 	}
-
-	/*
-	 * public int getPosicao(JComponent component) {
-	 * 
-	 * }
-	 */
 
 	public class Move extends Thread {
 
@@ -91,18 +81,14 @@ public class Tabuleiro extends JPanel {
 		@Override
 		public void run() {
 			repaint();
-			Scanner s = new Scanner(System.in);
-
-			// for (int i = 0; i < 9; i++)
-			// p[i].add(new JLabel("" + i));
-
-			// System.out.print("Digita um numero para avançar casas pfvzinho:");
-			// int num = s.nextInt();
-
+			Jogador j = new Jogando().getJogador();
 			System.out.println("Resultado:" + num + "\n");
+			System.out.println("Posicao antiga: " +j.getPosicao());
+			posicaoAntiga = j.getPosicao();
+			
 			do {
 				try {
-					sleep(1000);
+					sleep(100);
 				} catch (Exception e) {
 					e.printStackTrace();
 				} finally {
@@ -181,7 +167,10 @@ public class Tabuleiro extends JPanel {
 				}
 
 			} while (num != 0);
+			j.setPosicao(posicaoNova);
+			System.out.println("Posicao atual: " +j.getPosicao());
 			System.out.println("\nParou!\n");
+
 		}
 	}
 }

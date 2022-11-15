@@ -36,10 +36,11 @@ public class Jogadores extends JPanel {
 	private JButton panelVoltar, btJogar;
 	private int contX = 0, contY = 0;
 	private static String nome = "JOGADORES";
-	private JPanel modoFacil = new ModoFacil(), modoDificil = new ModoDificil();
+	private JPanel modoFacil, modoDificil = new ModoDificil();
 	private Color corFundo = new Color(237, 237, 237), corTexto = new Color(128, 128, 128);
 
 	int contLilas = 0, contVerde = 0, contVermelho = 0, contAmarelo = 0, contLaranja = 0, contRosa = 0;
+	
 	// imagens
 	private ImageIcon imgTitulo = new ImageIcon("Imagens/Jogadores.png"),
 			imgJogar = new ImageIcon("Imagens/jogar2.png"), imgVoltar = new ImageIcon("Imagens/botao voltar.png");
@@ -328,14 +329,6 @@ public class Jogadores extends JPanel {
 	}
 
 	public void iniciaJogo() throws SQLException {
-		if (contY == 0) {
-			Menu.adicionaTela(modoFacil, modoFacil.getName());
-			Menu.mudaTela(modoFacil.getName());
-		} else if (contX == 0) {
-			Menu.adicionaTela(modoDificil, modoDificil.getName());
-			Menu.mudaTela(modoDificil.getName());
-		}
-
 		// verificando jogador no , se nao houver adiciona na
 		// tabela de Jogadores no de dados
 		// roxo
@@ -432,7 +425,7 @@ public class Jogadores extends JPanel {
 		if (!(tfLaranja.getText().equals("") || tfLaranja.getText().equals(mensagemFundo))) {
 			String nome = tfLaranja.getText();
 			boolean exist = controleJ.verificaJogador(nome);
-			System.out.println(exist);
+			System.out.println("Existe no banco: " +exist);
 			if (!exist) {
 				try {
 					controleJ.novoJogador(nome);
@@ -444,6 +437,17 @@ public class Jogadores extends JPanel {
 				}
 			}
 			new Jogando().add(new JogadorController().encontrarJogador(nome));
+		}
+		new Jogando().iniciar();
+		
+		//inicializando modo
+		if (contY == 0) {
+			modoFacil = new ModoFacil();
+			Menu.adicionaTela(modoFacil, modoFacil.getName());
+			Menu.mudaTela(modoFacil.getName());
+		} else if (contX == 0) {
+			Menu.adicionaTela(modoDificil, modoDificil.getName());
+			Menu.mudaTela(modoDificil.getName());
 		}
 	}
 

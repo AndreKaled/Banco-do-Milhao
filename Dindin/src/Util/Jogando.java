@@ -16,7 +16,12 @@ public class Jogando {
 	public void add(Jogador jogador) {
 		jogando.add(jogador);
 		tamanho = jogando.size();
-		System.out.println("Jogador adicionado na lista de jogando...");
+		System.out.println("Jogador " +jogador +" adicionado na lista de jogando...");
+	}
+	
+	//capturando o jogador da vez
+	public Jogador getJogador() {
+		return jogando.get(vez);
 	}
 	
 	//capturando a vez do jogador
@@ -26,7 +31,7 @@ public class Jogando {
 	
 	//passando a vez para o próximo jogador
 	public void passarVez() {
-		if(vez>=tamanho)
+		if(vez>=tamanho-1)
 			vez=0;
 		else
 			vez++;
@@ -54,5 +59,9 @@ public class Jogando {
 	//chamada do método que inicializa as listas
 	public void iniciar() {
 		gerarListaDeCompras();
+	}
+	
+	public int tamanho() {
+		return jogando.size();
 	}
 }

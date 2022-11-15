@@ -26,7 +26,7 @@ public class Menu extends JFrame {
 	private static JPanel c, cLogo, contPrincipal;
 	private JButton btJogar, btConfig, btComoJogar, btSair, btPlacar;
 	private JLabel versao,Plogo;
-	protected static CardLayout card = new CardLayout();;
+	protected static CardLayout card = new CardLayout();
 	private JPanel jogar = new ModoDeJogo();
 
 	ImageIcon logo = new ImageIcon("imagens/logo.png");

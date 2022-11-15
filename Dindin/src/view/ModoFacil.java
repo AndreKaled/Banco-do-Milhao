@@ -21,13 +21,16 @@ package view;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import Util.Jogando;
 import modelo.Dado;
+import modelo.Jogador;
 
 public class ModoFacil extends JPanel {
 
@@ -43,10 +46,12 @@ public class ModoFacil extends JPanel {
 			imgRolar = new ImageIcon("Imagens/botao-rola-dado.png");
 	ImageIcon DadoIcon;
 	private String imgDado[] = { "1", "2", "3", "4", "5", "6" };
+	private int VEZ = 0;
+	private JButton btPassar;
 	
-	//testando movimentacao
+	// testando movimentacao
 	Tabuleiro t;
-	JLabel pessoa = new JLabel("oioioi");
+	JLabel pessoa[] = new JLabel[6];
 	Tabuleiro.Move move;
 
 	public ModoFacil() {
@@ -66,6 +71,7 @@ public class ModoFacil extends JPanel {
 		configuraBtVoltar();
 		configuraVez();
 		configuraBtMenu();
+		configuraBtPassar();
 		iniciaTabuleiro();
 	}
 
@@ -116,8 +122,6 @@ public class ModoFacil extends JPanel {
 	// configurando area do Dado
 	private void configuraDado() {
 
-		
-		
 		// config para o painel
 		areaDado.setLayout(null);
 		areaDado.setOpaque(false);
@@ -140,9 +144,10 @@ public class ModoFacil extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-					
-				//desabilitando botao para não iniciar um novo movimento enquanto já movimenta
+
+				// desabilitando botao para não iniciar um novo movimento enquanto já movimenta
 				btRolar.setEnabled(false);
+				btPassar.setEnabled(true);
 				
 				Dado dado = new Dado();
 				int i = dado.rolar();
@@ -150,9 +155,8 @@ public class ModoFacil extends JPanel {
 				DadoIcon = new ImageIcon("Imagens/Dado-" + imgDado[i - 1] + ".png"); // acessa o nome da imagem
 				lbDado.setIcon(DadoIcon);
 				repaint();
-				
 
-				move.mover(pessoa,i);
+				move.mover(pessoa[new Jogando().getVez()], i);
 				repaint();
 				try {
 					Thread.sleep(5000);
@@ -210,14 +214,44 @@ public class ModoFacil extends JPanel {
 		});
 	}
 
+	private void instanciandoJogadores() {
+		Jogando j = new Jogando();
+		for (int i = 0; i < j.tamanho(); i++)
+			pessoa[i] = new JLabel(j.jogando.get(i).getNickName());
+	}
+
 	private void iniciaTabuleiro() {
-		//inicializando tabuleiro
+		instanciandoJogadores();
+		
+		// inicializando tabuleiro
 		t = new Tabuleiro();
 		t.setBounds(250, 20, 800, 520);
 		add(t);
-		t.inicia(pessoa);
-		
-		//iniciando movimentacao para ser chamado ao rolar o dado
+		for(int i=0; i< new Jogando().tamanho(); i++)
+			t.inicia(pessoa[i]);
+
+		// iniciando movimentacao para ser chamado ao rolar o dado
 		move = t.new Move();
 	}
+	
+	private void configuraBtPassar() {
+		btPassar = new JButton("PASSAR VEZ");
+		
+		btPassar.setBounds(10,350,100,25);
+		
+		add(btPassar);
+		
+		btPassar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				btRolar.setEnabled(true);
+				new Jogando().passarVez();
+				btPassar.setEnabled(false);
+			}
+			
+		});
+	}
+
 }

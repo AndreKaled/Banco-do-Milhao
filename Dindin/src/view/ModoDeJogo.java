@@ -209,16 +209,15 @@ public class ModoDeJogo extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				Menu.adicionaTela(telaJogadores, telaJogadores.getName());
 				// adicionando ao cardLayout
 				contY = 0;
 				if (telaFacil == null || contY == 0) {
-					telaFacil = new ModoFacil();
-					Menu.adicionaTela(telaJogadores, telaJogadores.getName());
 					contX++;
 				}
 				// mudando tela
 				Menu.mudaTela(telaJogadores.getName());
-				setOpcao(telaFacil.getName());
+				System.out.println("Mudando tela");
 			}
 
 			@Override
@@ -247,12 +246,10 @@ public class ModoDeJogo extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-
+				Menu.adicionaTela(telaJogadores, telaJogadores.getName());
 				// adicionando ao cardLayout
 				contX = 0;
 				if (telaDificil == null || contX == 0) {
-					telaDificil = new ModoDificil();
-					Menu.adicionaTela(telaJogadores, telaJogadores.getName());
 					contY++;
 				}
 				// mudando tela
