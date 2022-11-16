@@ -179,8 +179,8 @@ public class ModoFacil extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Menu.voltaTela();
-
+				Menu.mudaTela("MENU");
+				new Jogando().limpar();
 			}
 
 		});
@@ -237,7 +237,7 @@ public class ModoFacil extends JPanel {
 	private void configuraBtPassar() {
 		btPassar = new JButton("PASSAR VEZ");
 		
-		btPassar.setBounds(10,350,100,25);
+		btPassar.setBounds(10,350,150,25);
 		
 		add(btPassar);
 		

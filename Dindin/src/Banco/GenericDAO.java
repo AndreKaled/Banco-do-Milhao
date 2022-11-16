@@ -10,60 +10,51 @@ package Banco;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
-
-import modelo.Jogador;
 
 public class GenericDAO {
 	static Connection conexao;
-	
+
 	protected GenericDAO() {
-        this.conexao = ConnectionDATABASE.getConnection();
-    }
-	
+		this.conexao = ConnectionDATABASE.getConnection();
+	}
+
 	protected static Connection getConnection() {
-        return conexao;
-    }
-	
+		return conexao;
+	}
+
 	protected void save(String insertSql, Object... parametros) throws SQLException {
-        PreparedStatement pstmt = 
-			getConnection().prepareStatement(insertSql);
+		PreparedStatement pstmt = getConnection().prepareStatement(insertSql);
 
-        for (int i = 0; i < parametros.length; i++) {
-            pstmt.setObject(i+1, parametros[i]);
-        }
+		for (int i = 0; i < parametros.length; i++) {
+			pstmt.setObject(i + 1, parametros[i]);
+		}
 
-        pstmt.execute();
-        pstmt.close();
-        conexao.close();
-    }
+		pstmt.execute();
+		pstmt.close();
+		conexao.close();
+	}
 
-    protected void update(String updateSql, Object id, Object... parametros) throws SQLException {
-        PreparedStatement pstmt = 
-		getConnection().prepareStatement(updateSql);
-			
-        for (int i = 0; i < parametros.length; i++) {
-            pstmt.setObject(i+1, parametros[i]);
-        }
-        pstmt.setObject(parametros.length + 1, id);
-        pstmt.execute();
-        pstmt.close();
-        conexao.close();
-    }
+	protected void update(String updateSql, Object id, Object... parametros) throws SQLException {
+		PreparedStatement pstmt = getConnection().prepareStatement(updateSql);
 
-    protected void delete(String deleteSql, Object... parametros) throws SQLException {
-        PreparedStatement pstmt = 
-		getConnection().prepareStatement(deleteSql);
-			
-        for (int i = 0; i < parametros.length; i++) {
-            pstmt.setObject(i+1, parametros[i]);
-        }
+		for (int i = 0; i < parametros.length; i++) {
+			pstmt.setObject(i + 1, parametros[i]);
+		}
+		pstmt.setObject(parametros.length + 1, id);
+		pstmt.execute();
+		pstmt.close();
+		conexao.close();
+	}
 
-        pstmt.execute();
-        pstmt.close();
-        conexao.close();
-    }
+	protected void delete(String deleteSql, Object... parametros) throws SQLException {
+		PreparedStatement pstmt = getConnection().prepareStatement(deleteSql);
+
+		for (int i = 0; i < parametros.length; i++) {
+			pstmt.setObject(i + 1, parametros[i]);
+		}
+
+		pstmt.execute();
+		pstmt.close();
+		conexao.close();
+	}
 }

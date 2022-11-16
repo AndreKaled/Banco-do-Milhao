@@ -32,7 +32,7 @@ public final class ConnectBanco {
 			state = conexao.prepareStatement(getComandoSQL());
 			state.execute();
 			return true;
-		}catch(Exception e){System.out.println("Opa! parece que ocorreu algum problema com a conexÃƒÂ£o, me desculpe amiguinho :(");
+		}catch(Exception e){System.out.println("Opa! parece que ocorreu algum problema com a conexao, me desculpe amiguinho :(");
 			e.printStackTrace();
 			System.exit(0);
 			return false;
@@ -47,7 +47,7 @@ public final class ConnectBanco {
 			state.execute();
 			return true;
 		}catch(Exception e){
-			System.out.println("Opa! parece que ocorreu algum problema com a conexÃƒÂ£o, me desculpe amiguinho :(");
+			System.out.println("Opa! parece que ocorreu algum problema com a conexao, me desculpe amiguinho :(");
 			e.printStackTrace();
 			return false;
 		}
@@ -61,7 +61,7 @@ public final class ConnectBanco {
 			state.execute();
 			return true;
 		}catch(Exception e){
-			System.out.println("Opa! parece que ocorreu algum problema com a conexÃƒÂ£o, me desculpe amiguinho :(");
+			System.out.println("Opa! parece que ocorreu algum problema com a conexao, me desculpe amiguinho :(");
 			e.printStackTrace();
 			return false;
 		}
@@ -82,7 +82,7 @@ public final class ConnectBanco {
 			
 			return score;
 		}catch(Exception e){
-			System.out.println("Opa! parece que ocorreu algum problema com a conexÃƒÂ£o, me desculpe amiguinho :(");
+			System.out.println("Opa! parece que ocorreu algum problema com a conexao, me desculpe amiguinho :(");
 			e.printStackTrace();
 			return (Integer) null;
 		}
@@ -103,7 +103,7 @@ public final class ConnectBanco {
 			
 			return vitorias;
 		}catch(Exception e){
-			System.out.println("Opa! parece que ocorreu algum problema com a conexÃƒÂ£o, me desculpe amiguinho :(");
+			System.out.println("Opa! parece que ocorreu algum problema com a conexao, me desculpe amiguinho :(");
 			e.printStackTrace();
 			return (Integer) null;
 		}
@@ -128,7 +128,7 @@ public final class ConnectBanco {
 			}
 			return lista;
 		}catch(Exception e){
-			System.out.println("Opa! parece que ocorreu algum problema com a conexÃ£o, me desculpe amiguinho :(");
+			System.out.println("Opa! parece que ocorreu algum problema com a conexao, me desculpe amiguinho :(");
 			e.printStackTrace();
 			return null;
 		}

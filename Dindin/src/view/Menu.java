@@ -27,14 +27,14 @@ public class Menu extends JFrame {
 
 	private static JPanel c, cLogo, contPrincipal;
 	private JButton btJogar, btConfig, btComoJogar, btSair, btPlacar;
-	private JLabel Plogo;
+	private JLabel versao, Plogo;
 	protected static CardLayout card = new CardLayout();
 	private JPanel jogar = new ModoDeJogo();
 
 	ImageIcon logo = new ImageIcon("imagens/logo.png");
 	ImageIcon jogo = new ImageIcon("imagens/jogar.png");
 	ImageIcon opcoes = new ImageIcon("imagens/opcoes.png");
-	ImageIcon tutorial = new ImageIcon("image" + "ns/tutorial.png");
+	ImageIcon tutorial = new ImageIcon("imagens/tutorial.png");
 	ImageIcon sair = new ImageIcon("imagens/sair.png");
 	ImageIcon placar = new ImageIcon("imagens/placar.png");
 	ImageIcon fundoImg;
@@ -209,6 +209,8 @@ public class Menu extends JFrame {
 
 				JButton btMudo = new JButton("MUTAR");
 				f.add(btMudo);
+				versao = new JLabel("Versao Alpha.");
+				f.add(versao);
 
 				btMudo.addActionListener(new ActionListener() {
 
@@ -217,9 +219,11 @@ public class Menu extends JFrame {
 						if (contador % 2 == 0) {
 							som.parar();
 							btMudo.setText("TOCAR");
+							System.out.println("Som mutado");
 						} else {
 							btMudo.setText("MUTAR");
 							som.loop();
+							System.out.println("Som tocando");
 						}
 						contador++;
 					}
