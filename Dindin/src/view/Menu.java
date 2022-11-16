@@ -21,29 +21,31 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import som.Som;
+
 public class Menu extends JFrame {
 
 	private static JPanel c, cLogo, contPrincipal;
 	private JButton btJogar, btConfig, btComoJogar, btSair, btPlacar;
-	private JLabel versao,Plogo;
+	private JLabel Plogo;
 	protected static CardLayout card = new CardLayout();
 	private JPanel jogar = new ModoDeJogo();
 
 	ImageIcon logo = new ImageIcon("imagens/logo.png");
 	ImageIcon jogo = new ImageIcon("imagens/jogar.png");
 	ImageIcon opcoes = new ImageIcon("imagens/opcoes.png");
-	ImageIcon tutorial = new ImageIcon("image"
-			+ "ns/tutorial.png");
-	ImageIcon sair  = new ImageIcon("imagens/sair.png");
+	ImageIcon tutorial = new ImageIcon("image" + "ns/tutorial.png");
+	ImageIcon sair = new ImageIcon("imagens/sair.png");
 	ImageIcon placar = new ImageIcon("imagens/placar.png");
 	ImageIcon fundoImg;
 	JBackgroundPanel fundo;
+	Som som;
 
 	public Menu() {
 		super("Din Din");
 		// configurando janela
 		setLayout(null);
-		setSize(1366,768);
+		setSize(1366, 768);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// inicializando componentes
@@ -51,7 +53,7 @@ public class Menu extends JFrame {
 		btConfig = new JButton(opcoes);
 		btComoJogar = new JButton(tutorial);
 		btSair = new JButton(sair);
-		btPlacar = new JButton (placar);
+		btPlacar = new JButton(placar);
 		cLogo = new JPanel();
 		contPrincipal = (JPanel) getContentPane();
 		contPrincipal.setLayout(card);
@@ -61,11 +63,10 @@ public class Menu extends JFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		c.setBackground(new Color(66, 153, 206));
 		c.setLayout(null);
 		c.setName("MENU");
-	
 
 		// configurando componentes
 		configuraLogo();
@@ -81,6 +82,11 @@ public class Menu extends JFrame {
 
 		// tratando eventos
 		trataEventos();
+
+		// iniciando som
+		som = new Som();
+		som.loop();
+
 		setVisible(true);
 	}
 
@@ -99,7 +105,7 @@ public class Menu extends JFrame {
 	public void configuraBtJogar() {
 		btJogar.setBounds(505, 380, 340, 70);
 		btJogar.setContentAreaFilled(false);
-        btJogar.setBorderPainted(false);
+		btJogar.setBorderPainted(false);
 		c.add(btJogar);
 	}
 
@@ -107,30 +113,30 @@ public class Menu extends JFrame {
 	public void configuraBtConfig() {
 		btConfig.setBounds(505, 460, 160, 70);
 		btConfig.setContentAreaFilled(false);
-        btConfig.setBorderPainted(false);
+		btConfig.setBorderPainted(false);
 		c.add(btConfig);
 	}
 
 	// configura o botao de como Jogar (tutorial)
 	public void configuraBtComoJogar() {
-		btComoJogar.setBounds(680,460, 160, 70);
+		btComoJogar.setBounds(680, 460, 160, 70);
 		btComoJogar.setContentAreaFilled(false);
-        btComoJogar.setBorderPainted(false);
+		btComoJogar.setBorderPainted(false);
 		c.add(btComoJogar);
 	}
 
 	// configura o botoes de sair do jogo
 	public void configuraBtSair() {
-		btSair.setBounds(1200, 640, 150, 60);		
+		btSair.setBounds(1200, 640, 150, 60);
 		btSair.setContentAreaFilled(false);
-        btSair.setBorderPainted(false);
+		btSair.setBorderPainted(false);
 		c.add(btSair);
 	}
-	
+
 	public void configuraBtPlacar() {
 		btPlacar.setBounds(-30, 630, 340, 70);
 		btPlacar.setContentAreaFilled(false);
-        btPlacar.setBorderPainted(false);
+		btPlacar.setBorderPainted(false);
 		c.add(btPlacar);
 	}
 
@@ -156,12 +162,12 @@ public class Menu extends JFrame {
 	static public void voltaTela() {
 		card.previous(contPrincipal);
 	}
-	
-	public static void menu(){
+
+	public static void menu() {
 		card.first(contPrincipal);
 	}
 
-	//tratando eventos
+	// tratando eventos
 	public void trataEventos() {
 		btSair.addActionListener(new ActionListener() {
 			@Override
@@ -178,15 +184,50 @@ public class Menu extends JFrame {
 			}
 
 		});
-		
-		btPlacar.addActionListener(new ActionListener(){
+
+		btPlacar.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				new Score();
 			}
-			
+
+		});
+
+		btConfig.addActionListener(new ActionListener() {
+			int contador = 0;
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// modo Psicopata ativado!
+
+				JFrame f = new JFrame("OPCOES");
+				f.setSize(250, 100);
+				f.setLayout(new FlowLayout());
+				f.setLocationRelativeTo(null);
+
+				JButton btMudo = new JButton("MUTAR");
+				f.add(btMudo);
+
+				btMudo.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						if (contador % 2 == 0) {
+							som.parar();
+							btMudo.setText("TOCAR");
+						} else {
+							btMudo.setText("MUTAR");
+							som.loop();
+						}
+						contador++;
+					}
+				});
+
+				f.setVisible(true);
+			}
+
 		});
 	}
 
