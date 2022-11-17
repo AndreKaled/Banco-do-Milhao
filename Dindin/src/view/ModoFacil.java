@@ -6,6 +6,8 @@ package view;
  * Sarah Pinheiro Antunes - 17/10/2022
  * Graziela da Costa Ralph - 17/10/2022
  * Graziela da Costa Ralph - 23/10/2022
+ * André Kaled Duarte - 11/11/2022
+ * Graziela da Costa Ralph - 17/11/2022
  * 
  * Modo facil
  * essa classe deve ser um dos modos de jogo escolhido pelo usuï¿½rio, as configurï¿½ï¿½es do jogo sï¿½o
@@ -19,9 +21,9 @@ package view;
  * Lista de compras do Jogador? X
  * */
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -30,20 +32,21 @@ import javax.swing.JPanel;
 
 import Util.Jogando;
 import modelo.Dado;
-import modelo.Jogador;
 
 public class ModoFacil extends JPanel {
 
 	private JPanel areaDado, painelVez;
-	private JButton btRolar, btVoltar, btLista, btMenu;
-	private JLabel resultado, areaVez, moeda, quantMoeda, personagem, nome, lbDado;
+	private JButton btRolar, btVoltar, btLista, btMenu, btLoja;
+	private JLabel resultado, areaVez, moeda, quantMoeda, personagem, nome, lbDado, lbNicknameVez;
 	private int rolaDado = 0, dadoAntigo = 0;
 	ImageIcon imgFundo = new ImageIcon("Imagens/area-jogador-da-vez.png"),
-			imgLista = new ImageIcon("Imagens/imagens/botao lista.png"),
+			imgLista = new ImageIcon("Imagens/botao lista.png"),
 			imgMoeda = new ImageIcon("Imagens/moeda-java.png"), imgPersonagem = new ImageIcon("Imagens/personagem.png"),
-			imgNome = new ImageIcon("Imagens/nome.png"), imgMenu = new ImageIcon("Imagens/botao-menu.png"),
+			imgNome = new ImageIcon("Imagens/nome.png"), 
+			imgMenu = new ImageIcon("Imagens/botao-menu.png"),
 			imgVoltar = new ImageIcon("Imagens/botao voltar.png"),
-			imgRolar = new ImageIcon("Imagens/botao-rola-dado.png");
+			imgRolar = new ImageIcon("Imagens/botao-rola-dado.png"),
+			imgPanel = new ImageIcon ("Imagens/Loja - Eletronicos.png");
 	ImageIcon DadoIcon;
 	private String imgDado[] = { "1", "2", "3", "4", "5", "6" };
 	private int VEZ = 0;
@@ -58,21 +61,27 @@ public class ModoFacil extends JPanel {
 		setLayout(null);
 		setBackground(new Color(200, 133, 238));
 		setName("MODO FACIL");
+		lbNicknameVez = new JLabel (new Jogando().getJogador().getNickName());
 		areaDado = new JPanel();
 		btRolar = new JButton(imgRolar);
 		btVoltar = new JButton(imgVoltar);
-		resultado = new JLabel(imgDado[0]);
+		resultado = new JLabel(imgDado[1]);
+		JLabel lbLoja = new JLabel (imgPanel);
 		btMenu = new JButton(imgMenu);
+		btLoja = new JButton ("Abrir Loja");
 
-		DadoIcon = new ImageIcon(imgDado[0] + ".png"); // acessa as imagens
+		DadoIcon = new ImageIcon(imgDado[1] + ".png"); // acessa as imagens
 		lbDado = new JLabel(DadoIcon);
 
+		configuraLoja();
 		configuraDado();
 		configuraBtVoltar();
 		configuraVez();
 		configuraBtMenu();
 		configuraBtPassar();
 		iniciaTabuleiro();
+
+		
 	}
 
 	// configurando a aba de ver a vez do jogador
@@ -88,9 +97,9 @@ public class ModoFacil extends JPanel {
 		areaVez.setBounds(painelVez.getBounds());
 
 		btLista = new JButton(imgLista);
-		// btLista.setBorderPainted(false);
-		// btLista.setFocusable(false);
-		// btLista.setContentAreaFilled(false);
+		btLista.setBorderPainted(false);
+		btLista.setFocusable(false);
+		btLista.setContentAreaFilled(false);
 		btLista.setBounds(100, 40, 62, 62);
 
 		moeda = new JLabel(imgMoeda);
@@ -102,20 +111,24 @@ public class ModoFacil extends JPanel {
 		nome = new JLabel(imgNome);
 		nome.setBounds(110, -70, 200, 200);
 
-		quantMoeda = new JLabel("XXX,XX");
+		quantMoeda = new JLabel("" +new Jogando().getJogador().getMoedas());
 		int x = moeda.getX();
 		int y = moeda.getY();
 		int w = moeda.getWidth();
 		int h = moeda.getHeight();
 		quantMoeda.setBounds(x + 60, y + 20, w, h - 50);
-		// quantMoeda.setFont(font);
+		quantMoeda.setFont(new Font ("VCR OSD MONO.tff", Font.PLAIN, 25));
+		
+		lbNicknameVez.setFont(new Font ("Upheaval TT (BRK).tff", Font.PLAIN, 25));
+		lbNicknameVez.setBounds(110, 8, 90, 30);
 
 		add(areaVez);
 		painelVez.add(btLista);
 		painelVez.add(moeda);
 		painelVez.add(quantMoeda);
 		painelVez.add(personagem);
-		painelVez.add(nome);
+		//painelVez.add(nome);
+		painelVez.add(lbNicknameVez);
 		eventoBtLista();
 	}
 
@@ -158,12 +171,7 @@ public class ModoFacil extends JPanel {
 
 				move.mover(pessoa[new Jogando().getVez()], i);
 				repaint();
-				try {
-					Thread.sleep(5000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				
 			}
 
 		});
@@ -183,6 +191,20 @@ public class ModoFacil extends JPanel {
 				new Jogando().limpar();
 			}
 
+		});
+	}
+	
+	private void configuraLoja(){
+		btLoja.setBounds(40, 60, 70, 70);
+		add(btLoja);
+		btLoja.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+			}
+			
 		});
 	}
 
@@ -249,6 +271,7 @@ public class ModoFacil extends JPanel {
 				btRolar.setEnabled(true);
 				new Jogando().passarVez();
 				btPassar.setEnabled(false);
+				lbNicknameVez.setText(new Jogando().getJogador().getNickName());
 			}
 			
 		});
