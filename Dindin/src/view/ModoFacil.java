@@ -66,14 +66,14 @@ public class ModoFacil extends JPanel {
 		btRolar = new JButton(imgRolar);
 		btVoltar = new JButton(imgVoltar);
 		resultado = new JLabel(imgDado[1]);
-		JLabel lbLoja = new JLabel (imgPanel);
+		//JLabel lbLoja = new JLabel (imgPanel);
 		btMenu = new JButton(imgMenu);
 		btLoja = new JButton ("Abrir Loja");
 
 		DadoIcon = new ImageIcon(imgDado[1] + ".png"); // acessa as imagens
 		lbDado = new JLabel(DadoIcon);
 
-		configuraLoja();
+		
 		configuraDado();
 		configuraBtVoltar();
 		configuraVez();
@@ -194,19 +194,7 @@ public class ModoFacil extends JPanel {
 		});
 	}
 	
-	private void configuraLoja(){
-		btLoja.setBounds(40, 60, 70, 70);
-		add(btLoja);
-		btLoja.addActionListener(new ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				
-				
-			}
-			
-		});
-	}
+	
 
 	private void configuraBtMenu() {
 		btMenu.setBounds(1220, 30, 100, 105);
