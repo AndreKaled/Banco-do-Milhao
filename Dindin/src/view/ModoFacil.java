@@ -6,7 +6,7 @@ package view;
  * Sarah Pinheiro Antunes - 17/10/2022
  * Graziela da Costa Ralph - 17/10/2022
  * Graziela da Costa Ralph - 23/10/2022
- * André Kaled Duarte - 11/11/2022
+ * Andrï¿½ Kaled Duarte - 11/11/2022
  * Graziela da Costa Ralph - 17/11/2022
  * 
  * Modo facil
@@ -22,8 +22,12 @@ package view;
  * */
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -56,6 +60,9 @@ public class ModoFacil extends JPanel {
 	Tabuleiro t;
 	JLabel pessoa[] = new JLabel[6];
 	Tabuleiro.Move move;
+	
+	//fontes
+	Font upheaval, VCR;
 
 	public ModoFacil() {
 		setLayout(null);
@@ -74,16 +81,40 @@ public class ModoFacil extends JPanel {
 		lbDado = new JLabel(DadoIcon);
 
 		
+		configuraFonte();
 		configuraDado();
 		configuraBtVoltar();
 		configuraVez();
 		configuraBtMenu();
 		configuraBtPassar();
 		iniciaTabuleiro();
-
 		
 	}
+	
+	private void configuraFonte() {
+		//fonte Upheaval
+		try{
+			upheaval = Font.createFont(Font.TRUETYPE_FONT, 
+					new File ("fonte/Upheaval TT (BRK).tff"));
+			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, 
+					new File ("fonte/Upheaval TT (BRK).tff")));
+			}catch (IOException | FontFormatException e){
+				System.out.println("Ops! Erro na fonte");
+	}
+		//fonte vcr osd
+		try{
+			VCR = Font.createFont(Font.TRUETYPE_FONT, 
+					new File ("VCR OSD Mono.tff"));
+			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, 
+					new File ("VCR OSD Mono.tff")));
+			}catch (IOException | FontFormatException e){
+				System.out.println("Ops! Erro na fonte");
+	}
+	}
 
+	
 	// configurando a aba de ver a vez do jogador
 	private void configuraVez() {
 		painelVez = new JPanel();
@@ -117,9 +148,9 @@ public class ModoFacil extends JPanel {
 		int w = moeda.getWidth();
 		int h = moeda.getHeight();
 		quantMoeda.setBounds(x + 60, y + 20, w, h - 50);
-		quantMoeda.setFont(new Font ("VCR OSD MONO.tff", Font.PLAIN, 25));
+		quantMoeda.setFont(new Font ("VCR OSD MONO", Font.PLAIN, 25));
 		
-		lbNicknameVez.setFont(new Font ("Upheaval TT (BRK).tff", Font.PLAIN, 25));
+		lbNicknameVez.setFont(new Font ("Upheaval TT (BRK)", Font.PLAIN, 25));
 		lbNicknameVez.setBounds(110, 8, 90, 30);
 
 		add(areaVez);
@@ -158,7 +189,7 @@ public class ModoFacil extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
-				// desabilitando botao para não iniciar um novo movimento enquanto já movimenta
+				// desabilitando botao para nï¿½o iniciar um novo movimento enquanto jï¿½ movimenta
 				btRolar.setEnabled(false);
 				btPassar.setEnabled(true);
 				
