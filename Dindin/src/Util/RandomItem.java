@@ -4,7 +4,6 @@ import java.util.Random;
 import java.util.Set;
 
 import modelo.Itens;
-import modelo.Jogador;
 
 public class RandomItem {
 

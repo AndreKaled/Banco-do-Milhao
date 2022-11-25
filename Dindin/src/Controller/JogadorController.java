@@ -3,8 +3,8 @@ package Controller;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import modelo.Jogador;
 import Banco.JogadorDAO;
+import modelo.Jogador;
 
 /*
  * Andre Kaled Duarte - 22/10/2022

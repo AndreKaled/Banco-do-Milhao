@@ -39,7 +39,7 @@ public class ModoFacil extends JPanel {
 
 	private JPanel areaDado, painelVez;
 	private JButton btRolar, btVoltar, btLista, btMenu;
-	private JLabel resultado, areaVez, moeda, quantMoeda, personagem, nome, lbDado,lbNicknameVez;
+	private JLabel resultado, areaVez, moeda, quantMoeda, personagem, nome, lbDado, lbNicknameVez;
 	private int rolaDado = 0, dadoAntigo = 0;
 	ImageIcon imgFundo = new ImageIcon("imagens/area-jogador-da-vez.png"),
 			imgLista = new ImageIcon("Imagens/imagens/botao lista.png"),
@@ -56,7 +56,9 @@ public class ModoFacil extends JPanel {
 	Tabuleiro t;
 	JLabel pessoa[] = new JLabel[6];
 	Tabuleiro.Move move;
-	ImageIcon imgJogador = new ImageIcon("Imagens/pino-vermelho.png");
+	ImageIcon[] imgJogador = { new ImageIcon("Imagens/pino-vermelho.png"), new ImageIcon("Imagens/pino-verde.png"),
+			new ImageIcon("Imagens/pino-rosa.png"), new ImageIcon("Imagens/pino-lilas.png"),
+			new ImageIcon("Imagens/pino-laranja.png"), new ImageIcon("Imagens/pino-amarelo.png") };
 	// fontes
 	Font upheaval, VCR;
 
@@ -73,7 +75,7 @@ public class ModoFacil extends JPanel {
 		DadoIcon = new ImageIcon(imgDado[0] + ".png"); // acessa as imagens
 		lbDado = new JLabel(DadoIcon);
 
-		//configuraFonte();
+		// configuraFonte();
 		configuraDado();
 		configuraBtVoltar();
 		configuraVez();
@@ -134,10 +136,10 @@ public class ModoFacil extends JPanel {
 		int w = moeda.getWidth();
 		int h = moeda.getHeight();
 		quantMoeda.setBounds(x + 60, y + 20, w, h - 50);
-		//quantMoeda.setFont(new Font("VCR OSD MONO", Font.PLAIN, 25));
+		// quantMoeda.setFont(new Font("VCR OSD MONO", Font.PLAIN, 25));
 
 		lbNicknameVez = new JLabel(new Jogando().getJogador().getNickName());
-		//lbNicknameVez.setFont(new Font("Upheaval TT (BRK)", Font.PLAIN, 25));
+		// lbNicknameVez.setFont(new Font("Upheaval TT (BRK)", Font.PLAIN, 25));
 		lbNicknameVez.setBounds(110, 8, 90, 30);
 
 		add(areaVez);
@@ -242,7 +244,7 @@ public class ModoFacil extends JPanel {
 	private void instanciandoJogadores() {
 		Jogando j = new Jogando();
 		for (int i = 0; i < j.tamanho(); i++)
-			pessoa[i] = new JLabel(imgJogador);
+			pessoa[i] = new JLabel(imgJogador[i]);
 	}
 
 	private void iniciaTabuleiro() {

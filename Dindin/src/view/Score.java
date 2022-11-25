@@ -14,8 +14,8 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-import modelo.Jogador;
 import Banco.JogadorDAO;
+import modelo.Jogador;
 
 public class Score extends JFrame {
 

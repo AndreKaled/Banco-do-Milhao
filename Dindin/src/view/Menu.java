@@ -13,7 +13,6 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -24,6 +23,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import som.Efeito;
 import som.Som;
 
 public class Menu extends JFrame {
@@ -52,6 +52,7 @@ public class Menu extends JFrame {
 	ImageIcon fundoImg;
 	JBackgroundPanel fundo;
 	Som som;
+	Efeito efeitos;
 
 	public Menu() {
 		super("Din Din");
@@ -96,8 +97,10 @@ public class Menu extends JFrame {
 		// tratando eventos
 		trataEventos();
 
-		// iniciando som
+		// iniciando som e efeitos
 		som = new Som();
+		efeitos = new Efeito();
+		
 		//som.loop();
 
 		setVisible(true);
@@ -289,9 +292,19 @@ public class Menu extends JFrame {
 			
 		});
 		
+		btTutorial.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				efeitos.clicar();
+			}
+			
+		});
+		
 		//eventos
 		btMenu.addActionListener(new ActionListener() {
-			int contador = 0;
+			int contador = 0, contador2 = 0;
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -302,25 +315,44 @@ public class Menu extends JFrame {
 				f.setLayout(new FlowLayout());
 				f.setLocationRelativeTo(null);
 
-				JButton btMudo = new JButton("MUTAR");
-				f.add(btMudo);
+				JButton btMusica = new JButton("MUTAR MUSICA");
+				JButton btEfeitos = new JButton("MUTAR EFEITOS");
+				f.add(btMusica);
+				f.add(btEfeitos);
 				versao = new JLabel("Versao Alpha.");
 				f.add(versao);
 
-				btMudo.addActionListener(new ActionListener() {
+				btMusica.addActionListener(new ActionListener() {
 
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						if (contador % 2 == 0) {
 							som.parar();
-							btMudo.setText("TOCAR");
+							btMusica.setText("TOCAR MUSICA");
 							System.out.println("Som mutado");
 						} else {
-							btMudo.setText("MUTAR");
+							btMusica.setText("MUTAR MUSICA");
 							som.loop();
 							System.out.println("Som tocando");
 						}
 						contador++;
+					}
+				});
+				
+				btEfeitos.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						if (contador2 % 2 == 0) {
+							efeitos.comEfeito();
+							btMusica.setText("TOCAR EFEITOS");
+							System.out.println("Som mutado");
+						} else {
+							btMusica.setText("MUTAR EFEITOS");
+							efeitos.semEfeito();
+							System.out.println("Som tocando");
+						}
+						contador2++;
 					}
 				});
 

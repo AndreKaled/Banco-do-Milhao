@@ -1,6 +1,5 @@
 package view;
 
-import java.util.Scanner;
 import java.util.Set;
 
 import javax.swing.JFrame;
@@ -11,7 +10,6 @@ import javax.swing.JScrollPane;
 import Util.Jogando;
 import Util.RandomItem;
 import modelo.Itens;
-import modelo.Jogador;
 
 public class ListaDeCompras extends JFrame {
 

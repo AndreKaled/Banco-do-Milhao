@@ -1,12 +1,13 @@
 package view;
 
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
+
+import javax.imageio.ImageIO;
+import javax.swing.JPanel;
 
 /** Classe para permitir imagem de fundo em JPanel*/
 
