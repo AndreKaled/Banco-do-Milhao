@@ -98,7 +98,7 @@ public class Menu extends JFrame {
 		trataEventos();
 
 		// iniciando som e efeitos
-		som = new Som();
+		//som = new Som();
 		efeitos = new Efeito();
 		
 		//som.loop();
@@ -193,11 +193,12 @@ public class Menu extends JFrame {
 					
 					public void mouseReleased(MouseEvent e){
 						btMenu.setIcon(opcoes);
+						efeitos.clicar();
 					}
 					
 				});
 				
-				//outras animações
+				//placar
 				btPlacar.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mousePressed(MouseEvent e) {
@@ -206,6 +207,7 @@ public class Menu extends JFrame {
 					
 					public void mouseReleased(MouseEvent e){
 						btPlacar.setIcon(placar);
+						efeitos.clicar();
 					}
 					
 				});
@@ -219,18 +221,33 @@ public class Menu extends JFrame {
 					
 					public void mouseReleased(MouseEvent e){
 						btTutorial.setIcon(tutorial);
+						efeitos.clicar();
 					}
 					
 				});
-				//tutorial
-				btTutorial.addMouseListener(new MouseAdapter() {
+				
+				//jogar
+				btJogar.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mousePressed(MouseEvent e) {
-						btTutorial.setIcon(tutorialAnm);
+						btJogar.setIcon(jogarAnm);
 					}
 					
 					public void mouseReleased(MouseEvent e){
-						btTutorial.setIcon(tutorial);
+						btJogar.setIcon(jogo);
+						efeitos.clicar();
+						}
+				});
+				
+				btSair.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mousePressed(MouseEvent e) {
+						btSair.setIcon(sairAnm);
+					}
+					
+					public void mouseReleased(MouseEvent e){
+						btSair.setIcon(sair);
+						efeitos.clicar();
 					}
 					
 				});
@@ -245,33 +262,16 @@ public class Menu extends JFrame {
 			}
 		});
 		
-		//animação e mudança de tela
-		btJogar.addMouseListener(new MouseAdapter() {
+		btJogar.addActionListener(new ActionListener() {
+
 			@Override
-			public void mousePressed(MouseEvent e) {
-				btJogar.setIcon(jogarAnm);
-			}
-			
-			public void mouseReleased(MouseEvent e){
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
 				mudaTela(jogar.getName());
-				btJogar.setIcon(jogo);
-				}
+			}
 			
 		});
 		
-		//outras animações
-		btMenu.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				btMenu.setIcon(opcoesAnm);
-			}
-			
-			public void mouseReleased(MouseEvent e){
-				btMenu.setIcon(opcoes);
-			}
-			
-		});
-
 		btPlacar.addActionListener(new ActionListener() {
 
 			@Override
@@ -280,29 +280,16 @@ public class Menu extends JFrame {
 			}
 		});
 		
-		btSair.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				btSair.setIcon(sairAnm);
-			}
-			
-			public void mouseReleased(MouseEvent e){
-				btSair.setIcon(sair);
-			}
-			
-		});
-		
 		btTutorial.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				efeitos.clicar();
 			}
 			
 		});
 		
-		//eventos
+		//configuracoes
 		btMenu.addActionListener(new ActionListener() {
 			int contador = 0, contador2 = 0;
 
@@ -345,10 +332,10 @@ public class Menu extends JFrame {
 					public void actionPerformed(ActionEvent e) {
 						if (contador2 % 2 == 0) {
 							efeitos.comEfeito();
-							btMusica.setText("TOCAR EFEITOS");
+							btEfeitos.setText("TOCAR EFEITOS");
 							System.out.println("Som mutado");
 						} else {
-							btMusica.setText("MUTAR EFEITOS");
+							btEfeitos.setText("MUTAR EFEITOS");
 							efeitos.semEfeito();
 							System.out.println("Som tocando");
 						}

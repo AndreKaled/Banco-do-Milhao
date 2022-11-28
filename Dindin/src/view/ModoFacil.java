@@ -54,11 +54,9 @@ public class ModoFacil extends JPanel {
 
 	// testando movimentacao
 	Tabuleiro t;
-	JLabel pessoa[] = new JLabel[6];
+	JBackgroundPanel pessoa[] = new JBackgroundPanel[6];
 	Tabuleiro.Move move;
-	ImageIcon[] imgJogador = { new ImageIcon("Imagens/pino-vermelho.png"), new ImageIcon("Imagens/pino-verde.png"),
-			new ImageIcon("Imagens/pino-rosa.png"), new ImageIcon("Imagens/pino-lilas.png"),
-			new ImageIcon("Imagens/pino-laranja.png"), new ImageIcon("Imagens/pino-amarelo.png") };
+	String imgJogador = "imagens/pino-";
 	// fontes
 	Font upheaval, VCR;
 
@@ -241,14 +239,22 @@ public class ModoFacil extends JPanel {
 		});
 	}
 
-	private void instanciandoJogadores() {
+	private void instanciandoJogadores() throws Exception {
 		Jogando j = new Jogando();
-		for (int i = 0; i < j.tamanho(); i++)
-			pessoa[i] = new JLabel(imgJogador[i]);
+		for (int i = 0; i < j.tamanho(); i++) {
+			pessoa[i] = new JBackgroundPanel(imgJogador+ j.getJogador().getCor() +".png");
+			pessoa[i].setOpaque(false);
+			j.passarVez();
+		}
 	}
 
 	private void iniciaTabuleiro() {
-		instanciandoJogadores();
+		try {
+			instanciandoJogadores();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.err.println("Erro ao iniciar jogadores!");
+		}
 
 		// inicializando tabuleiro
 		t = new Tabuleiro();
@@ -264,7 +270,7 @@ public class ModoFacil extends JPanel {
 	private void configuraBtPassar() {
 		btPassar = new JButton("PASSAR VEZ");
 
-		btPassar.setBounds(10, 350, 100, 25);
+		btPassar.setBounds(10, 350, 150, 25);
 
 		add(btPassar);
 

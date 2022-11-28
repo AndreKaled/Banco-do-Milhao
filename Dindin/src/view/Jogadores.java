@@ -27,6 +27,7 @@ import javax.swing.JTextField;
 
 import Controller.JogadorController;
 import Util.Jogando;
+import modelo.Jogador;
 
 public class Jogadores extends JPanel {
 	// instanciando as coisinhas
@@ -359,7 +360,9 @@ public class Jogadores extends JPanel {
 					System.out.println("Não foi maninho, deu erro");
 				}
 			}
-			new Jogando().add(new JogadorController().encontrarJogador(nome));
+			Jogador j = new JogadorController().encontrarJogador(nome);
+			j.setCor("lilas");
+			new Jogando().add(j);
 		}
 
 		// texto do jogador rosa
@@ -377,7 +380,9 @@ public class Jogadores extends JPanel {
 					System.out.println("Não foi maninho, deu erro");
 				}
 			}
-			new Jogando().add(new JogadorController().encontrarJogador(nome));
+			Jogador j = new JogadorController().encontrarJogador(nome);
+			j.setCor("rosa");
+			new Jogando().add(j);
 		}
 
 		// texto do jogador verde
@@ -395,7 +400,9 @@ public class Jogadores extends JPanel {
 					System.out.println("Não foi maninho, deu erro");
 				}
 			}
-			new Jogando().add(new JogadorController().encontrarJogador(nome));
+			Jogador j = new JogadorController().encontrarJogador(nome);
+			j.setCor("verde");
+			new Jogando().add(j);
 		}
 
 		// texto do jogador amarelo
@@ -413,7 +420,9 @@ public class Jogadores extends JPanel {
 					System.out.println("Não foi maninho, deu erro");
 				}
 			}
-			new Jogando().add(new JogadorController().encontrarJogador(nome));
+			Jogador j = new JogadorController().encontrarJogador(nome);
+			j.setCor("amarelo");
+			new Jogando().add(j);
 		}
 
 		// texto do jogador vermelho
@@ -431,7 +440,9 @@ public class Jogadores extends JPanel {
 					System.out.println("Não foi maninho, deu erro");
 				}
 			}
-			new Jogando().add(new JogadorController().encontrarJogador(nome));
+			Jogador j = new JogadorController().encontrarJogador(nome);
+			j.setCor("vermelho");
+			new Jogando().add(j);
 		}
 
 		// texto do jogador laranja
@@ -449,7 +460,9 @@ public class Jogadores extends JPanel {
 					System.out.println("Não foi maninho, deu erro");
 				}
 			}
-			new Jogando().add(new JogadorController().encontrarJogador(nome));
+			Jogador j = new JogadorController().encontrarJogador(nome);
+			j.setCor("laranja");
+			new Jogando().add(j);
 		}
 		new Jogando().iniciar();
 

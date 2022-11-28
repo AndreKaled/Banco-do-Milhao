@@ -39,23 +39,22 @@ public class Tabuleiro extends JPanel {
 				} else {
 					p[cont] = new JBackgroundPanel(a);
 				}
-				p[cont].setLayout(new FlowLayout());
+				p[cont].setLayout(null);
 
 				add(p[cont]);
-
-				if (cont % 2 == 0) {
-					p[cont].add(new JLabel("" + cont));
-				} else {
-					p[cont].add(new JLabel("" + cont));
-				}
+				
+				JLabel num = new JLabel("" + cont);
+				num.setBounds(10,10,25,25);
+				p[cont].add(num);
 
 				cont++;
 			}
 		}
 	}
 
-	public void inicia(JComponent peca) {
+	public void inicia(JBackgroundPanel peca) {
 		p[0].add(peca);
+		peca.setBounds(0,0,40,40);
 	}
 
 	public JPanel setP(int indice) {
@@ -65,14 +64,14 @@ public class Tabuleiro extends JPanel {
 	public class Move extends Thread {
 
 		int num = 0;
-		JComponent pessoa;
+		JBackgroundPanel pessoa;
 		int posicaoAntiga = 0, posicaoNova;
 
 		public Move() {
 
 		}
 
-		public void mover(JComponent peca, int valor) {
+		public void mover(JBackgroundPanel peca, int valor) {
 			this.num = valor;
 			this.pessoa = peca;
 			run();

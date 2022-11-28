@@ -32,6 +32,14 @@ public class Jogador {
 		setScore(0);
 	}
 
+	public Jogador(String nickName, String cor) {
+		setNickName(nickName);
+		setCor(cor);
+		setMoedas(15);
+		setPosicao(0);
+		setScore(0);
+	}
+	
 	// construtor com score
 	public Jogador(String nickName, int score) {
 		setNickName(nickName);
