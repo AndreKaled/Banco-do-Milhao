@@ -1,96 +1,96 @@
 package view;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
-/**Andr� Kaled Duarte e Kauan Ferreira dos Santos - 07/09/2022
+/**Andr� Kaled Duarte e Kauan Ferreira dos Santos - 01/12/2022
  * 
- * COMFIRMA��O DA SA�DA DO JOGO
- * Essa clase tem o objetivo de confirmar a sa�da do jogador do jogo Se
+ * COMFIRMACAO DA SAIDA DO JOGO
+ * Essa clase tem o objetivo de confirmar a saida do jogador do jogo Se
  * confirmado, o jogo deve fechar, caso negado o jogo deve continuar na tela
- * antes de precionar o bot�o de sair
+ * antes de precionar o botao de sair
  * */
-public class ConfirmaSair extends JFrame {
+
+public class ConfirmaSair extends JBackgroundPanel {
 
 	// declaracao de variaveis da classe
-	private JPanel c;
-	private JLabel icone, textoAviso, textoConfirma;
-	private JButton btSim, btNao;
-	private ImageIcon imagemSair = new ImageIcon("Imagens/sair.png");
-	final Color corVermelho = new Color(255, 0, 77);
-	final Color corVerde = new Color(0, 135, 81);
-
-	// construtor da classe
-	public ConfirmaSair() {
-		super("Confirmar sa�da");
+	JBackgroundPanel fundoSair;
+	JButton btSim,btNao;
+	JLabel aviso;
+	ImageIcon imgBtSim,imgBtNao;
+	
+	public ConfirmaSair() throws IOException{
+		super("imagens/fundo-confirmar-saida.png");
 		setLayout(null);
-		setSize(450, 230);
-		c = (JPanel) getContentPane();
-		c.setBackground(Color.WHITE);
-
-		configuraTextos();
-		configuraIcone();
-		configuraBotoes();
-
-		setVisible(true);
-	}
-
-	// configura os dois textos
-	private void configuraTextos() {
-		textoAviso = new JLabel("<html>Se sair todo o seu progresso será perdido!<html>");
-		textoConfirma = new JLabel("Deseja realmente sair do jogo?");
-		textoAviso.setBounds(110, 20, 330, 50);
-		textoAviso.setFont(new Font("Arial", 1, 19));
-
-		add(textoAviso);
-
-		textoConfirma.setBounds(110, 70, 350, 30);
-		textoConfirma.setFont(new Font("Arial", 1, 19));
-		add(textoConfirma);
-	}
-
-	// configura o icone (imagem)
-	private void configuraIcone() {
-		icone = new JLabel(imagemSair);
-		icone.setBounds(25, 25, 70, 70);
-		add(icone);
-	}
-
-	// configura os dois bot�es
-	private void configuraBotoes() {
-		btSim = new JButton("SIM");
-		btNao = new JButton("NãO");
-		btSim.setBounds(25,120,180,40);
-		btSim.setBackground(corVerde);
-		btSim.setForeground(Color.WHITE);
-		btSim.setFont(new Font("Arial", 1,19));
-		btSim.addActionListener(new FechaJogo());
-		btSim.setFocusable(false);
-		add(btSim);
+		setOpaque(false);
 		
-		btNao.setBounds(225,120,180,40);
-		btNao.setBackground(corVermelho);
-		btNao.setForeground(Color.WHITE);
-		btNao.setFont(new Font("Arial", 1,19));
-		btNao.setFocusable(false);
-		btNao.addActionListener(new VoltaJogo());
+		imgBtSim = new ImageIcon("Imagens/botao-sim.png");
+		imgBtNao = new ImageIcon("Imagens/botao-nao.png");
+		
+		btSim = new JButton(imgBtSim);
+		btNao = new JButton(imgBtNao);
+		
+		aviso = new JLabel("<html>Se voce sair, perdera o progresso nao salvo, deseja realmente sair do jogo e nos abandonar? :(</html>");
+		
+		aviso.setBounds(35,150,500,100);
+		btSim.setBounds(35,250,240,100);
+		btNao.setBounds(btSim.getX()+240+50,250,240,100);
+		
+		add(aviso);
+		add(btSim);
 		add(btNao);
+		
+		btSim.addActionListener(new FechaJogo());
+		btNao.addActionListener(new VoltaJogo());
+		
+		setVisible(false);
 	}
 	
-	//tratando eventos dos bot�es de confirma��o
+	public ConfirmaSair(String img) throws IOException{
+		super(img);
+		setLayout(null);
+		setOpaque(false);
+		
+		imgBtSim = new ImageIcon("Imagens/botao-sim.png");
+		imgBtNao = new ImageIcon("Imagens/botao-nao.png");
+		
+		btSim = new JButton(imgBtSim);
+		btNao = new JButton(imgBtNao);
+		aviso = new JLabel("<html>Se voce sair, perdera o progresso nao salvo, deseja realmente sair do jogo e nos abandonar? :(<html>");
+		
+		aviso.setBounds(35,150,500,100);
+		btSim.setBounds(35,250,240,100);
+		btNao.setBounds(btSim.getX()+240+50,250,240,100);
+		
+		add(aviso);
+		add(btSim);
+		add(btNao);
+		
+		btSim.setBorder(null);
+		btSim.setContentAreaFilled(false);
+		btSim.setFocusable(false);
+		
+		btNao.setBorder(null);
+		btNao.setContentAreaFilled(false);
+		btNao.setFocusable(false);
+		
+		btSim.addActionListener(new FechaJogo());
+		btNao.addActionListener(new VoltaJogo());
+		
+		setVisible(false);
+	}
+	
+	//tratando eventos dos botoes de confirmacao
 	private class VoltaJogo implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			dispose();
+			setVisible(false);
 		}
 		
 	}
@@ -101,5 +101,9 @@ public class ConfirmaSair extends JFrame {
 			System.exit(0);
 		}
 		
+	}
+	
+	public void visivel() {
+		setVisible(true);
 	}
 }

@@ -28,11 +28,12 @@ import som.Som;
 
 public class Menu extends JFrame {
 
-	private static JPanel c, cLogo, contPrincipal;
+	private static JPanel c, cLogo, contPrincipal, janela;
 	private JButton btJogar, btMenu, btTutorial, btSair, btPlacar;
-	private JLabel versao, Plogo;
+	private JLabel  Plogo;
 	protected static CardLayout card = new CardLayout();
 	private JPanel jogar = new ModoDeJogo();
+	ConfirmaSair cs;
 
 	ImageIcon logo = new ImageIcon("imagens/logo.png");
 	ImageIcon jogo = new ImageIcon("imagens/jogar.png");
@@ -40,19 +41,34 @@ public class Menu extends JFrame {
 	ImageIcon tutorial = new ImageIcon("imagens/tutorial.png");
 	ImageIcon sair = new ImageIcon("imagens/sair.png");
 	ImageIcon placar = new ImageIcon("imagens/placar.png");
-	
-	//Animações
+
+	// Animacoes
 	ImageIcon jogarAnm = new ImageIcon("imagens/botao-jogar-animacao.png");
 	ImageIcon opcoesAnm = new ImageIcon("imagens/botao-opcoes-animacao.png");
 	ImageIcon placarAnm = new ImageIcon("imagens/botao-placar-animacao.png");
 	ImageIcon tutorialAnm = new ImageIcon("imagens/botao-tutorial-animacao.png");
 	ImageIcon sairAnm = new ImageIcon();
-	
-	
+	ImageIcon imgEfeitosBloq = new ImageIcon("Imagens/botaoDosEfeitosBloq.png");
+	ImageIcon imgMusicaBloq = new ImageIcon("Imagens/botaoDaMusicaBloq.png");
+	ImageIcon imgMusica = new ImageIcon("Imagens/botao-da-musica.png"),
+			imgEfeitos = new ImageIcon("Imagens/botao-dos-efeitos.png"),
+			imgFecha = new ImageIcon("Imagens/botao-fechar-1.png"),
+			imgCredito = new ImageIcon("Imagens/botao creditos.png");
+
+	JButton btMusica = new JButton(imgMusica);
+	JButton btEfeitos = new JButton(imgEfeitos);
+	JButton btFechar = new JButton(imgFecha);
+	JButton btCredito = new JButton(imgCredito);
+	JLabel versao = new JLabel("Versao Alpha lindos");
+
 	ImageIcon fundoImg;
-	JBackgroundPanel fundo;
+	JBackgroundPanel fundo, opcoesPanel;
 	Som som;
 	Efeito efeitos;
+	
+	int contador = 0;
+	int contador2 = 0;
+	int contEfeito = 0;
 
 	public Menu() {
 		super("Din Din");
@@ -70,16 +86,27 @@ public class Menu extends JFrame {
 		cLogo = new JPanel();
 		contPrincipal = (JPanel) getContentPane();
 		contPrincipal.setLayout(card);
+		janela = new JPanel();
 		try {
 			c = new JBackgroundPanel("imagens/fundo tela inicial 1.png");
+			opcoesPanel = new JBackgroundPanel("imagens/fundo-opcoes-1.png");
+			cs = new ConfirmaSair("imagens/fundo-confirmar-saida.png");
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
+		cs.setBounds(383, 109, 600, 550);
+		opcoesPanel.setBounds(cs.getBounds());
+
 		c.setBackground(new Color(66, 153, 206));
 		c.setLayout(null);
 		c.setName("MENU");
+		janela.setBounds(0, 0, 1366, 768);
+		c.add(janela);
+		janela.setOpaque(false);
+		janela.setLayout(null);
 
 		// configurando componentes
 		configuraLogo();
@@ -98,10 +125,14 @@ public class Menu extends JFrame {
 		trataEventos();
 
 		// iniciando som e efeitos
-		//som = new Som();
+		som = new Som();
 		efeitos = new Efeito();
+
 		
-		//som.loop();
+		som.loop();
+		janela.add(cs);
+		janela.add(opcoesPanel);
+		opcoesPanel.setVisible(false);
 
 		setVisible(true);
 	}
@@ -183,85 +214,133 @@ public class Menu extends JFrame {
 		card.first(contPrincipal);
 	}
 
-	public void animarBotoes(){
-				//outras animações
-				btMenu.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mousePressed(MouseEvent e) {
-						btMenu.setIcon(opcoesAnm);
-					}
-					
-					public void mouseReleased(MouseEvent e){
-						btMenu.setIcon(opcoes);
-						efeitos.clicar();
-					}
-					
-				});
-				
-				//placar
-				btPlacar.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mousePressed(MouseEvent e) {
-						btPlacar.setIcon(placarAnm);
-					}
-					
-					public void mouseReleased(MouseEvent e){
-						btPlacar.setIcon(placar);
-						efeitos.clicar();
-					}
-					
-				});
-				
-				//tutorial
-				btTutorial.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mousePressed(MouseEvent e) {
-						btTutorial.setIcon(tutorialAnm);
-					}
-					
-					public void mouseReleased(MouseEvent e){
-						btTutorial.setIcon(tutorial);
-						efeitos.clicar();
-					}
-					
-				});
-				
-				//jogar
-				btJogar.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mousePressed(MouseEvent e) {
-						btJogar.setIcon(jogarAnm);
-					}
-					
-					public void mouseReleased(MouseEvent e){
-						btJogar.setIcon(jogo);
-						efeitos.clicar();
-						}
-				});
-				
-				btSair.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mousePressed(MouseEvent e) {
-						btSair.setIcon(sairAnm);
-					}
-					
-					public void mouseReleased(MouseEvent e){
-						btSair.setIcon(sair);
-						efeitos.clicar();
-					}
-					
-				});
-	}
-	
-	// tratando eventos
-	public void trataEventos() {
-		btSair.addActionListener(new ActionListener() {
+	public void animarBotoes() {
+		// outras animacoes
+		btMenu.addMouseListener(new MouseAdapter() {
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				new ConfirmaSair();
+			public void mousePressed(MouseEvent e) {
+				btMenu.setIcon(opcoesAnm);
+			}
+
+			public void mouseReleased(MouseEvent e) {
+				btMenu.setIcon(opcoes);
+				efeitos.clicar();
+			}
+
+		});
+
+		// placar
+		btPlacar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				btPlacar.setIcon(placarAnm);
+			}
+
+			public void mouseReleased(MouseEvent e) {
+				btPlacar.setIcon(placar);
+				efeitos.clicar();
+			}
+
+		});
+
+		// tutorial
+		btTutorial.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				btTutorial.setIcon(tutorialAnm);
+			}
+
+			public void mouseReleased(MouseEvent e) {
+				btTutorial.setIcon(tutorial);
+				efeitos.clicar();
+			}
+
+		});
+
+		// jogar
+		btJogar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				btJogar.setIcon(jogarAnm);
+			}
+
+			public void mouseReleased(MouseEvent e) {
+				btJogar.setIcon(jogo);
+				efeitos.clicar();
 			}
 		});
+
+		btSair.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				btSair.setIcon(sairAnm);
+			}
+
+			public void mouseReleased(MouseEvent e) {
+				btSair.setIcon(sair);
+				efeitos.clicar();
+			}
+
+		});
 		
+		
+		
+		btEfeitos.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if(contEfeito % 2 == 0) {
+					btEfeitos.setIcon(imgEfeitosBloq);
+					System.out.println("Efeitos desativados");
+					efeitos.semEfeito();
+				}else {
+					btEfeitos.setIcon(imgEfeitos);
+					System.out.println("Efeitos ativados");
+					efeitos.comEfeito();
+				}
+				efeitos.clicar();
+				contEfeito++;
+			}
+
+		});
+		
+		btMusica.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (contador % 2 == 0) {
+					som.parar();
+					System.out.println("Musica desativado");
+					btMusica.setIcon(imgMusicaBloq);
+				} else {
+					som.loop();
+					System.out.println("Som tocando");
+					btMusica.setIcon(imgMusica);
+				}
+				contador++;
+			}
+		});
+	}
+
+	// tratando eventos
+	public void trataEventos() {
+
+		criaMenu();
+		criaSair();
+		
+		// bug aqui
+		btSair.addActionListener(new ActionListener() {
+			private int cont = 0;
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+				cs.setVisible(true);
+				repaint();
+			}
+		});
+
 		btJogar.addActionListener(new ActionListener() {
 
 			@Override
@@ -269,84 +348,147 @@ public class Menu extends JFrame {
 				// TODO Auto-generated method stub
 				mudaTela(jogar.getName());
 			}
-			
+
 		});
-		
+
 		btPlacar.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				new Score();
+				try {
+					btJogar.setEnabled(false);
+					btMenu.setEnabled(false);
+					btTutorial.setEnabled(false);
+					btSair.setEnabled(false);
+					btPlacar.setEnabled(false);
+					
+					Score s = new Score();
+					janela.add(s);
+					
+					s.btSair.addActionListener(new ActionListener() {
+
+						@Override
+						public void actionPerformed(ActionEvent arg0) {
+							// TODO Auto-generated method stub
+							s.setVisible(false);
+							btJogar.setEnabled(true);
+							btMenu.setEnabled(true);
+							btTutorial.setEnabled(true);
+							btSair.setEnabled(true);
+							btPlacar.setEnabled(true);
+						}});
+					repaint();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
-		
+
 		btTutorial.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 			}
-			
+
 		});
-		
-		//configuracoes
+
+		// configuracoes
 		btMenu.addActionListener(new ActionListener() {
 			int contador = 0, contador2 = 0;
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// modo Psicopata ativado!
-
-				JFrame f = new JFrame("OPCOES");
-				f.setSize(250, 100);
-				f.setLayout(new FlowLayout());
-				f.setLocationRelativeTo(null);
-
-				JButton btMusica = new JButton("MUTAR MUSICA");
-				JButton btEfeitos = new JButton("MUTAR EFEITOS");
-				f.add(btMusica);
-				f.add(btEfeitos);
-				versao = new JLabel("Versao Alpha.");
-				f.add(versao);
-
-				btMusica.addActionListener(new ActionListener() {
-
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						if (contador % 2 == 0) {
-							som.parar();
-							btMusica.setText("TOCAR MUSICA");
-							System.out.println("Som mutado");
-						} else {
-							btMusica.setText("MUTAR MUSICA");
-							som.loop();
-							System.out.println("Som tocando");
-						}
-						contador++;
-					}
-				});
-				
-				btEfeitos.addActionListener(new ActionListener() {
-
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						if (contador2 % 2 == 0) {
-							efeitos.comEfeito();
-							btEfeitos.setText("TOCAR EFEITOS");
-							System.out.println("Som mutado");
-						} else {
-							btEfeitos.setText("MUTAR EFEITOS");
-							efeitos.semEfeito();
-							System.out.println("Som tocando");
-						}
-						contador2++;
-					}
-				});
-
-				f.setVisible(true);
+				btJogar.setEnabled(false);
+				btMenu.setEnabled(false);
+				btTutorial.setEnabled(false);
+				btSair.setEnabled(false);
+				btPlacar.setEnabled(false);
+				opcoesPanel.setVisible(true);
 			}
 
 		});
+	}
+
+	;
+
+	private void criaSair() {
+		// TODO Auto-generated method stub
+		try {
+			cs = new ConfirmaSair("imagens/fundo-confirmar-saida.png");
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		janela.add(cs);
+		cs.setBounds(383, 109, 600, 550);
+	}
+
+	private void criaMenu() {
+		// TODO Auto-generated method stub
+		
+
+		try {
+			JBackgroundPanel bandeira = new JBackgroundPanel("imagens/bandeirola.png");
+			bandeira.setOpaque(false);
+			
+			bandeira.setBounds(0, 120, 600, 50);
+			btFechar.setBounds(550, 10, 30, 30);
+			bandeira.setLayout(null);
+			bandeira.add(btFechar);
+			opcoesPanel.add(bandeira);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		opcoesPanel.setLayout(null);
+		opcoesPanel.setOpaque(false);
+
+		versao.setBounds(350, 280, 250, 60);
+		btCredito.setBounds(300, 180, 250, 80);
+		btEfeitos.setBounds(30, 300, 250, 60);
+		btMusica.setBounds(30, 180, 250, 60);
+		
+		btCredito.setBorder(null);
+		btEfeitos.setBorder(null);
+		btMusica.setBorder(null);
+		btCredito.setContentAreaFilled(false);
+		btEfeitos.setContentAreaFilled(false);
+		btMusica.setContentAreaFilled(false);
+		btCredito.setFocusable(false);
+		btEfeitos.setFocusable(false);
+		btMusica.setFocusable(false);
+		
+		opcoesPanel.add(btCredito);
+		opcoesPanel.add(versao);
+		opcoesPanel.add(btEfeitos);
+		opcoesPanel.add(btMusica);
+
+		btFechar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				opcoesPanel.setVisible(false);
+				btJogar.setEnabled(true);
+				btMenu.setEnabled(true);
+				btTutorial.setEnabled(true);
+				btSair.setEnabled(true);
+				btPlacar.setEnabled(true);
+			}
+		});
+
+		btCredito.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				new Creditos();
+			}});
+
 	}
 
 	public static void main(String[] args) {

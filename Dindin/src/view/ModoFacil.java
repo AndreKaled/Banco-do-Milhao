@@ -37,7 +37,7 @@ import modelo.Dado;
 
 public class ModoFacil extends JPanel {
 
-	private JPanel areaDado, painelVez;
+	private JPanel areaDado, painelVez, janela;
 	private JButton btRolar, btVoltar, btLista, btMenu;
 	private JLabel resultado, areaVez, moeda, quantMoeda, personagem, nome, lbDado, lbNicknameVez;
 	private int rolaDado = 0, dadoAntigo = 0;
@@ -73,6 +73,7 @@ public class ModoFacil extends JPanel {
 		DadoIcon = new ImageIcon(imgDado[0] + ".png"); // acessa as imagens
 		lbDado = new JLabel(DadoIcon);
 
+		configuraMenuPause();
 		// configuraFonte();
 		configuraDado();
 		configuraBtVoltar();
@@ -80,6 +81,50 @@ public class ModoFacil extends JPanel {
 		configuraBtMenu();
 		configuraBtPassar();
 		iniciaTabuleiro();
+
+	}
+
+	private void configuraMenuPause() {
+		janela = new JPanel(null);
+		janela.setOpaque(false);
+		janela.setBounds(0, 0, 1366, 768);
+		add(janela);
+
+		JBackgroundPanel pause = null;
+		try {
+			pause = new JBackgroundPanel("imagens/area-menu.png");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		pause.setBounds(300, 200, 700, 700);
+		pause.setLayout(null);
+		
+		janela.add(pause);
+
+		JButton btContinuar, btReiniciar, btSair, btMusica, btEfeitos;
+		ImageIcon imgContinuar, imgReiniciar, imgSair, imgMusicaAtivo, imgEfeitoAtivo, imgMusicaDesativado, imgEfeitoDesativado;
+		
+		imgContinuar = new ImageIcon("Imagens/botao continuar.png");
+		btContinuar = new JButton(imgContinuar);
+		
+		imgReiniciar = new ImageIcon("Imagens/botao reiniciar.png");
+		btReiniciar = new JButton(imgReiniciar);
+		
+		imgSair = new ImageIcon("Imagens/botao sair.png");
+		btSair = new JButton(imgSair);
+		
+		btMusica = new JButton();
+		btEfeitos = new JButton();
+		
+		btContinuar.setBounds(130,250,250,50);
+		btReiniciar.setBounds(130,320,250,50);
+		btSair.setBounds(130, 390, 250, 50);
+		
+		pause.add(btContinuar);
+		pause.add(btReiniciar);
+		pause.add(btSair);
 	}
 
 	private void configuraFonte() {
@@ -176,14 +221,19 @@ public class ModoFacil extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
-				// desabilitando botao para não iniciar um novo movimento enquanto já movimenta
+				// desabilitando botao para não iniciar um novo movimento
+				// enquanto já movimenta
 				btRolar.setEnabled(false);
 				btPassar.setEnabled(true);
 
 				Dado dado = new Dado();
 				int i = dado.rolar();
 
-				DadoIcon = new ImageIcon("Imagens/Dado-" + imgDado[i - 1] + ".png"); // acessa o nome da imagem
+				DadoIcon = new ImageIcon("Imagens/Dado-" + imgDado[i - 1] + ".png"); // acessa
+																						// o
+																						// nome
+																						// da
+																						// imagem
 				lbDado.setIcon(DadoIcon);
 				repaint();
 
@@ -242,7 +292,7 @@ public class ModoFacil extends JPanel {
 	private void instanciandoJogadores() throws Exception {
 		Jogando j = new Jogando();
 		for (int i = 0; i < j.tamanho(); i++) {
-			pessoa[i] = new JBackgroundPanel(imgJogador+ j.getJogador().getCor() +".png");
+			pessoa[i] = new JBackgroundPanel(imgJogador + j.getJogador().getCor() + ".png");
 			pessoa[i].setOpaque(false);
 			j.passarVez();
 		}

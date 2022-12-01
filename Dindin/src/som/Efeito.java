@@ -13,7 +13,7 @@ public class Efeito {
 
 	Player efeitoClick, efeitoCompra;
 	InputStream input;
-	boolean efeito = false;
+	static boolean efeito = true;
 
 	public Efeito() {
 		comEfeito();

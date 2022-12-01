@@ -56,7 +56,7 @@ public class Jogadores extends JPanel {
 		lbTituloJogadores = new JLabel(imgTitulo);
 		btJogar = new JButton(imgJogar);
 		try {
-			panelLilas = new JBackgroundPanel("imagens/jogador lilás.png");
+			panelLilas = new JBackgroundPanel("imagens/jogador lilas.png");
 			panelAmarelo = new JBackgroundPanel("imagens/jogador amarelo.png");
 			panelRosa = new JBackgroundPanel("imagens/jogador rosa.png");
 			panelVerde = new JBackgroundPanel("imagens/jogador verde.png");
@@ -318,36 +318,38 @@ public class Jogadores extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					iniciaJogo();
+					if (new Jogando().tamanho() < new Jogando().getMIN()) {
+						JOptionPane.showMessageDialog(null, "Inicie com ao menos 1 Jogador para comeï¿½ar!", "Aviso",
+								JOptionPane.WARNING_MESSAGE);
+					} else {
+						// inicializando modo
+						if (contY == 0) {
+							modoFacil = new ModoFacil();
+							Menu.adicionaTela(modoFacil, modoFacil.getName());
+							Menu.mudaTela(modoFacil.getName());
+						} else if (contX == 0) {
+							Menu.adicionaTela(modoDificil, modoDificil.getName());
+							Menu.mudaTela(modoDificil.getName());
+						}
+					}
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
-					 JOptionPane.showMessageDialog(null, "Aconteceu um erro ao iniciar o Jogo!\nOs dados não serão salvos!" + e.getLocalizedMessage());
-				}
-			
-				if (new Jogando().tamanho() < new Jogando().getMIN()) {
-					JOptionPane.showMessageDialog(null, "Inicie com ao menos 1 Jogador para começar!", "Aviso",
-							JOptionPane.WARNING_MESSAGE);
-				} else {
-					// inicializando modo
-					if (contY == 0) {
-						modoFacil = new ModoFacil();
-						Menu.adicionaTela(modoFacil, modoFacil.getName());
-						Menu.mudaTela(modoFacil.getName());
-					} else if (contX == 0) {
-						Menu.adicionaTela(modoDificil, modoDificil.getName());
-						Menu.mudaTela(modoDificil.getName());
-					}
+					 JOptionPane.showMessageDialog(null, "Aconteceu um erro ao iniciar o Jogo!\nOs dados nï¿½o serï¿½o salvos!" + e.getLocalizedMessage());
+				}catch(NomeGrandeException e){
+					new Jogando().limpar();
+					JOptionPane.showMessageDialog(null, e);
 				}
 			}
-
 		});
 	}
 
-	public void iniciaJogo() throws SQLException {
+	public void iniciaJogo() throws SQLException, NomeGrandeException {
 		// verificando jogador no , se nao houver adiciona na
 		// tabela de Jogadores no de dados
 		// roxo
 		if (!(tfLilas.getText().equals("") || tfLilas.getText().equals(mensagemFundo))) {
 			String nome = tfLilas.getText();
+			verificaTam(nome);
 			boolean exist = controleJ.verificaJogador(nome);
 			System.out.println(exist);
 			if (!exist) {
@@ -357,7 +359,7 @@ public class Jogadores extends JPanel {
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-					System.out.println("Não foi maninho, deu erro");
+					System.out.println("Nï¿½o foi maninho, deu erro");
 				}
 			}
 			Jogador j = new JogadorController().encontrarJogador(nome);
@@ -368,6 +370,7 @@ public class Jogadores extends JPanel {
 		// texto do jogador rosa
 		if (!(tfRosa.getText().equals("") || tfRosa.getText().equals(mensagemFundo))) {
 			String nome = tfRosa.getText();
+			verificaTam(nome);
 			boolean exist = controleJ.verificaJogador(nome);
 			System.out.println(exist);
 			if (!exist) {
@@ -377,7 +380,7 @@ public class Jogadores extends JPanel {
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-					System.out.println("Não foi maninho, deu erro");
+					System.out.println("Nï¿½o foi maninho, deu erro");
 				}
 			}
 			Jogador j = new JogadorController().encontrarJogador(nome);
@@ -388,6 +391,7 @@ public class Jogadores extends JPanel {
 		// texto do jogador verde
 		if (!(tfVerde.getText().equals("") || tfVerde.getText().equals(mensagemFundo))) {
 			String nome = tfVerde.getText();
+			verificaTam(nome);
 			boolean exist = controleJ.verificaJogador(nome);
 			System.out.println(exist);
 			if (!exist) {
@@ -397,7 +401,7 @@ public class Jogadores extends JPanel {
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-					System.out.println("Não foi maninho, deu erro");
+					System.out.println("Nï¿½o foi maninho, deu erro");
 				}
 			}
 			Jogador j = new JogadorController().encontrarJogador(nome);
@@ -408,6 +412,7 @@ public class Jogadores extends JPanel {
 		// texto do jogador amarelo
 		if (!(tfAmarelo.getText().equals("") || tfAmarelo.getText().equals(mensagemFundo))) {
 			String nome = tfAmarelo.getText();
+			verificaTam(nome);
 			boolean exist = controleJ.verificaJogador(nome);
 			System.out.println(exist);
 			if (!exist) {
@@ -417,7 +422,7 @@ public class Jogadores extends JPanel {
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-					System.out.println("Não foi maninho, deu erro");
+					System.out.println("Nï¿½o foi maninho, deu erro");
 				}
 			}
 			Jogador j = new JogadorController().encontrarJogador(nome);
@@ -428,6 +433,7 @@ public class Jogadores extends JPanel {
 		// texto do jogador vermelho
 		if (!(tfVermelho.getText().equals("") || tfVermelho.getText().equals(mensagemFundo))) {
 			String nome = tfVermelho.getText();
+			verificaTam(nome);
 			boolean exist = controleJ.verificaJogador(nome);
 			System.out.println(exist);
 			if (!exist) {
@@ -437,7 +443,7 @@ public class Jogadores extends JPanel {
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-					System.out.println("Não foi maninho, deu erro");
+					System.out.println("Nï¿½o foi maninho, deu erro");
 				}
 			}
 			Jogador j = new JogadorController().encontrarJogador(nome);
@@ -448,6 +454,7 @@ public class Jogadores extends JPanel {
 		// texto do jogador laranja
 		if (!(tfLaranja.getText().equals("") || tfLaranja.getText().equals(mensagemFundo))) {
 			String nome = tfLaranja.getText();
+			verificaTam(nome);
 			boolean exist = controleJ.verificaJogador(nome);
 			System.out.println("Existe no banco: " + exist);
 			if (!exist) {
@@ -457,7 +464,7 @@ public class Jogadores extends JPanel {
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-					System.out.println("Não foi maninho, deu erro");
+					System.out.println("Nï¿½o foi maninho, deu erro");
 				}
 			}
 			Jogador j = new JogadorController().encontrarJogador(nome);
@@ -468,6 +475,26 @@ public class Jogadores extends JPanel {
 
 	}
 
+	//classe interna de excecao para nomes grandes
+	private class NomeGrandeException extends Exception{
+		
+		String msg;
+		
+		public NomeGrandeException(){
+			msg = "Um ou mais nomes digitados excedeu os limites, insira um nome menor com, no mï¿½ximo, 23 caracteres";
+		}
+		
+		public String toString(){
+			return msg;
+		}
+	}
+	
+	//funcao que verifica o tamanho do nome digitado
+	public void verificaTam(String nome) throws NomeGrandeException{
+		if(nome.length()>23)
+			throw new NomeGrandeException();
+	}
+	
 	// metodos de acesso
 	public void setNome(String nome) {
 		this.nome = nome;
